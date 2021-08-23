@@ -1,0 +1,354 @@
+{
+  "cached_categories": [
+    {
+      "ID": 1,
+      "name": "CAS и экран загрузки",
+      "link": "/CAS-dlya-sims-4/",
+      "parent": 0
+    },
+    {
+      "ID": 2,
+      "name": "аксессуары",
+      "link": "/aksessuary-dlya-sims-4/",
+      "parent": 0
+    },
+    {
+      "ID": 3,
+      "name": "внешность",
+      "link": "/vneshnost-dlya-sims-4/",
+      "parent": 0
+    },
+    {
+      "ID": 4,
+      "name": "брови и ресницы",
+      "link": "/brovi-i-resnitsy-dlya-sims-4/",
+      "parent": 3
+    },
+    {
+      "ID": 5,
+      "name": "косметика",
+      "link": "/kosmetika-dlya-sims-4/",
+      "parent": 3
+    },
+    {
+      "ID": 6,
+      "name": "линзы и глаза",
+      "link": "/linzy-i-glaza-dlya-sims-4/",
+      "parent": 3
+    },
+    {
+      "ID": 7,
+      "name": "особенности кожи",
+      "link": "/osobennosti-kozhi-dlya-sims-4/",
+      "parent": 3
+    },
+    {
+      "ID": 8,
+      "name": "скинтоны",
+      "link": "/skintony-dlya-sims-4/",
+      "parent": 3
+    },
+    {
+      "ID": 9,
+      "name": "татуировки",
+      "link": "/tatuirovki-dlya-sims-4/",
+      "parent": 3
+    },
+    {
+      "ID": 10,
+      "name": "уши и зубы",
+      "link": "/ushi-i-zuby-dlya-sims-4/",
+      "parent": 3
+    },
+    {
+      "ID": 11,
+      "name": "интерьер",
+      "link": "/interer-dlya-sims-4/",
+      "parent": 0
+    },
+    {
+      "ID": 12,
+      "name": "декор",
+      "link": "/dekor-dlya-sims-4/",
+      "parent": 11
+    },
+    {
+      "ID": 13,
+      "name": "комнаты",
+      "link": "/komnaty-dlya-sims-4/",
+      "parent": 11
+    },
+    {
+      "ID": 14,
+      "name": "мебель",
+      "link": "/mebel-dlya-sims-4/",
+      "parent": 11
+    },
+    {
+      "ID": 15,
+      "name": "наборы интерьера",
+      "link": "/nabory-interera-dlya-sims-4/",
+      "parent": 11
+    },
+    {
+      "ID": 16,
+      "name": "техника",
+      "link": "/tekhnika-dlya-sims-4/",
+      "parent": 11
+    },
+    {
+      "ID": 17,
+      "name": "каталоги",
+      "link": "/katalogi-dlya-sims-4/",
+      "parent": 0
+    },
+    {
+      "ID": 18,
+      "name": "моды",
+      "link": "/mody-dlya-sims-4/",
+      "parent": 0
+    },
+    {
+      "ID": 19,
+      "name": "наборы",
+      "link": "/nabory-dlya-sims-4/",
+      "parent": 0
+    },
+    {
+      "ID": 20,
+      "name": "обувь",
+      "link": "/obuv-dlya-sims-4/",
+      "parent": 0
+    },
+    {
+      "ID": 21,
+      "name": "обустройство двора",
+      "link": "/obustroystvo-dvora-dlya-sims-4/",
+      "parent": 0
+    },
+    {
+      "ID": 22,
+      "name": "одежда",
+      "link": "/odezhda-dlya-sims-4/",
+      "parent": 0
+    },
+    {
+      "ID": 23,
+      "name": "питомцы и животные",
+      "link": "/pitomtsy-i-zhivotnye-dlya-sims-4/",
+      "parent": 0
+    },
+    {
+      "ID": 24,
+      "name": "позы",
+      "link": "/pozy-dlya-sims-4/",
+      "parent": 0
+    },
+    {
+      "ID": 25,
+      "name": "пресеты и слайдеры",
+      "link": "/presety-i-slajdery-dlya-sims-4/",
+      "parent": 0
+    },
+    {
+      "ID": 26,
+      "name": "прически",
+      "link": "/pricheski-dlya-sims-4/",
+      "parent": 0
+    },
+    {
+      "ID": 27,
+      "name": "программы",
+      "link": "/programmy-dlya-sims-4/",
+      "parent": 0
+    },
+    {
+      "ID": 28,
+      "name": "строительство",
+      "link": "/stroitelstvo-dlya-sims-4/",
+      "parent": 0
+    },
+    {
+      "ID": 29,
+      "name": "окна, двери и арки",
+      "link": "/okna-dveri-i-arki-dlya-sims-4/",
+      "parent": 28
+    },
+    {
+      "ID": 30,
+      "name": "стены и пол",
+      "link": "/steny-i-pol-dlya-sims-4/",
+      "parent": 28
+    },
+    {
+      "ID": 31,
+      "name": "увлечения и навыки",
+      "link": "/uvlecheniya-i-navyki-dlya-sims-4/",
+      "parent": 0
+    }
+  ],
+  "cached_mods": [
+    {
+      "name": "Женские брюки \"area matcha pants\"",
+      "description": "Оригинальные прямые авторские брюки с декоративной конструкцией из цепочек в 20 цветовых образцах. HQ текстура. \n\nДоступно для женщин. \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
+      "link": "/odezhda-dlya-sims-4/8101-ZHenskie-bryuki-area-matcha-pants-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20210822194207638.jpg",
+      "download_link": "/go/8101",
+      "filename": "",
+      "installed": false,
+      "disabled": true
+    },
+    {
+      "name": "Сандалии \"AF SHOES N005\"",
+      "description": "Интересная модель сандалий с декоративным крупным жемчугом в 6 цветовых образцах. Совместимы с HQ модом. \n\nДоступно для женщин. \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
+      "link": "/obuv-dlya-sims-4/8100-Sandalii-AF-SHOES-N005-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20210822194034949.jpg",
+      "download_link": "/go/8100",
+      "filename": "",
+      "installed": false,
+      "disabled": true
+    },
+    {
+      "name": "Топ \"Untouchable Top\"",
+      "description": "Эффектный женский топ с кожаной портупеей на ремешках в 20 цветовых образцах. HQ совместим. \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
+      "link": "/odezhda-dlya-sims-4/8098-Top-Untouchable-Top-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20210821011354396.jpg",
+      "download_link": "/go/8098",
+      "filename": "",
+      "installed": false,
+      "disabled": true
+    },
+    {
+      "name": "Бальзам для губ \"Natural Lips CC15\"",
+      "description": "Супер естественный бальзам для создания эффекта чистых натуральных губ в 18 оттенках. \n\nДоступен для всех полов и возрастов. \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
+      "link": "/kosmetika-dlya-sims-4/8097-Balzam-dlya-gub-Natural-Lips-CC15-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20210821010024375.jpg",
+      "download_link": "/go/8097",
+      "filename": "",
+      "installed": false,
+      "disabled": true
+    },
+    {
+      "name": "Женские джинсы \"romilly jeans\"",
+      "description": "Укороченные немного расклешенные Maxis Match джинсы с белым шнурком на талии. 15 цветовых образцов. \n\nДоступно для женщин. \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
+      "link": "/odezhda-dlya-sims-4/8096-ZHenskie-dzhinsy-romilly-jeans-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20210821004253692.jpg",
+      "download_link": "/go/8096",
+      "filename": "",
+      "installed": false,
+      "disabled": true
+    },
+    {
+      "name": "Садовый набор \"GARDEN STORIES\"",
+      "description": "На создание этого милого деревенского набора автора вдохновило дополнение \"The Sims 4: Загородная жизнь\". \n\n7 объектов: подвесная скамейка (качели не функционируют), столы для пикника (2 версии), поднос с декором, функциональные садовые клумбы (2 вида), и столик флориста (для отображения объекта НЕОБХОДИМО дополнение \"The Sims 4: Времена года\"). \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
+      "link": "/obustroystvo-dvora-dlya-sims-4/8095-Sadovyy-nabor-GARDEN-STORIES-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20210821001953515.jpg",
+      "download_link": "/go/8095",
+      "filename": "",
+      "installed": false,
+      "disabled": true
+    },
+    {
+      "name": "Женская прическа \"kelley hair\"",
+      "description": "Maxis Match волосы средней длины с прямой челочкой в 2 версиях (убранные за ушки с двух сторон и с одной стороны). 24 цветовых образца. Прическа частично работает с головными уборами. \n\nДоступно для женщин. \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
+      "link": "/pricheski-dlya-sims-4/8094-ZHenskaya-pricheska-kelley-hair-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20210819142726472.jpg",
+      "download_link": "/go/8094",
+      "filename": "",
+      "installed": false,
+      "disabled": true
+    },
+    {
+      "name": "Кардиган и топ \"daphne cardigan\"",
+      "description": "Свободный длинный Maxis Match кардиган + вязанный топ в 30 цветовых решениях. \n\nДоступно для женщин. \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
+      "link": "/odezhda-dlya-sims-4/8093-Kardigan-i-top-daphne-cardigan-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20210819141331323.jpg",
+      "download_link": "/go/8093",
+      "filename": "",
+      "installed": false,
+      "disabled": true
+    },
+    {
+      "name": "Декоративный стол и коробка \"Arctic Sideboard And Velvet Box\"",
+      "description": "Универсальный белый декоративный стол (цвет ножек можно менять, 6 ц.в.) + бархатная коробка (10 ц.в.). \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
+      "link": "/nabory-interera-dlya-sims-4/8092-Dekorativnyy-stol-i-korobka-Arctic-Sideboard-And-Velvet-Box-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20210819140627243.jpg",
+      "download_link": "/go/8092",
+      "filename": "",
+      "installed": false,
+      "disabled": true
+    },
+    {
+      "name": "Ботинки для малышей \"mars boots\"",
+      "description": "Теплые ботиночки на шнуровке в 25 цветовых образцах. Доступны для тоддлеров (и для мальчиков и для девочек). \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
+      "link": "/obuv-dlya-sims-4/8091-Botinki-dlya-malyshey-mars-boots-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20210819140009224.jpg",
+      "download_link": "/go/8091",
+      "filename": "",
+      "installed": false,
+      "disabled": true
+    },
+    {
+      "name": "Подводка для глаз \"Liner Two Tone\"",
+      "description": "Двойная стрелочка с цветным акцентом в 20 цветовых решениях. \n\nДоступно для женщин. \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
+      "link": "/kosmetika-dlya-sims-4/8090-Podvodka-dlya-glaz-Liner-Two-Tone-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20210819135104631.jpg",
+      "download_link": "/go/8090",
+      "filename": "",
+      "installed": false,
+      "disabled": true
+    }
+  ],
+  "installed_mods": [
+    {
+      "name": "S4MP_logs",
+      "description": "Unknown",
+      "link": "",
+      "image": "",
+      "download_link": "",
+      "filename": "S4MP_logs",
+      "installed": false,
+      "disabled": true
+    },
+    {
+      "name": "S4MP_release.ts4script",
+      "description": "Unknown",
+      "link": "",
+      "image": "",
+      "download_link": "",
+      "filename": "S4MP_release.ts4script",
+      "installed": false,
+      "disabled": true
+    },
+    {
+      "name": "ts4multiplayer-alpha2",
+      "description": "Unknown",
+      "link": "",
+      "image": "",
+      "download_link": "",
+      "filename": "ts4multiplayer-alpha2",
+      "installed": false,
+      "disabled": true
+    },
+    {
+      "name": "Жакет \"area matcha name jacket\"",
+      "description": "Экстравагантный авторский жакет с открытой спиной, декорированной цепочками, в 20 цветовых образцах. HQ текстура. Доступно для женщин. Проверено на лицензионной.",
+      "link": "/odezhda-dlya-sims-4/8088-ZHaket-area-matcha-name-jacket-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20210818150710387.jpg",
+      "download_link": "/go/8088",
+      "filename": "sims4pack_8088-ZHaket-area-matcha-name-jacket.package",
+      "installed": false,
+      "disabled": false
+    },
+    {
+      "name": "Женские брюки \"area matcha pants\"",
+      "description": "Оригинальные прямые авторские брюки с декоративной конструкцией из цепочек в 20 цветовых образцах. HQ текстура. Доступно для женщин. Проверено на.",
+      "link": "/odezhda-dlya-sims-4/8101-ZHenskie-bryuki-area-matcha-pants-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20210822194207638.jpg",
+      "download_link": "/go/8101",
+      "filename": "sims4pack_8101-ZHenskie-bryuki-area-matcha-pants.package",
+      "installed": false,
+      "disabled": true
+    }
+  ]
+}
