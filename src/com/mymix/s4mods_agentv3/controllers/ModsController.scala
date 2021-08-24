@@ -12,7 +12,6 @@ object ModsController
     // Инициализируем все управляемые контроллеры
     def init(): Unit =
     {
-        ModsInfoController.init()
         ModsOnlineController.init()
         ModsInstalledController.init()
     }
@@ -20,6 +19,7 @@ object ModsController
     // Получение списка всех модов
     def getOnlineModsList(): CachedOnlineMods =
     {
+        println(path)
         if (path != null)
             ModsOnlineController.getModsWithFilters(path)
         else

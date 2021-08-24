@@ -16,6 +16,8 @@ object ModsInstalledController
         // Инициализируем объекты каталогов с модами
         mods_dir = new File(Constants.sims_home + "\\Mods")
         disabled_mods_dir = new File(Constants.sims_home + "\\ModsDisabled")
+        if (!disabled_mods_dir.exists())
+            Files.createDirectory(Paths.get(Constants.sims_home + "\\ModsDisabled"))
 
         updateCache()
     }

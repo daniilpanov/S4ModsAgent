@@ -1,4 +1,5 @@
 {
+  "ea_home": "F:\\Users\\Daniel\\Documents\\Electronic Arts\\",
   "cached_categories": [
     {
       "ID": 1,
@@ -189,6 +190,46 @@
   ],
   "cached_mods": [
     {
+      "name": "Чокер \"MARGOT NECKLACE\"",
+      "description": "Милейший чокер из бисера в 20 цветовых решениях. Совместим с HQ модом. \n\nДоступно для женщин. \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
+      "link": "/aksessuary-dlya-sims-4/8105-CHoker-MARGOT-NECKLACE-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20210823145822864.jpg",
+      "download_link": "/go/8105",
+      "filename": "",
+      "installed": false,
+      "disabled": true
+    },
+    {
+      "name": "Женская прическа \"Carina Hairstyle\"",
+      "description": "Красивая укладка на слегка волнистых волосах в 61 цветовом решении. Прическа частично работает с головными уборами. \n\nДоступно для женщин. \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
+      "link": "/pricheski-dlya-sims-4/8104-ZHenskaya-pricheska-Carina-Hairstyle-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20210823145042192.jpg",
+      "download_link": "/go/8104",
+      "filename": "",
+      "installed": false,
+      "disabled": true
+    },
+    {
+      "name": "Ботильоны \"AF SHOES N006\"",
+      "description": "Ботильоны на платформе с вырезом на танкетке в форме полумесяца в 2 версиях (стандартная и с увеличенной платформой). 10 цветовых образцов. Совместимы с HQ модом. \n\nP.S.: для второй версии НЕОБХОДИМ слайдер-мод для высоких каблуков \"CAS Feet Up Boots Heels Slider 01\" (ссылка после описания в графе MESH). \n\nДоступно для женщин. \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
+      "link": "/obuv-dlya-sims-4/8103-Botilony-AF-SHOES-N006-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20210823144706482.jpg",
+      "download_link": "/go/8103",
+      "filename": "",
+      "installed": false,
+      "disabled": true
+    },
+    {
+      "name": "Каталог \"JARDANE\"",
+      "description": "JARDANE - это коллекция пользовательского контента из 51 элемента от Felixandre and harrie-cc, которая посвящена обустройству внутреннего дворика. В набор входит все, что нужно, чтобы превратить ваш сад в продолжение дома. Этот набор позволяет жить, есть, играть и развлекаться на открытом воздухе. Все элементы совместимы с основной игрой, за исключением 2 предметов: водная горка требует наличие каталога \"The Sims 4: На заднем дворе\", а детский бассейн требует дополнения \"The Sims 4: Времена года\". Больше информации о содержимом на gif картинке 2. \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
+      "link": "/katalogi-dlya-sims-4/8102-Katalog-JARDANE-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20210823134753242.jpg",
+      "download_link": "/go/8102",
+      "filename": "",
+      "installed": false,
+      "disabled": true
+    },
+    {
       "name": "Женские брюки \"area matcha pants\"",
       "description": "Оригинальные прямые авторские брюки с декоративной конструкцией из цепочек в 20 цветовых образцах. HQ текстура. \n\nДоступно для женщин. \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
       "link": "/odezhda-dlya-sims-4/8101-ZHenskie-bryuki-area-matcha-pants-dlya-Sims-4/",
@@ -257,98 +298,18 @@
       "filename": "",
       "installed": false,
       "disabled": true
-    },
-    {
-      "name": "Кардиган и топ \"daphne cardigan\"",
-      "description": "Свободный длинный Maxis Match кардиган + вязанный топ в 30 цветовых решениях. \n\nДоступно для женщин. \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
-      "link": "/odezhda-dlya-sims-4/8093-Kardigan-i-top-daphne-cardigan-dlya-Sims-4/",
-      "image": "https://sims4pack.ru/materials/img/20210819141331323.jpg",
-      "download_link": "/go/8093",
-      "filename": "",
-      "installed": false,
-      "disabled": true
-    },
-    {
-      "name": "Декоративный стол и коробка \"Arctic Sideboard And Velvet Box\"",
-      "description": "Универсальный белый декоративный стол (цвет ножек можно менять, 6 ц.в.) + бархатная коробка (10 ц.в.). \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
-      "link": "/nabory-interera-dlya-sims-4/8092-Dekorativnyy-stol-i-korobka-Arctic-Sideboard-And-Velvet-Box-dlya-Sims-4/",
-      "image": "https://sims4pack.ru/materials/img/20210819140627243.jpg",
-      "download_link": "/go/8092",
-      "filename": "",
-      "installed": false,
-      "disabled": true
-    },
-    {
-      "name": "Ботинки для малышей \"mars boots\"",
-      "description": "Теплые ботиночки на шнуровке в 25 цветовых образцах. Доступны для тоддлеров (и для мальчиков и для девочек). \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
-      "link": "/obuv-dlya-sims-4/8091-Botinki-dlya-malyshey-mars-boots-dlya-Sims-4/",
-      "image": "https://sims4pack.ru/materials/img/20210819140009224.jpg",
-      "download_link": "/go/8091",
-      "filename": "",
-      "installed": false,
-      "disabled": true
-    },
-    {
-      "name": "Подводка для глаз \"Liner Two Tone\"",
-      "description": "Двойная стрелочка с цветным акцентом в 20 цветовых решениях. \n\nДоступно для женщин. \n\nПроверено на лицензионной версии игры: 1.77.146.1030",
-      "link": "/kosmetika-dlya-sims-4/8090-Podvodka-dlya-glaz-Liner-Two-Tone-dlya-Sims-4/",
-      "image": "https://sims4pack.ru/materials/img/20210819135104631.jpg",
-      "download_link": "/go/8090",
-      "filename": "",
-      "installed": false,
-      "disabled": true
     }
   ],
   "installed_mods": [
     {
-      "name": "S4MP_logs",
+      "name": "S4MP Online Launcher 0.7.1-public.exe",
       "description": "Unknown",
       "link": "",
       "image": "",
       "download_link": "",
-      "filename": "S4MP_logs",
-      "installed": false,
-      "disabled": true
-    },
-    {
-      "name": "S4MP_release.ts4script",
-      "description": "Unknown",
-      "link": "",
-      "image": "",
-      "download_link": "",
-      "filename": "S4MP_release.ts4script",
-      "installed": false,
-      "disabled": true
-    },
-    {
-      "name": "ts4multiplayer-alpha2",
-      "description": "Unknown",
-      "link": "",
-      "image": "",
-      "download_link": "",
-      "filename": "ts4multiplayer-alpha2",
-      "installed": false,
-      "disabled": true
-    },
-    {
-      "name": "Жакет \"area matcha name jacket\"",
-      "description": "Экстравагантный авторский жакет с открытой спиной, декорированной цепочками, в 20 цветовых образцах. HQ текстура. Доступно для женщин. Проверено на лицензионной.",
-      "link": "/odezhda-dlya-sims-4/8088-ZHaket-area-matcha-name-jacket-dlya-Sims-4/",
-      "image": "https://sims4pack.ru/materials/img/20210818150710387.jpg",
-      "download_link": "/go/8088",
-      "filename": "sims4pack_8088-ZHaket-area-matcha-name-jacket.package",
-      "installed": false,
+      "filename": "S4MP Online Launcher 0.7.1-public.exe",
+      "installed": true,
       "disabled": false
-    },
-    {
-      "name": "Женские брюки \"area matcha pants\"",
-      "description": "Оригинальные прямые авторские брюки с декоративной конструкцией из цепочек в 20 цветовых образцах. HQ текстура. Доступно для женщин. Проверено на.",
-      "link": "/odezhda-dlya-sims-4/8101-ZHenskie-bryuki-area-matcha-pants-dlya-Sims-4/",
-      "image": "https://sims4pack.ru/materials/img/20210822194207638.jpg",
-      "download_link": "/go/8101",
-      "filename": "sims4pack_8101-ZHenskie-bryuki-area-matcha-pants.package",
-      "installed": false,
-      "disabled": true
     }
   ]
 }

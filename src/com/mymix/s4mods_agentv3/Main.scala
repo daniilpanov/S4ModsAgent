@@ -1,10 +1,9 @@
 package com.mymix.s4mods_agentv3
 
 import java.awt.{GridLayout, Toolkit}
-import java.io.File
 
-import com.mymix.s4mods_agentv3.activities.{Activity, OnlineModsListActivity, StartActivity}
-import com.mymix.s4mods_agentv3.controllers.{DownloadingManager, ModsController, ModsInstalledController}
+import com.mymix.s4mods_agentv3.activities.{Activity, StartActivity}
+import com.mymix.s4mods_agentv3.controllers.{DownloadingManager, ModsController, ModsInfoController, ModsInstalledController}
 import com.mymix.s4mods_agentv3.models.Mod
 import javax.swing.{JFrame, WindowConstants}
 
@@ -14,6 +13,7 @@ object Main extends JFrame
 
     def main(args: Array[String]): Unit =
     {
+        ModsInfoController.init()
         Constants.init()
         ModsController.init()
 
@@ -54,5 +54,6 @@ object Main extends JFrame
     def error(code: Int): Unit =
     {
         println("ERROR! Code " + code.toString)
+        System.exit(0)
     }
 }

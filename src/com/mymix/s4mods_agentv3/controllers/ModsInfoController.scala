@@ -34,6 +34,7 @@ object ModsInfoController
         )
     }
 
+    def getEaHome(): String = info_file_model.ea_home
     def getCategories(): CategoriesCollection = info_file_model.cached_categories
     def getOnlineMods(): CachedOnlineMods = info_file_model.cached_mods
     def getInstalledMods(): InstalledMods = info_file_model.installed_mods
