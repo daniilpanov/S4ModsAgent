@@ -4,8 +4,7 @@ import java.io.IOException
 import java.net.ConnectException
 
 import com.mymix.s4mods_agentv3.Constants
-import com.mymix.s4mods_agentv3.models.{CachedOnlineMods, Mod, ModsCollection}
-import javax.swing.Timer
+import com.mymix.s4mods_agentv3.models.{CachedOnlineMods, CategoriesCollection, Category, Mod}
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
@@ -13,7 +12,8 @@ import org.jsoup.select.Elements
 object ModsOnlineController
 {
     var first_update = true
-    var mods_updated: ModsCollection = new CachedOnlineMods
+    var mods_updated: CachedOnlineMods = new CachedOnlineMods
+    var cached_mods: CachedOnlineMods = new CachedOnlineMods
     var mods_updating_done: Boolean = false
     var doc: Document = _
     var pagination_max = 0
@@ -22,28 +22,11 @@ object ModsOnlineController
     def init(): Unit =
     {
         doc = Jsoup.connect(Constants.URL + (if (null != ModsController.path) ModsController.path else "")).get()
-        val t = new Timer(2500, _ => writeModsToCache())
-        t.start()
     }
 
-    def writeModsToCache(): Unit =
-    {
-        if (mods_updating_done)
-        {
-            ModsInfoController.addOnlineModsList(mods_updated, first_update)
-            mods_updated.clear()
-            mods_updating_done = false
-        }
+    def getModsFromCache(): CachedOnlineMods = cached_mods
 
-        first_update = false
-    }
-
-    def getModsFromCache(): CachedOnlineMods =
-    {
-        ModsInfoController.getOnlineMods()
-    }
-
-    def getModsWithFilters(path: String = ""): CachedOnlineMods =
+    def getMods(): CachedOnlineMods =
     {
         val list = new CachedOnlineMods
         try
@@ -74,23 +57,6 @@ object ModsOnlineController
         list
     }
 
-    def updateCache(): Unit =
-    {
-        if (mods_updating_done)
-            return
-
-        try
-        {
-            mods_updated.addAll(getModsWithFilters())
-            mods_updating_done = true
-        }
-        catch
-        {
-            case ex: IOException => ex.printStackTrace()
-            case ex: ConnectException => ex.printStackTrace()
-        }
-    }
-
     def browseDownloadLink(mod: Mod): Unit =
     {
         val download_doc = Jsoup.connect(Constants.URL + mod.link).get
@@ -113,6 +79,51 @@ object ModsOnlineController
             links.last().html().toInt,
             pagination_current
         )
+        println(pagination_max)
+        println(pagination_current)
         pagination_max
+    }
+
+    def addOnlineMod(new_mod: Mod): Unit =
+    {
+        if (!cached_mods.contains(new_mod))
+            cached_mods.add(new_mod)
+    }
+
+    def addOnlineModsList(mods_list: CachedOnlineMods): Unit = cached_mods.addAll(mods_list)
+
+    def updateFilters(): Unit =
+    {
+        val categories_list = doc select ".menu-block > .menu-links li"
+        var links: Elements = null
+        val collection = new CategoriesCollection
+        var ID = 1
+
+        categories_list.forEach(e =>
+        {
+            links = e select "a"
+            collection.add(new Category(ID, links.get(0).html(), links.get(0).attr("href")))
+
+            if (links.size() > 1)
+            {
+                val parent_id = ID
+                links.forEach(e =>
+                {
+                    if (ID > parent_id)
+                    {
+                        collection.add(new Category(ID, e.html(), e.attr("href"), parent_id))
+                    }
+
+                    ID += 1
+                })
+
+                ID -= 1
+            }
+
+            ID += 1
+        })
+
+        ModsInfoController.updateCategories(collection)
+        ModsInfoController.saveInfoFile()
     }
 }

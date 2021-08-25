@@ -1,11 +1,11 @@
 package com.mymix.s4mods_agentv3.activities;
 
-import com.mymix.s4mods_agentv3.Constants;
 import com.mymix.s4mods_agentv3.Main;
 import com.mymix.s4mods_agentv3.controllers.ModsController;
 import com.mymix.s4mods_agentv3.controllers.ModsInstalledController;
 import com.mymix.s4mods_agentv3.controllers.ModsOnlineController;
 import com.mymix.s4mods_agentv3.models.CategoriesCollection;
+import com.mymix.s4mods_agentv3.models.Category;
 import com.mymix.s4mods_agentv3.models.Mod;
 
 import javax.swing.*;
@@ -16,25 +16,25 @@ import java.util.List;
 
 public class OnlineModsListActivity extends ModsListActivity
 {
-    private static JLabel category_name;
+    private static JLabel category_name = null;
     private JPanel pagination = new JPanel(new FlowLayout());
 
     public OnlineModsListActivity()
     {
-        super();
-        ModsController.path_$eq(null);
+        this("");
     }
 
     public OnlineModsListActivity(String path)
     {
         super();
-        ModsController.path_$eq(path);
+        ModsController.changePath(path);
     }
 
     @Override
     public void init()
     {
-        category_name = new JLabel("Все моды");
+        if (category_name == null)
+            category_name = new JLabel("Все моды");
 
         loadFilters();
         loadPagination();
@@ -91,19 +91,20 @@ public class OnlineModsListActivity extends ModsListActivity
     {
         CategoriesCollection list = ModsController.getFilters();
 
-        addFilter("Все моды", null);
-        list.forEach(e -> addFilter(e.name(), e.link()));
+        addFilter(new Category(0, "Все моды", null, 0));
+        list.forEach(this::addFilter);
     }
 
-    private void addFilter(String name, String link)
+    private void addFilter(Category c)
     {
-        JButton b = createPrettyButton(name, l ->
+        String n = (c.parent() > 0 ? " - " + c.name() : c.name());
+        JButton b = createPrettyButton(n, l ->
         {
-            Main.activity(new OnlineModsListActivity(link));
-            category_name.setText(name);
+            category_name.setText(c.name());
+            Main.activity(new OnlineModsListActivity(c.link()));
         });
 
-        if (category_name.getText().equals(name))
+        if (category_name.getText().equals(c.name()))
         {
             b.setBackground(Color.ORANGE);
             b.setBorder(BorderFactory.createCompoundBorder(

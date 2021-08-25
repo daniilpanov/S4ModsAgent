@@ -1,4 +1,4 @@
-TODO: create pagination
+TODO: create pagination (in progress)
 TODO: create displaying downloading progress (on OnlineModsListActivity; right toggle panel)
 TODO: Slider (OnlineModsListActivity, on image clicked)
 TODO: InstalledModsActivity

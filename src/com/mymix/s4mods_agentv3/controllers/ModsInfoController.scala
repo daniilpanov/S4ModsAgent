@@ -5,7 +5,6 @@ import java.util
 
 import com.google.gson.stream.JsonReader
 import com.google.gson.{Gson, GsonBuilder}
-import com.mymix.s4mods_agentv3.Constants
 import com.mymix.s4mods_agentv3.models._
 
 object ModsInfoController
@@ -20,7 +19,7 @@ object ModsInfoController
         if (!new File("res/data.json").exists())
         {
             val file = new FileWriter("res/data.json", false)
-            file.append("{\n  \"cached_mods\": [],\n  \"installed_mods\": []\n}")
+            file.append("{\n  \"cached_categories\": [],\n  \"installed_mods\": []\n}")
             file.close()
         }
 
@@ -36,7 +35,6 @@ object ModsInfoController
 
     def getEaHome(): String = info_file_model.ea_home
     def getCategories(): CategoriesCollection = info_file_model.cached_categories
-    def getOnlineMods(): CachedOnlineMods = info_file_model.cached_mods
     def getInstalledMods(): InstalledMods = info_file_model.installed_mods
 
     def updateCategories(categories: CategoriesCollection): Unit = info_file_model.cached_categories = categories
@@ -61,51 +59,6 @@ object ModsInfoController
             if (add)
                 info_file_model.installed_mods.add(mod)
         })
-
-        saveInfoFile()
-    }
-
-    def addOnlineMod(new_mod: Mod): Unit =
-    {
-        if (!info_file_model.cached_mods.contains(new_mod))
-            info_file_model.cached_mods.add(new_mod)
-    }
-
-    private def reinit(new_mods: util.List[Mod]): Unit =
-    {
-        var tmp_mods: util.List[Mod] = info_file_model.cached_mods.clone().asInstanceOf[util.List[Mod]]
-        info_file_model.cached_mods.clear()
-        info_file_model.cached_mods.addAll(new_mods)
-
-        tmp_mods.forEach(mod =>
-        {
-            if (!new_mods.contains(mod))
-                info_file_model.cached_mods.add(mod)
-        })
-    }
-
-    def addOnlineModsList(new_mods: util.List[Mod], load_before_all: Boolean = false): Unit =
-    {
-        if (info_file_model.cached_mods.size() < Constants.max_cached_mods)
-        {
-            if (load_before_all)
-            {
-                reinit(new_mods)
-                return
-            }
-
-            new_mods.forEach(mod =>
-            {
-                var add = true
-                info_file_model.cached_mods.forEach(mod2 => {
-                    if (mod == mod2)
-                        add = false
-                })
-
-                if (add)
-                    info_file_model.cached_mods.add(mod)
-            })
-        }
 
         saveInfoFile()
     }

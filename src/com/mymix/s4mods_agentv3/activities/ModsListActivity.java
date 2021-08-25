@@ -53,6 +53,7 @@ abstract public class ModsListActivity extends Activity
         mods_scroll.setWheelScrollingEnabled(true);
         mods_scroll.getVerticalScrollBar().setUnitIncrement(16);
         add(mods_scroll, BorderLayout.CENTER);
+        mods_scroll.getVerticalScrollBar().setValue(mods_scroll.getVerticalScrollBar().getMinimum());
 
         contentPane.add(this);
     }
