@@ -5,6 +5,7 @@ import com.mymix.s4mods_agentv3.models.{CachedOnlineMods, CategoriesCollection, 
 object ModsController
 {
     var path: String = null
+    var page: Int = 1
 
     // Инициализируем все управляемые контроллеры
     def init(): Unit =
@@ -22,6 +23,12 @@ object ModsController
     def changePath(path: String = ""): Unit =
     {
         this.path = path
+        changePage(1)
+    }
+
+    def changePage(page: Int): Unit =
+    {
+        this.page = page
         ModsOnlineController.init()
     }
 

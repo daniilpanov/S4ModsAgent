@@ -21,7 +21,19 @@ object ModsOnlineController
 
     def init(): Unit =
     {
-        doc = Jsoup.connect(Constants.URL + (if (null != ModsController.path) ModsController.path else "")).get()
+        var url = Constants.URL
+        if (null != ModsController.path)
+        {
+            url += ModsController.path
+            if (ModsController.page > 1)
+                url += (if (ModsController.path.matches("^/search\\?q=")) "&" else "?") +
+                    "page=" + ModsController.page.toString
+        }
+        else if (ModsController.page > 1)
+            url += "?page=" + ModsController.page.toString
+
+
+        doc = Jsoup.connect(url).get()
     }
 
     def getModsFromCache(): CachedOnlineMods = cached_mods

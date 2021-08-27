@@ -1,10 +1,18 @@
-TODO: create pagination (in progress)
+TODO: create pagination (ending)
 TODO: create displaying downloading progress (on OnlineModsListActivity; right toggle panel)
+TODO: Async browsing download links (!!!)
 TODO: Slider (OnlineModsListActivity, on image clicked)
 TODO: InstalledModsActivity
 TODO: OneModActivity
 TODO: DownloadingActivity
 TODO: wait preview
 TODO: SettingsActivity
+TODO: Async image loading
 
-TODO: упростить архитектуру
+TODO: упростить архитектуру (...)
+
+
+FIXME: if pre image is very big, we need make an image observer to cut it
+
+
+TODO: (FEATURE) cache system

@@ -13,6 +13,7 @@ abstract public class ModsListActivity extends Activity
             filters_panel = new JPanel();
     protected JScrollPane mods_scroll;
     protected JPanel mods = new JPanel();
+    protected JPanel pagination = new JPanel(new FlowLayout());
     protected GridBagConstraints conf = new GridBagConstraints();
 
 
@@ -54,6 +55,8 @@ abstract public class ModsListActivity extends Activity
         mods_scroll.getVerticalScrollBar().setUnitIncrement(16);
         add(mods_scroll, BorderLayout.CENTER);
         mods_scroll.getVerticalScrollBar().setValue(mods_scroll.getVerticalScrollBar().getMinimum());
+        // pagination
+        add(pagination, BorderLayout.SOUTH);
 
         contentPane.add(this);
     }

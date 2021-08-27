@@ -1,5 +1,6 @@
 package com.mymix.s4mods_agentv3.activities;
 
+import com.mymix.s4mods_agentv3.Constants;
 import com.mymix.s4mods_agentv3.Main;
 import com.mymix.s4mods_agentv3.controllers.ModsController;
 import com.mymix.s4mods_agentv3.controllers.ModsInstalledController;
@@ -17,7 +18,6 @@ import java.util.List;
 public class OnlineModsListActivity extends ModsListActivity
 {
     private static JLabel category_name = null;
-    private JPanel pagination = new JPanel(new FlowLayout());
 
     public OnlineModsListActivity()
     {
@@ -28,6 +28,12 @@ public class OnlineModsListActivity extends ModsListActivity
     {
         super();
         ModsController.changePath(path);
+    }
+
+    public OnlineModsListActivity(int page)
+    {
+        super();
+        ModsController.changePage(page);
     }
 
     @Override
@@ -72,18 +78,39 @@ public class OnlineModsListActivity extends ModsListActivity
 
     private void loadPagination()
     {
+        if (ModsController.page() > 1)
+        {
+            JButton pre = new JButton("Назад");
+            pre.addActionListener(l ->
+            {
+                Main.activity(new OnlineModsListActivity(ModsController.page() - 1));
+            });
+            pagination.add(pre);
+        }
+
+
         int pm = ModsOnlineController.getPagination();
-        List<JButton> pag = new ArrayList<>();
-        JButton pre = new JButton("Назад");
-        pre.addActionListener(l ->
+
+        for (int i = 1; i <= pm; ++ i)
         {
+            JButton pb = new JButton(String.valueOf(i));
+            final int page = i;
+            pb.addActionListener(l ->
+            {
+                Main.activity(new OnlineModsListActivity(page));
+            });
+            pagination.add(pb);
+        }
 
-        });
-        pagination.add(pre);
 
-        if (ModsOnlineController.pagination_current() > 1)
+        if (ModsOnlineController.pagination_current() < ModsOnlineController.pagination_max())
         {
-
+            JButton next = new JButton("Далее");
+            next.addActionListener(l ->
+            {
+                Main.activity(new OnlineModsListActivity(ModsController.page() + 1));
+            });
+            pagination.add(next);
         }
     }
 
