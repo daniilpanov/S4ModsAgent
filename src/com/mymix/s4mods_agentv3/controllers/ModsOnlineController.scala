@@ -17,7 +17,7 @@ object ModsOnlineController
     var mods_updating_done: Boolean = false
     var doc: Document = _
     var pagination_max = 0
-    var pagination_current = 0
+    var pagination_current = 1
 
     def init(): Unit =
     {
@@ -76,23 +76,17 @@ object ModsOnlineController
         mod.download_link = download_button attr "href"
         val description = download_doc selectFirst "div.material-description"
         mod.description = description.html().replace("<br>", "\n")
-        ModsInfoController.saveInfoFile()
     }
 
 
     def getPagination(): Int =
     {
-        if (pagination_max > 0)
-            return pagination_max
-
         val links: Elements = doc select ".pagination-block .page-link"
         pagination_current = doc.selectFirst(".pagination-block .page-link-selected").html().toInt
         pagination_max = Math.max(
             links.last().html().toInt,
             pagination_current
         )
-        println(pagination_max)
-        println(pagination_current)
         pagination_max
     }
 

@@ -1,5 +1,4 @@
 {
-  "ea_home": "F:\\Users\\Daniel\\Documents\\Electronic Arts\\",
   "cached_categories": [
     {
       "ID": 1,
@@ -189,65 +188,5 @@
     }
   ],
   "installed_mods": [
-    {
-      "name": "S4MP Online Launcher 0.7.1-public.exe",
-      "description": "Unknown",
-      "link": "",
-      "image": "",
-      "download_link": "",
-      "filename": "S4MP Online Launcher 0.7.1-public.exe",
-      "installed": true,
-      "disabled": false
-    },
-    {
-      "name": "sims4pack_8088-ZHaket-area-matcha-name-jacket.package",
-      "description": "Unknown",
-      "link": "",
-      "image": "",
-      "download_link": "",
-      "filename": "sims4pack_8088-ZHaket-area-matcha-name-jacket.package",
-      "installed": true,
-      "disabled": false
-    },
-    {
-      "name": "sims4pack_8101-ZHenskie-bryuki-area-matcha-pants.package",
-      "description": "Unknown",
-      "link": "",
-      "image": "",
-      "download_link": "",
-      "filename": "sims4pack_8101-ZHenskie-bryuki-area-matcha-pants.package",
-      "installed": true,
-      "disabled": false
-    },
-    {
-      "name": "S4MP_logs",
-      "description": "Unknown",
-      "link": "",
-      "image": "",
-      "download_link": "",
-      "filename": "S4MP_logs",
-      "installed": true,
-      "disabled": true
-    },
-    {
-      "name": "S4MP_release.ts4script",
-      "description": "Unknown",
-      "link": "",
-      "image": "",
-      "download_link": "",
-      "filename": "S4MP_release.ts4script",
-      "installed": true,
-      "disabled": true
-    },
-    {
-      "name": "ts4multiplayer-alpha2",
-      "description": "Unknown",
-      "link": "",
-      "image": "",
-      "download_link": "",
-      "filename": "ts4multiplayer-alpha2",
-      "installed": true,
-      "disabled": true
-    }
   ]
 }

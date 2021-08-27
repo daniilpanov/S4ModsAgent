@@ -1,6 +1,5 @@
 package com.mymix.s4mods_agentv3.activities;
 
-import com.mymix.s4mods_agentv3.Constants;
 import com.mymix.s4mods_agentv3.Main;
 import com.mymix.s4mods_agentv3.controllers.ModsController;
 import com.mymix.s4mods_agentv3.controllers.ModsInstalledController;
@@ -89,17 +88,65 @@ public class OnlineModsListActivity extends ModsListActivity
         }
 
 
-        int pm = ModsOnlineController.getPagination();
+        int pm = ModsOnlineController.getPagination(), pc = ModsOnlineController.pagination_current();
 
-        for (int i = 1; i <= pm; ++ i)
+        if (pc > 1)
         {
-            JButton pb = new JButton(String.valueOf(i));
-            final int page = i;
-            pb.addActionListener(l ->
+            JButton pb_first = new JButton(String.valueOf(1));
+            pb_first.addActionListener(l ->
             {
-                Main.activity(new OnlineModsListActivity(page));
+                Main.activity(new OnlineModsListActivity(1));
             });
-            pagination.add(pb);
+            pagination.add(pb_first);
+
+            int begin = (pc > 6) ? pc - 4 : 2;
+
+            if (begin > 2)
+                pagination.add(new JLabel("..."));
+
+            for (int i = begin; i < pc; ++ i)
+            {
+                JButton pb = new JButton(String.valueOf(i));
+                final int page = i;
+                pb.addActionListener(l ->
+                {
+                    Main.activity(new OnlineModsListActivity(page));
+                });
+                pagination.add(pb);
+            }
+        }
+
+        JButton pb_curr = new JButton(String.valueOf(pc));
+        pb_curr.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Color.ORANGE, 3, true),
+                BorderFactory.createEmptyBorder(10, 15, 10, 15)
+        ));
+        pagination.add(pb_curr);
+
+        if (pc < pm)
+        {
+            int end = (pm - pc > 5) ? pc + 4 : pm - 1;
+
+            for (int i = pc + 1; i <= end; ++ i)
+            {
+                JButton pb = new JButton(String.valueOf(i));
+                final int page = i;
+                pb.addActionListener(l ->
+                {
+                    Main.activity(new OnlineModsListActivity(page));
+                });
+                pagination.add(pb);
+            }
+
+            if (end < pc - 1)
+                pagination.add(new JLabel("..."));
+
+            JButton pb_end = new JButton(String.valueOf(pm));
+            pb_end.addActionListener(l ->
+            {
+                Main.activity(new OnlineModsListActivity(pm));
+            });
+            pagination.add(pb_end);
         }
 
 

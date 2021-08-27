@@ -1,5 +1,4 @@
 {
-  "ea_home": "F:\\Users\\Daniel\\Documents\\Electronic Arts\\",
   "cached_categories": [
     {
       "ID": 1,
@@ -189,16 +188,6 @@
     }
   ],
   "installed_mods": [
-    {
-      "name": "S4MP Online Launcher 0.7.1-public.exe",
-      "description": "Unknown",
-      "link": "",
-      "image": "",
-      "download_link": "",
-      "filename": "S4MP Online Launcher 0.7.1-public.exe",
-      "installed": true,
-      "disabled": false
-    },
     {
       "name": "sims4pack_8088-ZHaket-area-matcha-name-jacket.package",
       "description": "Unknown",

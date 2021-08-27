@@ -1,13 +1,12 @@
-TODO: create pagination (ending)
+create pagination -- DONE!
+TODO: async loading of images, descriptions and download links (beginning)
 TODO: create displaying downloading progress (on OnlineModsListActivity; right toggle panel)
-TODO: Async browsing download links (!!!)
 TODO: Slider (OnlineModsListActivity, on image clicked)
 TODO: InstalledModsActivity
 TODO: OneModActivity
 TODO: DownloadingActivity
 TODO: wait preview
 TODO: SettingsActivity
-TODO: Async image loading
 
 TODO: упростить архитектуру (...)
 
