@@ -1,10 +1,13 @@
 package com.mymix.s4mods_agentv3.controllers
 
 import java.io.IOException
-import java.net.ConnectException
+import java.net.{ConnectException, URL}
+import java.util
 
-import com.mymix.s4mods_agentv3.Constants
+import com.mymix.s4mods_agentv3.activities.OnlineModsListActivity
+import com.mymix.s4mods_agentv3.{Constants, Main}
 import com.mymix.s4mods_agentv3.models.{CachedOnlineMods, CategoriesCollection, Category, Mod}
+import javax.swing.ImageIcon
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
@@ -18,6 +21,26 @@ object ModsOnlineController
     var doc: Document = _
     var pagination_max = 0
     var pagination_current = 1
+
+    var loaded_images: util.List[ImageIcon] = new util.ArrayList[ImageIcon]()
+    val th_image_loading: Thread = new Thread(() =>
+    {
+        cached_mods.forEach(el =>
+        {
+            loaded_images.add(loadImageFor(el))
+            Main.current_activity.asInstanceOf[OnlineModsListActivity].updateImage()
+        })
+    })
+
+    var loaded_full_info: util.List[Array[String]] = new util.ArrayList[Array[String]]()
+    val th_info_loading: Thread = new Thread(() =>
+    {
+        cached_mods.forEach(el =>
+        {
+            loaded_full_info.add(traceDownloadLink(el))
+            Main.current_activity.asInstanceOf[OnlineModsListActivity].updateDLnDesc()
+        })
+    })
 
     def init(): Unit =
     {
@@ -56,9 +79,13 @@ object ModsOnlineController
                         .replace("');", "")
                     val newmod = new Mod(link.text, desc.html, link attr "href", img_url)
                     list add newmod
+                    // ЗАКОМЕНТИРОВАТЬ!
                     browseDownloadLink(newmod)
                 }
             })
+
+            th_info_loading.start()
+            th_image_loading.start()
         }
         catch
         {
@@ -78,6 +105,21 @@ object ModsOnlineController
         mod.description = description.html().replace("<br>", "\n")
     }
 
+    def traceDownloadLink(mod: Mod): Array[String] =
+    {
+        val download_doc = Jsoup.connect(Constants.URL + mod.link).get
+        val download_button = download_doc selectFirst "div.new-download > a.new_button"
+        val description = download_doc selectFirst "div.material-description"
+
+        val desc = description.html().replace("<br>", "\n")
+        mod.description = desc
+        val dl = download_button attr "href"
+        mod.download_link = dl
+
+        Array(dl, desc)
+    }
+
+    def loadImageFor(mod: Mod): ImageIcon = new ImageIcon(new URL(mod.image))
 
     def getPagination(): Int =
     {

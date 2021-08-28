@@ -18,7 +18,7 @@ class Mod(var name: String, var description: String, var link: String)
 
     def == (mod: Mod): Boolean =
     {
-        (mod.download_link == download_link && mod.name == name &&
+        (mod.name == name &&
             mod.link == link && mod.description == description &&
             mod.image == image) || (mod.filename == filename && filename != "")
     }

@@ -11,12 +11,18 @@ import com.mymix.s4mods_agentv3.models.Mod;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class OnlineModsListActivity extends ModsListActivity
 {
     private static JLabel category_name = null;
+
+    // ID = Mod.link
+    public HashMap<String, JTextPane> mods_desc = new HashMap<>();
+    public HashMap<String, JButton> mods_dl = new HashMap<>(),
+            mods_imgs = new HashMap<>();
+
 
     public OnlineModsListActivity()
     {
@@ -38,27 +44,37 @@ public class OnlineModsListActivity extends ModsListActivity
     @Override
     public void init()
     {
+        // если не выбрана категория, значит показаны все категории
         if (category_name == null)
             category_name = new JLabel("Все моды");
 
+        // Загрузка компонентов
         loadFilters();
         loadPagination();
         List<Mod> list = ModsController.getOnlineModsList();
         list.forEach(this::addMod);
 
-        top_menu.setLayout(new GridLayout(2, 1));
 
+        // РАЗМЕТКА
+        top_menu.setLayout(new GridLayout(2, 1));
+        // верхняя панель:
         JPanel top_panel = new JPanel(new BorderLayout());
+        // - меню (слева)
         JPanel menu = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        //   * ссылки:
         menu.add(createPrettyButton("ГЛАВНАЯ", l -> Main.activity(new StartActivity())));
+        // - ENDof(меню)
         top_panel.add(menu, BorderLayout.CENTER);
 
+        // - поиск (справа)
         JPanel search = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        //   * поле для поиска (берём значение по умолчанию из указанного в ModsController.path пути)
         String search_str = (ModsController.path() != null && ModsController.path().matches("^/search\\?q="))
                 ? ModsController.path().replace("/search?q=", "") : "";
         JTextField search_input = new JTextField(search_str);
         search_input.setColumns(25);
         search_input.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        //   * кнопка поиска
         JButton search_go = new JButton("Поиск");
         search_go.addActionListener(l ->
         {
@@ -66,17 +82,31 @@ public class OnlineModsListActivity extends ModsListActivity
         });
         search.add(search_input);
         search.add(search_go);
+        // - ENDof(поиск)
         top_panel.add(search, BorderLayout.EAST);
 
+        // ENDof(верхняя панель)
         top_menu.add(top_panel);
 
+        // выбранные фильтры (панель 2-го уровня):
         JPanel filters = new JPanel(new FlowLayout());
         filters.add(category_name);
         top_menu.add(filters);
     }
 
+    public void updateImage(String mod_link, String img_path)
+    {
+        makeAdaptiveIconButton(mods_imgs.get(mod_link), img_path, 155);
+    }
+
+    public void updateDLnDesc(String mod_link, String desc, String dl)
+    {
+        //mods_dl.get(mod_link)
+    }
+
     private void loadPagination()
     {
+        // Отображение кнопки навигации НАЗАД
         if (ModsController.page() > 1)
         {
             JButton pre = new JButton("Назад");
@@ -87,11 +117,13 @@ public class OnlineModsListActivity extends ModsListActivity
             pagination.add(pre);
         }
 
-
+        // pm - pagination_max, pc - pagination_current
         int pm = ModsOnlineController.getPagination(), pc = ModsOnlineController.pagination_current();
 
+        // Загрузка страниц группы ДО
         if (pc > 1)
         {
+            // отображение первой страницы
             JButton pb_first = new JButton(String.valueOf(1));
             pb_first.addActionListener(l ->
             {
@@ -99,11 +131,13 @@ public class OnlineModsListActivity extends ModsListActivity
             });
             pagination.add(pb_first);
 
+            // с какого элемента начинать (выводим 4 страницы группы ДО)
             int begin = (pc > 6) ? pc - 4 : 2;
-
+            // отображаем пробелы
             if (begin > 2)
                 pagination.add(new JLabel("..."));
 
+            // выводим основные страницы группы ДО
             for (int i = begin; i < pc; ++ i)
             {
                 JButton pb = new JButton(String.valueOf(i));
@@ -116,6 +150,7 @@ public class OnlineModsListActivity extends ModsListActivity
             }
         }
 
+        // Выводим текущую страницу
         JButton pb_curr = new JButton(String.valueOf(pc));
         pb_curr.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(Color.ORANGE, 3, true),
@@ -123,10 +158,13 @@ public class OnlineModsListActivity extends ModsListActivity
         ));
         pagination.add(pb_curr);
 
+        // Загрузка страниц группы ПОСЛЕ
         if (pc < pm)
         {
+            // до какого элемента выводить (выводим 4 страницы группы ПОСЛЕ)
             int end = (pm - pc > 5) ? pc + 4 : pm - 1;
 
+            // выводим основные страницы группы ПОСЛЕ
             for (int i = pc + 1; i <= end; ++ i)
             {
                 JButton pb = new JButton(String.valueOf(i));
@@ -137,10 +175,10 @@ public class OnlineModsListActivity extends ModsListActivity
                 });
                 pagination.add(pb);
             }
-
+            //  отображаем пробелы
             if (end < pc - 1)
                 pagination.add(new JLabel("..."));
-
+            // отображение первой страницы
             JButton pb_end = new JButton(String.valueOf(pm));
             pb_end.addActionListener(l ->
             {
@@ -149,7 +187,7 @@ public class OnlineModsListActivity extends ModsListActivity
             pagination.add(pb_end);
         }
 
-
+        // Отображение кнопки навигации ДАЛЕЕ
         if (ModsOnlineController.pagination_current() < ModsOnlineController.pagination_max())
         {
             JButton next = new JButton("Далее");
@@ -333,5 +371,11 @@ public class OnlineModsListActivity extends ModsListActivity
         mod_panel.add(desc, c);
 
         mods.add(mod_panel, conf);
+
+
+        // ДЛЯ ВОЗМОЖНОСТИ ОБНОВЛЕНИЯ В ФОНОВОМ РЕЖИМЕ
+        mods_desc.put(mod.link(), desc);
+        mods_dl.put(mod.link(), download);
+        mods_imgs.put(mod.link(), image);
     }
 }
