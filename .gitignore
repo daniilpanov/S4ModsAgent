@@ -1,6 +1,5 @@
 out/*
 
-res/cache.json
 res/data.json
 
 .idea/workspace.xml

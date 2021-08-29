@@ -19,13 +19,19 @@ class Mod(var name: String, var description: String, var link: String)
     def == (mod: Mod): Boolean =
     {
         (mod.name == name &&
-            mod.link == link && mod.description == description &&
-            mod.image == image) || (mod.filename == filename && filename != "")
+            mod.link == link && mod.image == image) ||
+            (mod.filename == filename && filename != "")
     }
 
     override def equals(obj: Any): Boolean =
     {
         val mod = obj.asInstanceOf[Mod]
         mod == this
+    }
+
+    override def toString: String =
+    {
+        "{\"name\": \"" + name + "\", \"link\": \"" + link + "\", \"disabled\": " +
+            disabled + "\", \"installed\": " + installed + "\", \"filename\": \"" + filename + "\"}"
     }
 }

@@ -1,12 +1,13 @@
 package com.mymix.s4mods_agentv3.controllers
 
 import java.io.IOException
-import java.net.{ConnectException, URL}
+import java.net.ConnectException
 import java.util
+import java.util.ConcurrentModificationException
 
 import com.mymix.s4mods_agentv3.activities.OnlineModsListActivity
-import com.mymix.s4mods_agentv3.{Constants, Main}
 import com.mymix.s4mods_agentv3.models.{CachedOnlineMods, CategoriesCollection, Category, Mod}
+import com.mymix.s4mods_agentv3.{Constants, Main}
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
@@ -21,11 +22,10 @@ object ModsOnlineController
     var pagination_max = 0
     var pagination_current = 1
 
-    // TODO: create this threads at method getMods
     var th_image_loading: Thread = _
-
-    var loaded_full_info: util.List[Array[String]] = new util.ArrayList[Array[String]]()
     var th_info_loading: Thread = _
+    var loaded_full_info: util.List[Array[String]] = new util.ArrayList[Array[String]]()
+    var loading: Boolean = false
 
     def init(): Unit =
     {
@@ -46,40 +46,72 @@ object ModsOnlineController
 
     def startBGLoading(): Unit =
     {
+        loading = true
+
         th_info_loading = new Thread(() =>
         {
-            cached_mods.forEach(el =>
+            try
             {
-                var tdl: Array[String] = traceDownloadLink(el)
-                loaded_full_info.add(tdl)
-                Main.current_activity.asInstanceOf[OnlineModsListActivity].updateDLnDesc(el.link, tdl(1), tdl(0))
-            })
+                if (loading)
+                {
+                    cached_mods.forEach(el =>
+                    {
+                        if (loading)
+                        {
+                            var tdl: Array[String] = traceDownloadLink(el)
+                            loaded_full_info.add(tdl)
+                            Main.current_activity.asInstanceOf[OnlineModsListActivity]
+                                .updateDLnDesc(el.link, tdl(1), tdl(0))
+                        }
+                    })
+                }
+            }
+            catch
+            {
+                case _: ConcurrentModificationException =>
+                case _: NullPointerException =>
+            }
         })
         th_info_loading.start()
 
         th_image_loading = new Thread(() =>
         {
-            cached_mods.forEach(el =>
+            try
             {
-                Main.current_activity.asInstanceOf[OnlineModsListActivity].updateImage(el.link, el.image)
-            })
+                if (loading)
+                {
+                    cached_mods.forEach(el =>
+                    {
+                        if (loading)
+                            Main.current_activity.asInstanceOf[OnlineModsListActivity].updateImage(el.link, el.image)
+                    })
+                }
+            }
+            catch
+            {
+                case _: ConcurrentModificationException =>
+                case _: NullPointerException =>
+            }
         })
         th_image_loading.start()
     }
 
     def stopBGLoading(): Unit =
     {
+        loading = false
+
         th_info_loading.interrupt()
         th_image_loading.interrupt()
 
-        th_info_loading = _
-        th_image_loading = _
+        th_info_loading = null
+        th_image_loading = null
     }
 
     def getModsFromCache(): CachedOnlineMods = cached_mods
 
     def getMods(): CachedOnlineMods =
     {
+        cached_mods.clear()
         try
         {
             val mod_list = doc select "div.grid-block"
@@ -105,15 +137,6 @@ object ModsOnlineController
         }
 
         cached_mods
-    }
-
-    def browseDownloadLink(mod: Mod): Unit =
-    {
-        val download_doc = Jsoup.connect(Constants.URL + mod.link).get
-        val download_button = download_doc selectFirst "div.new-download > a.new_button"
-        mod.download_link = download_button attr "href"
-        val description = download_doc selectFirst "div.material-description"
-        mod.description = description.html().replace("<br>", "\n")
     }
 
     def traceDownloadLink(mod: Mod): Array[String] =

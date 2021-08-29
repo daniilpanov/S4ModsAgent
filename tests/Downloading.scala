@@ -12,7 +12,7 @@ object Downloading
     def main(args: Array[String]): Unit =
     {
         //val url = new URL("https://sims4pack.ru/materials/img/20210815071632572.jpg")
-        val url = new URL(com.mymix.s4mods_agentv2.Constants.URL + "/go/8084")
+        val url = new URL(com.mymix.s4mods_agentv3.Constants.URL + "/go/8084")
         val httpConnection = url.openConnection.asInstanceOf[HttpURLConnection]
         val completeFileSize = httpConnection.getContentLength
         progressBar = new JProgressBar(0, completeFileSize)

@@ -3,8 +3,8 @@ package com.mymix.s4mods_agentv3
 import java.awt.{GridLayout, Toolkit}
 
 import com.mymix.s4mods_agentv3.activities.{Activity, StartActivity}
-import com.mymix.s4mods_agentv3.controllers.{DownloadingManager, ModsController, ModsInfoController, ModsInstalledController}
-import com.mymix.s4mods_agentv3.models.Mod
+import com.mymix.s4mods_agentv3.controllers._
+import com.mymix.s4mods_agentv3.models.{Mod, ModInstaller}
 import javax.swing.{JFrame, WindowConstants}
 
 object Main extends JFrame
@@ -41,8 +41,11 @@ object Main extends JFrame
         getContentPane.repaint()
     }
 
-    def install(mod: Mod): Unit =
+    def install(mod: Mod): ModInstaller =
     {
+        if ("".equals(mod.download_link))
+            ModsOnlineController.traceDownloadLink(mod)
+
         DownloadingManager.addInstallingTask(mod)
     }
 

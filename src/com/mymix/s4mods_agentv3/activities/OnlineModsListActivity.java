@@ -8,10 +8,13 @@ import com.mymix.s4mods_agentv3.controllers.ModsOnlineController;
 import com.mymix.s4mods_agentv3.models.CategoriesCollection;
 import com.mymix.s4mods_agentv3.models.Category;
 import com.mymix.s4mods_agentv3.models.Mod;
+import com.mymix.s4mods_agentv3.models.ModInstaller;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,9 +23,16 @@ public class OnlineModsListActivity extends ModsListActivity
     private static JLabel category_name = null;
 
     // ID = Mod.link
-    public HashMap<String, JTextPane> mods_desc = new HashMap<>();
-    public HashMap<String, JComponent[]> mods_dl = new HashMap<>();
-    public HashMap<String, JButton> mods_imgs = new HashMap<>();
+    private HashMap<String, JTextPane> mods_desc = new HashMap<>();
+    private HashMap<String, JComponent[]> mods_dl = new HashMap<>();
+    private HashMap<String, JButton> mods_imgs = new HashMap<>();
+
+    private static JPanel downloading_progress = new JPanel();
+    private static JPanel downloading_progress_container = new JPanel(new BorderLayout());
+    private static boolean dp_visible = false;
+    private static JLabel no_downloading = new JLabel("В данный момент ничего не загружается");
+    private static int downloading_counter = 0;
+    private static final List<ModInstaller> downloads = new ArrayList<>();
 
 
     public OnlineModsListActivity()
@@ -57,7 +67,8 @@ public class OnlineModsListActivity extends ModsListActivity
         ModsOnlineController.startBGLoading();
 
 
-        // РАЗМЕТКА
+        // -- РАЗМЕТКА --
+        // TOP MENU
         top_menu.setLayout(new GridLayout(2, 1));
         // верхняя панель:
         JPanel top_panel = new JPanel(new BorderLayout());
@@ -91,18 +102,84 @@ public class OnlineModsListActivity extends ModsListActivity
         top_menu.add(top_panel);
 
         // выбранные фильтры (панель 2-го уровня):
-        JPanel filters = new JPanel(new FlowLayout());
-        filters.add(category_name);
+        JPanel filters = new JPanel(new BorderLayout());
+        JPanel category_name_container = new JPanel(new FlowLayout());
+        category_name_container.add(category_name);
+        filters.add(category_name_container, BorderLayout.CENTER);
+        // на эту же панель добавляем кнопку показа загрузок
+        JButton downloading_toggle = new JButton("Показать загрузки");
+        downloading_toggle.addActionListener(l ->
+        {
+            dp_visible = !dp_visible;
+            downloading_progress_container.setVisible(dp_visible);
+            downloading_toggle.setText((dp_visible ? "Скрыть" : "Показать") + " загрузки");
+        });
+        filters.add(downloading_toggle, BorderLayout.EAST);
         top_menu.add(filters);
+        // ENDof(TOP MENU)
+
+        // DOWNLOADING PROGRESS
+        downloading_progress.setLayout(new BoxLayout(downloading_progress, BoxLayout.Y_AXIS));
+        downloading_progress.add(no_downloading);
+        // Добавляем обёртку для загрузок
+        downloading_progress_container.add(downloading_progress, BorderLayout.CENTER);
+        // Кнопка очистки загрузок на обёртке
+        JButton clear_downloads = new JButton("Очистить загрузки");
+        downloading_progress_container.add(clear_downloads, BorderLayout.SOUTH);
+        clear_downloads.addActionListener(l ->
+        {
+            // хз почему, но работает только так
+            synchronized (downloads)
+            {
+                try
+                {
+                    // тут возникает Exception
+                    downloads.forEach(el ->
+                    {
+                        if (el.done())
+                        {
+                            -- downloading_counter;
+                            downloading_progress.remove(el);
+                            downloads.remove(el);
+                        }
+                    });
+                }
+                catch (ConcurrentModificationException ex)
+                {
+                    // а тут уже нет. видимо, после Exception перехватывается контроль над downloads
+                    downloads.forEach(el ->
+                    {
+                        if (el.done())
+                        {
+                            -- downloading_counter;
+                            downloading_progress.remove(el);
+                            downloads.remove(el);
+                        }
+                    });
+                }
+            }
+            // обновляем загрузочную панель
+            updateDownloadingPanel();
+        });
+        updateDownloadingPanel();
+    }
+
+    @Override
+    public void setActive(Container contentPane)
+    {
+        super.setActive(contentPane);
+
+        add(downloading_progress_container, BorderLayout.EAST);
+        downloading_progress_container.setVisible(dp_visible);
     }
 
     public void updateImage(String mod_link, String img_path)
     {
-        Constants.log(mod_link);
         if (!mods_imgs.containsKey(mod_link))
             return;
-        Constants.log("ok2");
+
         makeAdaptiveIconButton(mods_imgs.get(mod_link), img_path, 155);
+
         mods_imgs.remove(mod_link);
     }
 
@@ -115,6 +192,40 @@ public class OnlineModsListActivity extends ModsListActivity
 
         mods_desc.remove(mod_link);
         mods_dl.remove(mod_link);
+    }
+
+    public void updateDownloadingPanel()
+    {
+        no_downloading.setVisible(downloading_counter == 0);
+    }
+
+    public void addDownloading(ModInstaller installer)
+    {
+        synchronized (downloads)
+        {
+            ++ downloading_counter;
+            downloads.add(installer);
+            downloading_progress.add(installer);
+            updateDownloadingPanel();
+        }
+    }
+
+    public void endDownloading(ModInstaller installer)
+    {
+        synchronized (downloads)
+        {
+
+        }
+    }
+
+    public void removeDownloading(ModInstaller installer)
+    {
+        synchronized (downloads)
+        {
+            --downloading_counter;
+            downloading_progress.remove(installer);
+            updateDownloadingPanel();
+        }
     }
 
     private void loadPagination()
@@ -293,7 +404,7 @@ public class OnlineModsListActivity extends ModsListActivity
         makeIconButton(remove, "res/icons/delete-icon.png", 20, 20);
         download.addActionListener(l ->
         {
-            Main.install(mod);
+            addDownloading(Main.install(mod));
             installed.setVisible(true);
             remove.setVisible(true);
             download.setVisible(false);
@@ -344,13 +455,14 @@ public class OnlineModsListActivity extends ModsListActivity
         control_group.add(on, c);
         control_group.add(off, c);
 
-        if (!mod.installed() || !"".equals(mod.filename()))
+        if (!mod.installed() || "".equals(mod.filename()))
         {
             on.setVisible(false);
             off.setVisible(false);
         }
         else if (mod.disabled())
         {
+            Constants.log(mod);
             on.setVisible(true);
             off.setVisible(false);
         }
@@ -388,7 +500,6 @@ public class OnlineModsListActivity extends ModsListActivity
         // ДЛЯ ВОЗМОЖНОСТИ ОБНОВЛЕНИЯ В ФОНОВОМ РЕЖИМЕ
         mods_desc.put(mod.link(), desc);
         mods_imgs.put(mod.link(), image);
-        Constants.log(mod.link() + " --------");
 
 
         mods_dl.put(mod.link(), new JComponent[]{download, remove, installed, on, off});
