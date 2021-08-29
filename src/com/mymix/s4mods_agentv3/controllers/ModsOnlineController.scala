@@ -7,7 +7,6 @@ import java.util
 import com.mymix.s4mods_agentv3.activities.OnlineModsListActivity
 import com.mymix.s4mods_agentv3.{Constants, Main}
 import com.mymix.s4mods_agentv3.models.{CachedOnlineMods, CategoriesCollection, Category, Mod}
-import javax.swing.ImageIcon
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
@@ -22,25 +21,11 @@ object ModsOnlineController
     var pagination_max = 0
     var pagination_current = 1
 
-    var loaded_images: util.List[ImageIcon] = new util.ArrayList[ImageIcon]()
-    val th_image_loading: Thread = new Thread(() =>
-    {
-        cached_mods.forEach(el =>
-        {
-            loaded_images.add(loadImageFor(el))
-            Main.current_activity.asInstanceOf[OnlineModsListActivity].updateImage()
-        })
-    })
+    // TODO: create this threads at method getMods
+    var th_image_loading: Thread = _
 
     var loaded_full_info: util.List[Array[String]] = new util.ArrayList[Array[String]]()
-    val th_info_loading: Thread = new Thread(() =>
-    {
-        cached_mods.forEach(el =>
-        {
-            loaded_full_info.add(traceDownloadLink(el))
-            Main.current_activity.asInstanceOf[OnlineModsListActivity].updateDLnDesc()
-        })
-    })
+    var th_info_loading: Thread = _
 
     def init(): Unit =
     {
@@ -59,11 +44,42 @@ object ModsOnlineController
         doc = Jsoup.connect(url).get()
     }
 
+    def startBGLoading(): Unit =
+    {
+        th_info_loading = new Thread(() =>
+        {
+            cached_mods.forEach(el =>
+            {
+                var tdl: Array[String] = traceDownloadLink(el)
+                loaded_full_info.add(tdl)
+                Main.current_activity.asInstanceOf[OnlineModsListActivity].updateDLnDesc(el.link, tdl(1), tdl(0))
+            })
+        })
+        th_info_loading.start()
+
+        th_image_loading = new Thread(() =>
+        {
+            cached_mods.forEach(el =>
+            {
+                Main.current_activity.asInstanceOf[OnlineModsListActivity].updateImage(el.link, el.image)
+            })
+        })
+        th_image_loading.start()
+    }
+
+    def stopBGLoading(): Unit =
+    {
+        th_info_loading.interrupt()
+        th_image_loading.interrupt()
+
+        th_info_loading = _
+        th_image_loading = _
+    }
+
     def getModsFromCache(): CachedOnlineMods = cached_mods
 
     def getMods(): CachedOnlineMods =
     {
-        val list = new CachedOnlineMods
         try
         {
             val mod_list = doc select "div.grid-block"
@@ -78,14 +94,9 @@ object ModsOnlineController
                         .replace("background-image:url('", "")
                         .replace("');", "")
                     val newmod = new Mod(link.text, desc.html, link attr "href", img_url)
-                    list add newmod
-                    // ЗАКОМЕНТИРОВАТЬ!
-                    browseDownloadLink(newmod)
+                    cached_mods add newmod
                 }
             })
-
-            th_info_loading.start()
-            th_image_loading.start()
         }
         catch
         {
@@ -93,7 +104,7 @@ object ModsOnlineController
             case ex: ConnectException => ex.printStackTrace()
         }
 
-        list
+        cached_mods
     }
 
     def browseDownloadLink(mod: Mod): Unit =
@@ -116,10 +127,8 @@ object ModsOnlineController
         val dl = download_button attr "href"
         mod.download_link = dl
 
-        Array(dl, desc)
+        Array(dl.toString, desc.toString)
     }
-
-    def loadImageFor(mod: Mod): ImageIcon = new ImageIcon(new URL(mod.image))
 
     def getPagination(): Int =
     {

@@ -1,5 +1,6 @@
 package com.mymix.s4mods_agentv3.activities;
 
+import com.mymix.s4mods_agentv3.Constants;
 import com.mymix.s4mods_agentv3.Main;
 import com.mymix.s4mods_agentv3.controllers.ModsController;
 import com.mymix.s4mods_agentv3.controllers.ModsInstalledController;
@@ -20,8 +21,8 @@ public class OnlineModsListActivity extends ModsListActivity
 
     // ID = Mod.link
     public HashMap<String, JTextPane> mods_desc = new HashMap<>();
-    public HashMap<String, JButton> mods_dl = new HashMap<>(),
-            mods_imgs = new HashMap<>();
+    public HashMap<String, JComponent[]> mods_dl = new HashMap<>();
+    public HashMap<String, JButton> mods_imgs = new HashMap<>();
 
 
     public OnlineModsListActivity()
@@ -53,6 +54,7 @@ public class OnlineModsListActivity extends ModsListActivity
         loadPagination();
         List<Mod> list = ModsController.getOnlineModsList();
         list.forEach(this::addMod);
+        ModsOnlineController.startBGLoading();
 
 
         // РАЗМЕТКА
@@ -96,12 +98,23 @@ public class OnlineModsListActivity extends ModsListActivity
 
     public void updateImage(String mod_link, String img_path)
     {
+        Constants.log(mod_link);
+        if (!mods_imgs.containsKey(mod_link))
+            return;
+        Constants.log("ok2");
         makeAdaptiveIconButton(mods_imgs.get(mod_link), img_path, 155);
+        mods_imgs.remove(mod_link);
     }
 
     public void updateDLnDesc(String mod_link, String desc, String dl)
     {
-        //mods_dl.get(mod_link)
+        if (!mods_desc.containsKey(mod_link) && !mods_dl.containsKey(mod_link))
+            return;
+
+        mods_desc.get(mod_link).setText(desc);
+
+        mods_desc.remove(mod_link);
+        mods_dl.remove(mod_link);
     }
 
     private void loadPagination()
@@ -351,7 +364,7 @@ public class OnlineModsListActivity extends ModsListActivity
         top_panel.add(control_group, BorderLayout.EAST);
         mod_panel.add(top_panel, c);
 
-        makeAdaptiveIconButton(image, mod.image(), Math.max(desc.getSize(null).height, 155));
+        //makeAdaptiveIconButton(image, mod.image(), Math.max(desc.getSize(null).height, 155));
 
         c.gridx = 2;
         c.gridy = 1;
@@ -359,9 +372,8 @@ public class OnlineModsListActivity extends ModsListActivity
         desc.setText(mod.description());
         int w_max = Main.getWidth();
         w_max -= filters_panel.getMaximumSize().width + 100;
-        w_max -= image.getIcon().getIconWidth();
-        int w = desc.getText().length() * desc.getFont().getSize();
-        Dimension s = new Dimension(Math.min(w, w_max), image.getIcon().getIconHeight());
+        w_max -= 200;
+        Dimension s = new Dimension(w_max, 155);
         desc.setPreferredSize(s);
         //JScrollPane desc_container = new JScrollPane(desc);
         //desc_container.setPreferredSize(s);
@@ -375,7 +387,17 @@ public class OnlineModsListActivity extends ModsListActivity
 
         // ДЛЯ ВОЗМОЖНОСТИ ОБНОВЛЕНИЯ В ФОНОВОМ РЕЖИМЕ
         mods_desc.put(mod.link(), desc);
-        mods_dl.put(mod.link(), download);
         mods_imgs.put(mod.link(), image);
+        Constants.log(mod.link() + " --------");
+
+
+        mods_dl.put(mod.link(), new JComponent[]{download, remove, installed, on, off});
+    }
+
+    @Override
+    public void setInactive(Container contentPane)
+    {
+        super.setInactive(contentPane);
+        ModsOnlineController.stopBGLoading();
     }
 }
