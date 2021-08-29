@@ -205,7 +205,7 @@ public class OnlineModsListActivity extends ModsListActivity
         {
             ++ downloading_counter;
             downloads.add(installer);
-            downloading_progress.add(installer);
+            //downloading_progress.add(installer);
             updateDownloadingPanel();
         }
     }
@@ -223,7 +223,7 @@ public class OnlineModsListActivity extends ModsListActivity
         synchronized (downloads)
         {
             --downloading_counter;
-            downloading_progress.remove(installer);
+            //downloading_progress.remove(installer);
             updateDownloadingPanel();
         }
     }
@@ -404,7 +404,7 @@ public class OnlineModsListActivity extends ModsListActivity
         makeIconButton(remove, "res/icons/delete-icon.png", 20, 20);
         download.addActionListener(l ->
         {
-            addDownloading(Main.install(mod));
+            addDownloading(Main.install(mod, downloading_progress));
             installed.setVisible(true);
             remove.setVisible(true);
             download.setVisible(false);
