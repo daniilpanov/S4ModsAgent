@@ -2,7 +2,7 @@ package com.mymix.s4mods_agentv3
 
 import java.awt.{GridLayout, Toolkit}
 
-import com.mymix.s4mods_agentv3.activities.{Activity, StartActivity}
+import com.mymix.s4mods_agentv3.activities.{Activity, OnlineModsListActivity, StartActivity}
 import com.mymix.s4mods_agentv3.controllers._
 import com.mymix.s4mods_agentv3.models.{Mod, ModInstaller}
 import javax.swing.{JFrame, JPanel, WindowConstants}
@@ -46,7 +46,7 @@ object Main extends JFrame
         if ("".equals(mod.download_link))
             ModsOnlineController.traceDownloadLink(mod)
 
-        DownloadingManager.addInstallingTask(mod, rootPanel)
+        DownloadingManager.addInstallingTask(mod, rootPanel, current_activity.asInstanceOf[OnlineModsListActivity])
     }
 
     def delete(mod: Mod): Unit =

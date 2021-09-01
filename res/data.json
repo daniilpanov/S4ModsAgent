@@ -189,26 +189,6 @@
   ],
   "installed_mods": [
     {
-      "name": "sims4pack_8088-ZHaket-area-matcha-name-jacket.package",
-      "description": "Unknown",
-      "link": "",
-      "image": "",
-      "download_link": "",
-      "filename": "sims4pack_8088-ZHaket-area-matcha-name-jacket.package",
-      "installed": true,
-      "disabled": false
-    },
-    {
-      "name": "sims4pack_8101-ZHenskie-bryuki-area-matcha-pants.package",
-      "description": "Unknown",
-      "link": "",
-      "image": "",
-      "download_link": "",
-      "filename": "sims4pack_8101-ZHenskie-bryuki-area-matcha-pants.package",
-      "installed": true,
-      "disabled": false
-    },
-    {
       "name": "S4MP_logs",
       "description": "Unknown",
       "link": "",

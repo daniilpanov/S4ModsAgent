@@ -1,6 +1,8 @@
 package com.mymix.s4mods_agentv3.activities;
 
+import com.mymix.s4mods_agentv3.Images;
 import com.mymix.s4mods_agentv3.Main;
+import com.mymix.s4mods_agentv3.UIDecorator;
 import com.mymix.s4mods_agentv3.models.Mod;
 
 import javax.swing.*;
@@ -54,16 +56,16 @@ public class InstalledModsListActivity extends ModsListActivity
         name_group.add(name);
         name_group.add(installed);
 
-        makeIconButton(add_remove, "res/icons/download-icon.png", 20, 20);
+        UIDecorator.makeIconButton(add_remove, Images.bdownload(), 20, 20);
         control_group.add(add_remove);
-        makeIconButton(on_off, "res/icons/enable-icon.png", 20, 20);
+        UIDecorator.makeIconButton(on_off, Images.benable(), 20, 20);
         control_group.add(on_off, c);
 
         top_panel.add(name_group, BorderLayout.WEST);
         top_panel.add(control_group, BorderLayout.EAST);
         mod_panel.add(top_panel, c);
 
-        makeAdaptiveIconButton(image, "test-res/loaded.jpg", Math.max(desc.getSize(null).height, 155));
+        UIDecorator.makeAdaptiveIconButton(image, "test-res/loaded.jpg", Math.max(desc.getSize(null).height, 155));
 
         c.gridx = 2;
         c.gridy = 1;

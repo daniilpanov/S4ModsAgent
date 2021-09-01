@@ -40,11 +40,11 @@ object ModsListTest extends JFrame
 
         val control_group = new JPanel(new FlowLayout())
         val add_remove = new JButton()
-        makeIconButton(add_remove, "res/icons/download-icon.png", 20, 20)
+        makeIconButton(add_remove, "res/icons/btn-download.png", 20, 20)
         control_group.add(add_remove)
 
         val on_off = new JButton()
-        makeIconButton(on_off, "res/icons/enable-icon.png", 20, 20)
+        makeIconButton(on_off, "res/icons/btn-enable.png", 20, 20)
         control_group.add(on_off)
         top_panel.add(control_group, BorderLayout.EAST)
 

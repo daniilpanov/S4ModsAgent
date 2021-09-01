@@ -62,45 +62,4 @@ abstract public class ModsListActivity extends Activity
     }
 
     abstract public void addMod(Mod mod);
-
-    protected void makeIconButton(JButton button, String path, int width, int height)
-    {
-        button.setIcon(new ImageIcon(new ImageIcon(path).getImage()
-                .getScaledInstance(width, height, Image.SCALE_DEFAULT)));
-        button.setSize(width, height);
-        initIconButton(button);
-    }
-
-    protected void makeAdaptiveIconButton(JButton button, String path, int max_size)
-    {
-        try
-        {
-            URL url = new URL(path);
-            ImageIcon img = new ImageIcon(url);
-            Dimension size = getAdaptiveScale(img, max_size, true);
-            button.setIcon(new ImageIcon(img.getImage()
-                    .getScaledInstance(size.width, size.height, Image.SCALE_DEFAULT)));
-            button.setSize(size);
-            initIconButton(button);
-        }
-        catch (MalformedURLException ex)
-        {
-            ex.printStackTrace();
-        }
-    }
-
-    protected Dimension getAdaptiveScale(ImageIcon image, int max_size, boolean by_height)
-    {
-        if (by_height || image.getIconWidth() < image.getIconHeight())
-            return new Dimension((int) (((float) image.getIconWidth() / image.getIconHeight()) * max_size), max_size);
-        else
-            return new Dimension(max_size, (int) (((float) image.getIconHeight() / image.getIconWidth()) * max_size));
-    }
-
-    protected void initIconButton(JButton button)
-    {
-        button.setContentAreaFilled(false);
-        button.setBorder(null);
-        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-    }
 }

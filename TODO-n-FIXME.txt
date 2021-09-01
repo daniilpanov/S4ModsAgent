@@ -1,6 +1,6 @@
 create pagination -- DONE!
 async loading of images, descriptions and download links -- DONE!
-TODO: create displaying downloading progress (on OnlineModsListActivity; right toggle panel) -- In progress
+create displaying downloading progress (on OnlineModsListActivity; right toggle panel) -- DONE!
 TODO: Slider (OnlineModsListActivity, on image clicked)
 TODO: InstalledModsActivity
 TODO: OneModActivity
@@ -11,6 +11,8 @@ TODO: SettingsActivity
 TODO: упростить архитектуру (...)
 
 
+f-e: надо чтобы в статусе мода писалось "установлен" только после того как он действительно скачается.
+    а пока он скачивается, нужно делать кнопку загрузки неактивной и в статусе писать "устанавливается" -- DONE!
 FIXME: if pre image is very big, we need make an image observer to cut it
 
 

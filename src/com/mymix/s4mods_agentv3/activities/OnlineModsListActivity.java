@@ -1,6 +1,7 @@
 package com.mymix.s4mods_agentv3.activities;
 
 import com.mymix.s4mods_agentv3.Constants;
+import com.mymix.s4mods_agentv3.Images;
 import com.mymix.s4mods_agentv3.Main;
 import com.mymix.s4mods_agentv3.controllers.ModsController;
 import com.mymix.s4mods_agentv3.controllers.ModsInstalledController;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.List;
+
+import com.mymix.s4mods_agentv3.UIDecorator;
 
 public class OnlineModsListActivity extends ModsListActivity
 {
@@ -139,7 +142,7 @@ public class OnlineModsListActivity extends ModsListActivity
                         if (el.done())
                         {
                             -- downloading_counter;
-                            downloading_progress.remove(el);
+                            el.remove();
                             downloads.remove(el);
                         }
                     });
@@ -152,7 +155,7 @@ public class OnlineModsListActivity extends ModsListActivity
                         if (el.done())
                         {
                             -- downloading_counter;
-                            downloading_progress.remove(el);
+                            el.remove();
                             downloads.remove(el);
                         }
                     });
@@ -178,7 +181,7 @@ public class OnlineModsListActivity extends ModsListActivity
         if (!mods_imgs.containsKey(mod_link))
             return;
 
-        makeAdaptiveIconButton(mods_imgs.get(mod_link), img_path, 155);
+        UIDecorator.makeAdaptiveIconButton(mods_imgs.get(mod_link), img_path, 155);
 
         mods_imgs.remove(mod_link);
     }
@@ -199,15 +202,16 @@ public class OnlineModsListActivity extends ModsListActivity
         no_downloading.setVisible(downloading_counter == 0);
     }
 
-    public void addDownloading(ModInstaller installer)
+    public ModInstaller addDownloading(ModInstaller installer)
     {
         synchronized (downloads)
         {
             ++ downloading_counter;
             downloads.add(installer);
-            //downloading_progress.add(installer);
             updateDownloadingPanel();
         }
+
+        return installer;
     }
 
     public void endDownloading(ModInstaller installer)
@@ -223,7 +227,7 @@ public class OnlineModsListActivity extends ModsListActivity
         synchronized (downloads)
         {
             --downloading_counter;
-            //downloading_progress.remove(installer);
+            downloads.remove(installer);
             updateDownloadingPanel();
         }
     }
@@ -400,17 +404,27 @@ public class OnlineModsListActivity extends ModsListActivity
         name_group.add(installed);
         name_group.add(name);
 
-        makeIconButton(download, "res/icons/download-icon.png", 20, 20);
-        makeIconButton(remove, "res/icons/delete-icon.png", 20, 20);
+        UIDecorator.makeIconButton(download, Images.bdownload(), 20, 20);
+        UIDecorator.makeIconButton(remove, Images.bdel(), 20, 20);
         download.addActionListener(l ->
         {
-            addDownloading(Main.install(mod, downloading_progress));
-            installed.setVisible(true);
-            remove.setVisible(true);
-            download.setVisible(false);
+            addDownloading(Main.install(mod, downloading_progress)).installed(() ->
+            {
+                installed.setText("(установлен)");
+                remove.setVisible(true);
+                download.setVisible(false);
 
-            off.setVisible(true);
-            on.setVisible(false);
+                off.setVisible(true);
+                on.setVisible(false);
+            }).interrupted(() ->
+            {
+                installed.setText("(установлен)");
+                download.setEnabled(true);
+            });
+
+            installed.setText("(устанавливается...)");
+            installed.setVisible(true);
+            download.setEnabled(false);
         });
         remove.addActionListener(l ->
         {
@@ -421,6 +435,8 @@ public class OnlineModsListActivity extends ModsListActivity
 
             on.setVisible(false);
             off.setVisible(false);
+
+            download.setEnabled(true);
         });
         control_group.add(download);
         control_group.add(remove);
@@ -438,8 +454,8 @@ public class OnlineModsListActivity extends ModsListActivity
             remove.setVisible(false);
         }
 
-        makeIconButton(on, "res/icons/enable-icon.png", 20, 20);
-        makeIconButton(off, "res/icons/disable-icon.png", 20, 20);
+        UIDecorator.makeIconButton(on, Images.benable(), 20, 20);
+        UIDecorator.makeIconButton(off, Images.bdisable(), 20, 20);
         on.addActionListener(l ->
         {
             ModsInstalledController.switchDisable(mod);
