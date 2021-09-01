@@ -37,6 +37,8 @@ public class OnlineModsListActivity extends ModsListActivity
     private static int downloading_counter = 0;
     private static final List<ModInstaller> downloads = new ArrayList<>();
 
+    private Container root_pane;
+
 
     public OnlineModsListActivity()
     {
@@ -171,6 +173,7 @@ public class OnlineModsListActivity extends ModsListActivity
     public void setActive(Container contentPane)
     {
         super.setActive(contentPane);
+        root_pane = contentPane;
 
         add(downloading_progress_container, BorderLayout.EAST);
         downloading_progress_container.setVisible(dp_visible);
@@ -381,6 +384,12 @@ public class OnlineModsListActivity extends ModsListActivity
                 off = new JButton(),
                 image = new JButton();
         JTextPane desc = new JTextPane();
+
+        image.addActionListener(l ->
+        {
+            SliderActivity slider = new SliderActivity(mod.link());
+            slider.setActive(root_pane);
+        });
 
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;

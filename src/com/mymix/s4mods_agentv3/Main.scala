@@ -1,6 +1,6 @@
 package com.mymix.s4mods_agentv3
 
-import java.awt.{GridLayout, Toolkit}
+import java.awt.{Frame, GridLayout, Toolkit}
 
 import com.mymix.s4mods_agentv3.activities.{Activity, OnlineModsListActivity, StartActivity}
 import com.mymix.s4mods_agentv3.controllers._

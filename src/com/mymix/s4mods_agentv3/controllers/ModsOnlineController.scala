@@ -9,7 +9,7 @@ import com.mymix.s4mods_agentv3.activities.OnlineModsListActivity
 import com.mymix.s4mods_agentv3.models.{CachedOnlineMods, CategoriesCollection, Category, Mod}
 import com.mymix.s4mods_agentv3.{Constants, Main}
 import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
+import org.jsoup.nodes.{Document, Element}
 import org.jsoup.select.Elements
 
 object ModsOnlineController
@@ -205,5 +205,28 @@ object ModsOnlineController
 
         ModsInfoController.updateCategories(collection)
         ModsInfoController.saveInfoFile()
+    }
+
+    def getSliderImagesLink(mod_link: String): util.List[String] =
+    {
+        val img_list = new util.ArrayList[String]()
+        val doc = Jsoup.connect(mod_link).get()
+        val imgs: Elements = doc select ".material-screenshots .material-screenshots-image"
+
+        imgs.forEach(el =>
+        {
+            var link = el attr "style"
+            link = link.replace("background-image: url('", "")
+            link = link.replace("');", "")
+            img_list.add(link)
+        })
+
+        if (img_list.isEmpty)
+        {
+            val img: Element = doc selectFirst ".material-image"
+            img_list.add(img attr "src")
+        }
+
+        img_list
     }
 }
