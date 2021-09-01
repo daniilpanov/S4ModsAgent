@@ -211,7 +211,7 @@ object ModsOnlineController
     def getSliderImagesLink(mod_link: String): util.List[String] =
     {
         val img_list = new util.ArrayList[String]()
-        val doc = Jsoup.connect(mod_link).get()
+        val doc = Jsoup.connect(Constants.URL + mod_link).get()
         val imgs: Elements = doc select ".material-screenshots .material-screenshots-image"
 
         imgs.forEach(el =>

@@ -388,7 +388,7 @@ public class OnlineModsListActivity extends ModsListActivity
         image.addActionListener(l ->
         {
             SliderActivity slider = new SliderActivity(mod.link());
-            slider.setActive(root_pane);
+            slider.setActive(this);
         });
 
         GridBagConstraints c = new GridBagConstraints();
