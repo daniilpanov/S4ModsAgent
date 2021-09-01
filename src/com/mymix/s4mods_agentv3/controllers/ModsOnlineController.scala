@@ -145,12 +145,13 @@ object ModsOnlineController
         val download_button = download_doc selectFirst "div.new-download > a.new_button"
         val description = download_doc selectFirst "div.material-description"
 
-        val desc = description.html().replace("<br>", "\n")
+        var desc = description.html().replace("<br>", "\n")
+        desc = desc.split(" <!-- VK Widget --> ")(0)
         mod.description = desc
         val dl = download_button attr "href"
         mod.download_link = dl
 
-        Array(dl.toString, desc.toString)
+        Array(dl.toString, desc)
     }
 
     def getPagination(): Int =
