@@ -14,6 +14,11 @@ public class SliderActivity extends Activity
     private List<ImageIcon> images = new ArrayList<>();
     private int current = 0;
     private short animate = 0;
+    // за единицу берем ширину панели
+    private double current_slide_pos = 0;
+
+    public static int animation_speed = 10;
+    public Timer animation_ticks = null;
 
     public SliderActivity(String mod_link)
     {
@@ -48,6 +53,37 @@ public class SliderActivity extends Activity
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        g.drawImage(images.get(current).getImage(), 0, 0, null);
+	g.drawImage(images.get(current).getImage(), current_slide_pos * getWidth(), 0, null);
+    }
+
+    private void startShifts(int direction)
+    {
+	animation = direction;
+	if (animation_ticks != null)
+		stopShifts();
+	animation_ticks = new Timer(() ->
+	{
+	    slideShiftIteration();
+	}, 100);
+	animation_timer.start();
+    }
+
+    private void slideShiftIteration()
+    {
+	current_slide_pos += animation * (animation_speed / getWidth());
+	if (Math.abs(current_slide_pos) >= Math.abs(animation))
+	    stopShifts();
+	repaint();
+    }
+
+    private void stopShifts()
+    {
+	animation = 0;
+	current_slide_pos = 0;
+	if (animation_ticks != null)
+	{
+	    animation_ticks.stop();
+	    animation_ticks = null;
+	}
     }
 }
