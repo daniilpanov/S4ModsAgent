@@ -91,7 +91,7 @@ object ModsInstalledController
         if (!f.exists())
             f = new File(Constants.sims_home + "ModsDisabled\\" + mod.filename)
         f.delete()
-        println(ModsInfoController.getInstalledMods().remove(mod))
+        ModsInfoController.getInstalledMods().remove(mod)
         ModsInfoController.saveInfoFile()
     }
 

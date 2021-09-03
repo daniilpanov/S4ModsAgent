@@ -1,5 +1,3 @@
-package com.mymix.s4mods_agentv3.activities;
-
 import com.mymix.s4mods_agentv3.UIDecorator;
 import com.mymix.s4mods_agentv3.controllers.ModsOnlineController;
 
@@ -10,9 +8,21 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class SliderActivity extends Activity
+public class Slider extends JPanel
 {
+    public static void main(String[] args)
+    {
+        JFrame f = new JFrame("slider test");
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setBounds(100, 100, 800, 600);
+
+        f.getContentPane().add(new Slider(
+                "/mody-dlya-sims-4/8122-Mod---Komandnyy-tsentr-MC-Command-Center-2021-21-dlya-Sims-4/"
+        ));
+
+        f.setVisible(true);
+    }
+
     private List<ImageIcon> images = new ArrayList<>();
     private int current = 0;
     private short animate = 0;
@@ -26,7 +36,7 @@ public class SliderActivity extends Activity
     private JButton next = new JButton(">"), pre = new JButton("<");
 
 
-    public SliderActivity(String mod_link)
+    public Slider(String mod_link)
     {
         setSize(800, 600);
 
@@ -151,17 +161,5 @@ public class SliderActivity extends Activity
     private double getNextCenterPos()
     {
         return (double) (getWidth() - images.get(getNextSlide()).getIconWidth()) / (2 * getWidth());
-    }
-
-    @Override
-    public void init()
-    {
-    }
-
-    @Override
-    public void setActive(Container contentPane)
-    {
-        contentPane.add(this);
-        contentPane.setComponentZOrder(this, 0);
     }
 }
