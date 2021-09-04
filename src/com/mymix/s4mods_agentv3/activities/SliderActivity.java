@@ -25,6 +25,8 @@ public class SliderActivity extends Activity
 
     private JButton next = new JButton(">"), pre = new JButton("<");
 
+    private JDialog slider_window = null;
+
 
     public SliderActivity(String mod_link)
     {
@@ -57,18 +59,22 @@ public class SliderActivity extends Activity
         });
 
         setLayout(new BorderLayout());
-        add(pre, BorderLayout.WEST);
-        add(next, BorderLayout.EAST);
 
-        pre.addActionListener(l ->
+        if (images.size() > 1)
         {
-            startShifts((short) 1);
-        });
+            add(pre, BorderLayout.WEST);
+            add(next, BorderLayout.EAST);
 
-        next.addActionListener(l ->
-        {
-            startShifts((short) -1);
-        });
+            pre.addActionListener(l ->
+            {
+                startShifts((short) 1);
+            });
+
+            next.addActionListener(l ->
+            {
+                startShifts((short) -1);
+            });
+        }
 
         current_slide_pos = getCenterPos();
     }
@@ -79,26 +85,22 @@ public class SliderActivity extends Activity
         super.paintComponent(g);
 
 
-        g.drawImage(images.get(current).getImage(), (int) (current_slide_pos * getWidth()), 0, null);
+        drawImage(g, current, (int) (current_slide_pos * getWidth()));
 
         if (animate == 1)
         {
-            g.drawImage(
-                    images.get(getNextSlide()).getImage(),
-                    0 - ((int) ((1 - current_slide_pos) * getWidth())),
-                    0,
-                    null
-            );
+            drawImage(g, getNextSlide(), 0 - ((int) ((1 - current_slide_pos) * getWidth())));
         }
         else if (animate == -1)
         {
-            g.drawImage(
-                    images.get(getNextSlide()).getImage(),
-                    getWidth() + ((int) (current_slide_pos * getWidth())),
-                    0,
-                    null
-            );
+            drawImage(g, getNextSlide(), getWidth() + ((int) (current_slide_pos * getWidth())));
         }
+    }
+
+    private void drawImage(Graphics g, int img_index, int x)
+    {
+        ImageIcon img = images.get(img_index);
+        g.drawImage(img.getImage(), x, (getHeight() - img.getIconHeight()) / 2, null);
     }
 
     private void startShifts(short direction)
@@ -159,9 +161,12 @@ public class SliderActivity extends Activity
     }
 
     @Override
-    public void setActive(Container contentPane)
+    public void setActive(Container parent_window)
     {
-        contentPane.add(this);
-        contentPane.setComponentZOrder(this, 0);
+        slider_window = new JDialog((JFrame) parent_window, "", true);
+        slider_window.setSize(800, 600);
+        UIDecorator.setCenteredWindow(slider_window);
+        slider_window.add(this);
+        slider_window.setVisible(true);
     }
 }

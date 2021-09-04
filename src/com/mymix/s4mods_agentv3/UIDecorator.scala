@@ -1,6 +1,6 @@
 package com.mymix.s4mods_agentv3
 
-import java.awt.{Cursor, Dimension, Image}
+import java.awt._
 import java.net.{MalformedURLException, URL}
 
 import javax.swing.{ImageIcon, JButton}
@@ -46,5 +46,12 @@ object UIDecorator
         button.setContentAreaFilled(false)
         button.setBorder(null)
         button.setCursor(new Cursor(Cursor.HAND_CURSOR))
+    }
+
+    def setCenteredWindow(window: Window): Unit =
+    {
+        val screen_size = Toolkit.getDefaultToolkit.getScreenSize
+        val window_size = window.getSize
+        window.setLocation((screen_size.width - window_size.width) / 2, (screen_size.height - window_size.height) / 2)
     }
 }

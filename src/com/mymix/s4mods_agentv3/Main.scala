@@ -1,6 +1,6 @@
 package com.mymix.s4mods_agentv3
 
-import java.awt.{Frame, GridLayout, Toolkit}
+import java.awt.{GridLayout, Toolkit}
 
 import com.mymix.s4mods_agentv3.activities.{Activity, OnlineModsListActivity, StartActivity}
 import com.mymix.s4mods_agentv3.controllers._
@@ -20,9 +20,8 @@ object Main extends JFrame
         setTitle("Sims 4 Mods Agent")
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE)
 
-        val d = Toolkit.getDefaultToolkit.getScreenSize
-        setLocation(((d.getWidth - 1000) / 2).toInt, ((d.getHeight - 700) / 2).toInt)
         setSize(1000, 700)
+        UIDecorator.setCenteredWindow(this)
         setLayout(new GridLayout(1, 1))
 
         activity(new StartActivity)
@@ -59,4 +58,6 @@ object Main extends JFrame
         println("ERROR! Code " + code.toString)
         System.exit(0)
     }
+
+    def getThis(): JFrame = this
 }
