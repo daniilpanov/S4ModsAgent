@@ -13,7 +13,6 @@ import com.mymix.s4mods_agentv3.models.ModInstaller;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
@@ -36,8 +35,6 @@ public class OnlineModsListActivity extends ModsListActivity
     private static JLabel no_downloading = new JLabel("В данный момент ничего не загружается");
     private static int downloading_counter = 0;
     private static final List<ModInstaller> downloads = new ArrayList<>();
-
-    private Container root_pane;
 
 
     public OnlineModsListActivity()
@@ -80,7 +77,8 @@ public class OnlineModsListActivity extends ModsListActivity
         // - меню (слева)
         JPanel menu = new JPanel(new FlowLayout(FlowLayout.LEFT));
         //   * ссылки:
-        menu.add(createPrettyButton("ГЛАВНАЯ", l -> Main.activity(new StartActivity())));
+        menu.add(UIDecorator.createPrettyButton("ГЛАВНАЯ", l -> Main.activity(new StartActivity())));
+        menu.add(UIDecorator.createPrettyButton("Установленные моды", l -> Main.activity(new InstalledModsListActivity())));
         // - ENDof(меню)
         top_panel.add(menu, BorderLayout.CENTER);
 
@@ -173,7 +171,6 @@ public class OnlineModsListActivity extends ModsListActivity
     public void setActive(Container contentPane)
     {
         super.setActive(contentPane);
-        root_pane = contentPane;
 
         add(downloading_progress_container, BorderLayout.EAST);
         downloading_progress_container.setVisible(dp_visible);
@@ -307,7 +304,7 @@ public class OnlineModsListActivity extends ModsListActivity
                 pagination.add(pb);
             }
             //  отображаем пробелы
-            if (end < pc - 1)
+            if (pm > pc + 5)
                 pagination.add(new JLabel("..."));
             // отображение первой страницы
             JButton pb_end = new JButton(String.valueOf(pm));
@@ -341,7 +338,7 @@ public class OnlineModsListActivity extends ModsListActivity
     private void addFilter(Category c)
     {
         String n = (c.parent() > 0 ? " - " + c.name() : c.name());
-        JButton b = createPrettyButton(n, l ->
+        JButton b = UIDecorator.createPrettyButton(n, l ->
         {
             category_name.setText(c.name());
             Main.activity(new OnlineModsListActivity(c.link()));
@@ -356,17 +353,6 @@ public class OnlineModsListActivity extends ModsListActivity
             ));
         }
         filters_panel.add(b);
-    }
-
-    private JButton createPrettyButton(String name, ActionListener l)
-    {
-        JButton item = new JButton(name);
-        item.setContentAreaFilled(false);
-        item.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
-        item.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        item.addActionListener(l);
-
-        return item;
     }
 
     public void addMod(Mod mod)
@@ -534,6 +520,7 @@ public class OnlineModsListActivity extends ModsListActivity
     public void setInactive(Container contentPane)
     {
         super.setInactive(contentPane);
+        removeAll();
         ModsOnlineController.stopBGLoading();
     }
 }

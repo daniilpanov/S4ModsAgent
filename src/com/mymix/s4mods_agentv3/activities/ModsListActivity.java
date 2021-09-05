@@ -4,8 +4,6 @@ import com.mymix.s4mods_agentv3.models.Mod;
 
 import javax.swing.*;
 import java.awt.*;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 abstract public class ModsListActivity extends Activity
 {

@@ -34,6 +34,7 @@ public class StartActivity extends Activity
         ml.setHorizontalGroup(hg);
 
         addButton("Все моды", e -> Main.activity(new OnlineModsListActivity()));
+        addButton("Установленные моды", e -> Main.activity(new InstalledModsListActivity()));
         addButton("Выход", e -> System.exit(0));
     }
 

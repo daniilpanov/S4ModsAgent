@@ -1,9 +1,11 @@
 package com.mymix.s4mods_agentv3
 
 import java.awt._
+import java.awt.event.ActionListener
+import java.awt.image.BufferedImage
 import java.net.{MalformedURLException, URL}
 
-import javax.swing.{ImageIcon, JButton}
+import javax.swing.{BorderFactory, ImageIcon, JButton}
 
 object UIDecorator
 {
@@ -24,7 +26,12 @@ object UIDecorator
             val url = new URL(path)
             val img = new ImageIcon(url)
             val size = getAdaptiveScale(img, max_size, by_height = true)
-            button.setIcon(getScaledImageIcon(img, size.width, size.height))
+            button.setIcon(new ImageIcon(
+                cropImageIfLarge(
+                    getScaledImageIcon(img, size.width, size.height).getImage,
+                    200, 155)
+                )
+            )
             button.setSize(size)
             initIconButton(button)
         }
@@ -53,5 +60,44 @@ object UIDecorator
         val screen_size = Toolkit.getDefaultToolkit.getScreenSize
         val window_size = window.getSize
         window.setLocation((screen_size.width - window_size.width) / 2, (screen_size.height - window_size.height) / 2)
+    }
+
+    def createPrettyButton(name: String, l: ActionListener): JButton =
+    {
+        val item = new JButton(name)
+        item.setContentAreaFilled(false)
+        item.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15))
+        item.setCursor(new Cursor(Cursor.HAND_CURSOR))
+        item.addActionListener(l)
+        item
+    }
+
+    def cropImageIfLarge(img: Image, max_width: Int, max_height: Int): Image =
+    {
+        var x = 0
+        var y = 0
+        var width: Int = img.getWidth(null)
+        var height: Int = img.getHeight(null)
+
+        if (max_width < width)
+        {
+            x = -(width - max_width) / 2
+            width = max_width
+        }
+
+        if (max_height < height)
+        {
+            y = -(height - max_height) / 2
+            height = max_height
+        }
+
+        if (width < 0 || height < 0)
+            return null
+        val bf = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB)
+        val bf_g: Graphics2D = bf.createGraphics()
+        bf_g.drawImage(img, x, y, null)
+        bf_g.dispose()
+
+        bf
     }
 }

@@ -4,9 +4,9 @@ create displaying downloading progress (on OnlineModsListActivity; right toggle 
 
 TODO: (fasttask) Checking Internet Connection -- In progress (paused)
 
-TODO: Slider (OnlineModsListActivity, on image clicked) -- In progress
-TODO: InstalledModsActivity
-TODO: OneModActivity
+Slider (OnlineModsListActivity, on image clicked) -- DONE!
+TODO: InstalledModsActivity -- Beginning (paused)
+TODO: OneModActivity -- Fast start
 TODO: DownloadingActivity
 TODO: wait preview
 TODO: SettingsActivity
@@ -16,7 +16,7 @@ TODO: упростить архитектуру (...)
 
 f-e: надо чтобы в статусе мода писалось "установлен" только после того как он действительно скачается.
     а пока он скачивается, нужно делать кнопку загрузки неактивной и в статусе писать "устанавливается" -- DONE!
-FIXME: if pre image is very big, we need make an image observer to cut it, because those images just breaks mods' panels
+if pre image is very big, we need make an image observer to cut it, because those images just breaks mods' panels -- DONE!
 FIXME: если описание мода слишком длинное, оно обрезается.
     либо где нужно, добавлять JTextPane в обёртку JScrolledPane, либо увеличивать JTextPane
 
