@@ -5,7 +5,7 @@ import java.awt.event.ActionListener
 import java.awt.image.BufferedImage
 import java.net.{MalformedURLException, URL}
 
-import javax.swing.{BorderFactory, ImageIcon, JButton}
+import javax.swing.{BorderFactory, ImageIcon, JButton, JPanel}
 
 object UIDecorator
 {
@@ -99,5 +99,13 @@ object UIDecorator
         bf_g.dispose()
 
         bf
+    }
+
+    def getCenteredComponent(component: Component): Component =
+    {
+        val container = new JPanel(new FlowLayout())
+        container add component
+        container.setBackground(new Color(0, 0, 0, 0))
+        container
     }
 }
