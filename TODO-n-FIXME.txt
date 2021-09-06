@@ -2,11 +2,13 @@ create pagination -- DONE!
 async loading of images, descriptions and download links -- DONE!
 create displaying downloading progress (on OnlineModsListActivity; right toggle panel) -- DONE!
 
+TODO: DESIGN! -- in progress
+
 TODO: (fasttask) Checking Internet Connection -- In progress (paused)
 
 Slider (OnlineModsListActivity, on image clicked) -- DONE!
 TODO: InstalledModsActivity -- Beginning (paused)
-TODO: OneModActivity -- Fast start
+TODO: OneModActivity -- Beginning (paused)
 TODO: DownloadingActivity
 TODO: wait preview
 TODO: SettingsActivity
