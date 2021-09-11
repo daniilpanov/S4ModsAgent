@@ -5,7 +5,7 @@ import java.awt.event.ActionListener
 import java.awt.image.BufferedImage
 import java.net.{MalformedURLException, URL}
 
-import javax.swing.{BorderFactory, ImageIcon, JButton, JPanel}
+import javax.swing._
 
 object UIDecorator
 {

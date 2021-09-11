@@ -1,11 +1,11 @@
 package com.mymix.s4mods_agentv3
 
-import java.awt.{GridLayout, Toolkit}
+import java.awt._
 
 import com.mymix.s4mods_agentv3.activities.{Activity, OnlineModsListActivity, StartActivity}
 import com.mymix.s4mods_agentv3.controllers._
 import com.mymix.s4mods_agentv3.models.{Mod, ModInstaller}
-import javax.swing.{JFrame, JPanel, WindowConstants}
+import javax.swing.{ImageIcon, JFrame, JPanel, WindowConstants}
 
 object Main extends JFrame
 {
@@ -13,6 +13,21 @@ object Main extends JFrame
 
     def main(args: Array[String]): Unit =
     {
+        setContentPane(new JPanel()
+        {
+            override def paintComponent(g: Graphics): Unit =
+            {
+                super.paintComponent(g)
+                println("ok")
+                val bg_instance = new ImageIcon(
+                    "res/grand-theft-auto-v-internet-zakat-panorama-oboi-4320x960_157.jpg")
+                val bg_scaled_size = UIDecorator.getAdaptiveScale(bg_instance, Main.getWidth, by_height = true)
+                val bg = UIDecorator.getScaledImageIcon(bg_instance, bg_scaled_size.width, bg_scaled_size.height)
+
+                g.drawImage(bg.getImage, -1000, 0, null)
+            }
+        })
+
         ModsInfoController.init()
         Constants.init()
         ModsController.init()
@@ -21,6 +36,7 @@ object Main extends JFrame
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE)
 
         setSize(1000, 700)
+        setMinimumSize(new Dimension(800, 600))
         UIDecorator.setCenteredWindow(this)
         setLayout(new GridLayout(1, 1))
 
@@ -35,6 +51,7 @@ object Main extends JFrame
             current_activity.setInactive(getContentPane)
         current_activity = activity
         activity.init()
+        activity.setBackground(new Color(0, 0, 0, 0))
         activity.setActive(getContentPane)
         getContentPane.validate()
         getContentPane.repaint()
