@@ -13,21 +13,6 @@ object Main extends JFrame
 
     def main(args: Array[String]): Unit =
     {
-        setContentPane(new JPanel()
-        {
-            override def paintComponent(g: Graphics): Unit =
-            {
-                super.paintComponent(g)
-                println("ok")
-                val bg_instance = new ImageIcon(
-                    "res/grand-theft-auto-v-internet-zakat-panorama-oboi-4320x960_157.jpg")
-                val bg_scaled_size = UIDecorator.getAdaptiveScale(bg_instance, Main.getWidth, by_height = true)
-                val bg = UIDecorator.getScaledImageIcon(bg_instance, bg_scaled_size.width, bg_scaled_size.height)
-
-                g.drawImage(bg.getImage, -1000, 0, null)
-            }
-        })
-
         ModsInfoController.init()
         Constants.init()
         ModsController.init()

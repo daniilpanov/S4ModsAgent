@@ -1,7 +1,7 @@
 package com.mymix.s4mods_agentv3
 
 import java.awt._
-import java.awt.event.ActionListener
+import java.awt.event.{ActionListener, MouseAdapter, MouseEvent}
 import java.awt.image.BufferedImage
 import java.net.{MalformedURLException, URL}
 
@@ -9,8 +9,14 @@ import javax.swing._
 
 object UIDecorator
 {
+    val transparent = new Color(0, 0, 0, 0)
+
     def getScaledImageIcon(scaling: ImageIcon, width: Int, height: Int): ImageIcon =
+    {
+        if (width == scaling.getIconWidth && height == scaling.getIconHeight)
+            return scaling
         new ImageIcon(scaling.getImage.getScaledInstance(width, height, Image.SCALE_DEFAULT))
+    }
 
     def makeIconButton(button: JButton, icon: ImageIcon, width: Int, height: Int): Unit =
     {
@@ -44,7 +50,10 @@ object UIDecorator
 
     def getAdaptiveScale(image: ImageIcon, max_size: Int, by_height: Boolean): Dimension =
         if (by_height || image.getIconWidth < image.getIconHeight)
-            new Dimension(((image.getIconWidth.toFloat / image.getIconHeight) * max_size).toInt, max_size)
+        {
+            val k = Math.min(max_size, image.getIconHeight)
+            new Dimension(((image.getIconWidth.toFloat / image.getIconHeight) * k).toInt, k)
+        }
         else
             new Dimension(max_size, ((image.getIconHeight.toFloat / image.getIconWidth) * max_size).toInt)
 
@@ -69,6 +78,7 @@ object UIDecorator
         item.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15))
         item.setCursor(new Cursor(Cursor.HAND_CURSOR))
         item.addActionListener(l)
+        normalizeElementRepaint(item)
         item
     }
 
@@ -107,5 +117,41 @@ object UIDecorator
         container add component
         container.setBackground(new Color(0, 0, 0, 0))
         container
+    }
+
+    def setComponentTransparent(component: Component): Unit =
+    {
+        component.setBackground(transparent)
+    }
+
+    def normalizeElementRepaint(component: Component, container: Container = null): Unit =
+    {
+        val c = if (null == container)
+            component.getParent else container
+
+        component.addMouseListener(new MouseAdapter()
+        {
+            override def mousePressed(e: MouseEvent): Unit =
+            {
+                super.mouseClicked(e)
+                c.repaint()
+            }
+
+            override
+
+            def mouseEntered(e: MouseEvent): Unit =
+            {
+                super.mouseEntered(e)
+                c.repaint()
+            }
+
+            override
+
+            def mouseExited(e: MouseEvent): Unit =
+            {
+                super.mouseExited(e)
+                c.repaint()
+            }
+        })
     }
 }

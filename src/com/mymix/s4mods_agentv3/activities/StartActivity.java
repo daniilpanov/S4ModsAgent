@@ -117,4 +117,16 @@ public class StartActivity extends Activity
         contentPane.add(this);
         repaint();
     }
+
+    @Override
+    protected void paintComponent(Graphics g)
+    {
+        super.paintComponent(g);
+        ImageIcon bg_instance = new ImageIcon(
+                "res/grand-theft-auto-v-internet-zakat-panorama-oboi-4320x960_157.jpg");
+        Dimension bg_scaled_size = UIDecorator.getAdaptiveScale(bg_instance, Main.getHeight(), true);
+        ImageIcon bg = UIDecorator.getScaledImageIcon(bg_instance, bg_scaled_size.width, bg_scaled_size.height);
+
+        g.drawImage(bg.getImage(), -1000, 0, null);
+    }
 }

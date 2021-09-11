@@ -72,10 +72,13 @@ public class OnlineModsListActivity extends ModsListActivity
         // -- РАЗМЕТКА --
         // TOP MENU
         top_menu.setLayout(new GridLayout(2, 1));
+        UIDecorator.setComponentTransparent(top_menu);
         // верхняя панель:
         JPanel top_panel = new JPanel(new BorderLayout());
+        UIDecorator.setComponentTransparent(top_panel);
         // - меню (слева)
         JPanel menu = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        UIDecorator.setComponentTransparent(menu);
         //   * ссылки:
         menu.add(UIDecorator.createPrettyButton("ГЛАВНАЯ", l -> Main.activity(new StartActivity())));
         menu.add(UIDecorator.createPrettyButton("Установленные моды", l -> Main.activity(new InstalledModsListActivity())));
@@ -84,6 +87,7 @@ public class OnlineModsListActivity extends ModsListActivity
 
         // - поиск (справа)
         JPanel search = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        UIDecorator.setComponentTransparent(search);
         //   * поле для поиска (берём значение по умолчанию из указанного в ModsController.path пути)
         String search_str = (ModsController.path() != null && ModsController.path().matches("^/search\\?q="))
                 ? ModsController.path().replace("/search?q=", "") : "";
@@ -92,6 +96,7 @@ public class OnlineModsListActivity extends ModsListActivity
         search_input.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         //   * кнопка поиска
         JButton search_go = new JButton("Поиск");
+        UIDecorator.normalizeElementRepaint(search_go, this);
         search_go.addActionListener(l ->
         {
             Main.activity(new OnlineModsListActivity("/search?q=" + search_input.getText()));
@@ -106,11 +111,14 @@ public class OnlineModsListActivity extends ModsListActivity
 
         // выбранные фильтры (панель 2-го уровня):
         JPanel filters = new JPanel(new BorderLayout());
+        UIDecorator.setComponentTransparent(filters);
         JPanel category_name_container = new JPanel(new FlowLayout());
+        UIDecorator.setComponentTransparent(category_name_container);
         category_name_container.add(category_name);
         filters.add(category_name_container, BorderLayout.CENTER);
         // на эту же панель добавляем кнопку показа загрузок
         JButton downloading_toggle = new JButton("Показать загрузки");
+        UIDecorator.normalizeElementRepaint(downloading_toggle, this);
         downloading_toggle.addActionListener(l ->
         {
             dp_visible = !dp_visible;
@@ -123,11 +131,14 @@ public class OnlineModsListActivity extends ModsListActivity
 
         // DOWNLOADING PROGRESS
         downloading_progress.setLayout(new BoxLayout(downloading_progress, BoxLayout.Y_AXIS));
+        UIDecorator.setComponentTransparent(downloading_progress);
+        UIDecorator.setComponentTransparent(downloading_progress_container);
         downloading_progress.add(no_downloading);
         // Добавляем обёртку для загрузок
         downloading_progress_container.add(downloading_progress, BorderLayout.CENTER);
         // Кнопка очистки загрузок на обёртке
         JButton clear_downloads = new JButton("Очистить загрузки");
+        UIDecorator.normalizeElementRepaint(clear_downloads, this);
         downloading_progress_container.add(clear_downloads, BorderLayout.SOUTH);
         clear_downloads.addActionListener(l ->
         {
@@ -238,6 +249,7 @@ public class OnlineModsListActivity extends ModsListActivity
         if (ModsController.page() > 1)
         {
             JButton pre = new JButton("Назад");
+            UIDecorator.normalizeElementRepaint(pre, pagination);
             pre.addActionListener(l ->
             {
                 Main.activity(new OnlineModsListActivity(ModsController.page() - 1));
@@ -253,6 +265,7 @@ public class OnlineModsListActivity extends ModsListActivity
         {
             // отображение первой страницы
             JButton pb_first = new JButton(String.valueOf(1));
+            UIDecorator.normalizeElementRepaint(pb_first, pagination);
             pb_first.addActionListener(l ->
             {
                 Main.activity(new OnlineModsListActivity(1));
@@ -269,6 +282,7 @@ public class OnlineModsListActivity extends ModsListActivity
             for (int i = begin; i < pc; ++ i)
             {
                 JButton pb = new JButton(String.valueOf(i));
+                UIDecorator.normalizeElementRepaint(pb, pagination);
                 final int page = i;
                 pb.addActionListener(l ->
                 {
@@ -280,6 +294,7 @@ public class OnlineModsListActivity extends ModsListActivity
 
         // Выводим текущую страницу
         JButton pb_curr = new JButton(String.valueOf(pc));
+        UIDecorator.normalizeElementRepaint(pb_curr, pagination);
         pb_curr.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(Color.ORANGE, 3, true),
                 BorderFactory.createEmptyBorder(10, 15, 10, 15)
@@ -296,6 +311,7 @@ public class OnlineModsListActivity extends ModsListActivity
             for (int i = pc + 1; i <= end; ++ i)
             {
                 JButton pb = new JButton(String.valueOf(i));
+                UIDecorator.normalizeElementRepaint(pb, pagination);
                 final int page = i;
                 pb.addActionListener(l ->
                 {
@@ -308,6 +324,7 @@ public class OnlineModsListActivity extends ModsListActivity
                 pagination.add(new JLabel("..."));
             // отображение первой страницы
             JButton pb_end = new JButton(String.valueOf(pm));
+            UIDecorator.normalizeElementRepaint(pb_end, pagination);
             pb_end.addActionListener(l ->
             {
                 Main.activity(new OnlineModsListActivity(pm));
@@ -319,6 +336,7 @@ public class OnlineModsListActivity extends ModsListActivity
         if (ModsOnlineController.pagination_current() < ModsOnlineController.pagination_max())
         {
             JButton next = new JButton("Далее");
+            UIDecorator.normalizeElementRepaint(next, pagination);
             next.addActionListener(l ->
             {
                 Main.activity(new OnlineModsListActivity(ModsController.page() + 1));
@@ -343,6 +361,7 @@ public class OnlineModsListActivity extends ModsListActivity
             category_name.setText(c.name());
             Main.activity(new OnlineModsListActivity(c.link()));
         });
+        UIDecorator.normalizeElementRepaint(b, this);
 
         if (category_name.getText().equals(c.name()))
         {
@@ -370,6 +389,8 @@ public class OnlineModsListActivity extends ModsListActivity
                 off = new JButton(),
                 image = new JButton();
         JTextPane desc = new JTextPane();
+
+        UIDecorator.setComponentTransparent(mod_panel);
 
         image.addActionListener(l ->
         {
