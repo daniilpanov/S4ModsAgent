@@ -78,7 +78,7 @@ object UIDecorator
         item.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15))
         item.setCursor(new Cursor(Cursor.HAND_CURSOR))
         item.addActionListener(l)
-        normalizeElementRepaint(item)
+        //normalizeElementRepaint(item)
         item
     }
 
@@ -128,6 +128,9 @@ object UIDecorator
     {
         val c = if (null == container)
             component.getParent else container
+        println(c)
+        println(component.asInstanceOf[JButton].getText)
+        println()
 
         component.addMouseListener(new MouseAdapter()
         {

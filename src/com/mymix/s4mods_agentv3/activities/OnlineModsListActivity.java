@@ -361,7 +361,6 @@ public class OnlineModsListActivity extends ModsListActivity
             category_name.setText(c.name());
             Main.activity(new OnlineModsListActivity(c.link()));
         });
-        UIDecorator.normalizeElementRepaint(b, this);
 
         if (category_name.getText().equals(c.name()))
         {
@@ -372,6 +371,7 @@ public class OnlineModsListActivity extends ModsListActivity
             ));
         }
         filters_panel.add(b);
+        UIDecorator.normalizeElementRepaint(b, this);
     }
 
     public void addMod(Mod mod)
@@ -394,8 +394,10 @@ public class OnlineModsListActivity extends ModsListActivity
 
         image.addActionListener(l ->
         {
+            this.repaint();
             SliderActivity slider = new SliderActivity(mod.link());
             slider.setActive(Main.getThis());
+            this.repaint();
         });
 
         GridBagConstraints c = new GridBagConstraints();
@@ -535,6 +537,8 @@ public class OnlineModsListActivity extends ModsListActivity
 
 
         mods_dl.put(mod.link(), new JComponent[]{download, remove, installed, on, off});
+
+        UIDecorator.normalizeElementRepaint(image, this);
     }
 
     @Override

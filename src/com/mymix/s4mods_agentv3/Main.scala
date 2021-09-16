@@ -5,7 +5,7 @@ import java.awt._
 import com.mymix.s4mods_agentv3.activities.{Activity, OnlineModsListActivity, StartActivity}
 import com.mymix.s4mods_agentv3.controllers._
 import com.mymix.s4mods_agentv3.models.{Mod, ModInstaller}
-import javax.swing.{ImageIcon, JFrame, JPanel, WindowConstants}
+import javax.swing.{JFrame, JPanel, WindowConstants}
 
 object Main extends JFrame
 {
