@@ -128,9 +128,6 @@ object UIDecorator
     {
         val c = if (null == container)
             component.getParent else container
-        println(c)
-        println(component.asInstanceOf[JButton].getText)
-        println()
 
         component.addMouseListener(new MouseAdapter()
         {

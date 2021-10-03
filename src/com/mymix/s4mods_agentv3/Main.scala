@@ -1,6 +1,7 @@
 package com.mymix.s4mods_agentv3
 
 import java.awt._
+import java.net.{HttpURLConnection, URL}
 
 import com.mymix.s4mods_agentv3.activities.{Activity, OnlineModsListActivity, StartActivity}
 import com.mymix.s4mods_agentv3.controllers._
@@ -10,6 +11,7 @@ import javax.swing.{JFrame, JPanel, WindowConstants}
 object Main extends JFrame
 {
     var current_activity: Activity = null
+    var internet_connection: Boolean = false
 
     def main(args: Array[String]): Unit =
     {
@@ -62,4 +64,34 @@ object Main extends JFrame
     }
 
     def getThis(): JFrame = this
+
+
+    def checkInternetConnection(): Unit =
+    {
+        var result = false
+        var con: HttpURLConnection = null
+        try
+        {
+            con = new URL(Constants.URL).openConnection.asInstanceOf[HttpURLConnection]
+            con.setRequestMethod("HEAD")
+            result = con.getResponseCode == HttpURLConnection.HTTP_OK
+        }
+        catch
+        {
+            case e: Exception =>
+                e.printStackTrace()
+        }
+        finally
+            if (con != null)
+                try
+
+                    con.disconnect()
+
+                catch
+                {
+                    case e: Exception =>
+                        e.printStackTrace()
+                }
+        internet_connection = result
+    }
 }

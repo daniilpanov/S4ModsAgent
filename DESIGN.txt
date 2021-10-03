@@ -2,3 +2,5 @@ TODO: make another bg for mods activity and do dividing bg
 
 TODO(problem): we need to set a part of global background to 'transparent' items because if they are really transparent
  we need always call repaint
+
+Я СДАЮСЬ. УБИРАЕМ ФОН ИЗ ВСЕХ АКТИВИТИ С АКТИВНОЙ ПРОКРУТКОЙ. :((((

@@ -62,11 +62,16 @@ public class OnlineModsListActivity extends ModsListActivity
             category_name = new JLabel("Все моды");
 
         // Загрузка компонентов
-        loadFilters();
-        loadPagination();
         List<Mod> list = ModsController.getOnlineModsList();
-        list.forEach(this::addMod);
-        ModsOnlineController.startBGLoading();
+        if (list.isEmpty())
+            mods.add(new JLabel("Ничего не найдено"));
+        else
+        {
+            loadFilters();
+            loadPagination();
+            list.forEach(this::addMod);
+            ModsOnlineController.startBGLoading();
+        }
 
 
         // -- РАЗМЕТКА --

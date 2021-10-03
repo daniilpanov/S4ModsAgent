@@ -15,11 +15,30 @@ public class StartActivity extends Activity
 {
     private JLabel text;
     private JPanel menu;
+    private JLabel noInternet = new JLabel("No internet connection!");
+    Component noInternetCentered = UIDecorator.getCenteredComponent(noInternet);
+    private Timer inetConn = new Timer(10000, e ->
+    {
+        Main.checkInternetConnection();
+        if (Main.internet_connection())
+        {
+            noInternet.setText("      ");
+            UIDecorator.setComponentTransparent(noInternetCentered);
+            repaint();
+        }
+        else
+        {
+            noInternet.setText("No internet connection!");
+            noInternetCentered.setBackground(Color.RED);
+            repaint();
+        }
+    });
 
     @Override
     public void init()
     {
         setLayout(new BorderLayout());
+        inetConn.start();
 
         text = new JLabel();
         text.setBackground(new Color(0, 0, 0, 0));
@@ -39,6 +58,16 @@ public class StartActivity extends Activity
         addButton("Галерея", e -> Main.activity(new GalleryActivity()));
 
         add(UIDecorator.getCenteredComponent(menu), BorderLayout.CENTER);
+
+        noInternet.setForeground(new Color(100, 0, 0));
+        noInternetCentered.setPreferredSize(
+                new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width, 50)
+        );
+        noInternetCentered.setBackground(Color.RED);
+        add(noInternetCentered, BorderLayout.NORTH);
+        noInternet.setPreferredSize(
+                new Dimension(noInternet.getPreferredSize().width, 40)
+        );
     }
 
     private void addButton(String text, ActionListener click_ev)
@@ -128,5 +157,12 @@ public class StartActivity extends Activity
         ImageIcon bg = UIDecorator.getScaledImageIcon(bg_instance, bg_scaled_size.width, bg_scaled_size.height);
 
         g.drawImage(bg.getImage(), -1000, 0, null);
+    }
+
+    @Override
+    public void setInactive(Container contentPane)
+    {
+        super.setInactive(contentPane);
+        inetConn.stop();
     }
 }

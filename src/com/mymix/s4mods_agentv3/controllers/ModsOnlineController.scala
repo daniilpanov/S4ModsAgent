@@ -100,11 +100,16 @@ object ModsOnlineController
     {
         loading = false
 
-        th_info_loading.interrupt()
-        th_image_loading.interrupt()
-
-        th_info_loading = null
-        th_image_loading = null
+        if (null != th_image_loading)
+        {
+            th_image_loading.interrupt()
+            th_image_loading = null
+        }
+        if (null != th_info_loading)
+        {
+            th_info_loading.interrupt()
+            th_info_loading = null
+        }
     }
 
     def getModsFromCache(): CachedOnlineMods = cached_mods

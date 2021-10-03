@@ -105,84 +105,90 @@
     },
     {
       "ID": 18,
+      "name": "комплекты",
+      "link": "/komplekty-dlya-sims-4/",
+      "parent": 0
+    },
+    {
+      "ID": 19,
       "name": "моды",
       "link": "/mody-dlya-sims-4/",
       "parent": 0
     },
     {
-      "ID": 19,
+      "ID": 20,
       "name": "наборы",
       "link": "/nabory-dlya-sims-4/",
       "parent": 0
     },
     {
-      "ID": 20,
+      "ID": 21,
       "name": "обувь",
       "link": "/obuv-dlya-sims-4/",
       "parent": 0
     },
     {
-      "ID": 21,
+      "ID": 22,
       "name": "обустройство двора",
       "link": "/obustroystvo-dvora-dlya-sims-4/",
       "parent": 0
     },
     {
-      "ID": 22,
+      "ID": 23,
       "name": "одежда",
       "link": "/odezhda-dlya-sims-4/",
       "parent": 0
     },
     {
-      "ID": 23,
+      "ID": 24,
       "name": "питомцы и животные",
       "link": "/pitomtsy-i-zhivotnye-dlya-sims-4/",
       "parent": 0
     },
     {
-      "ID": 24,
+      "ID": 25,
       "name": "позы",
       "link": "/pozy-dlya-sims-4/",
       "parent": 0
     },
     {
-      "ID": 25,
+      "ID": 26,
       "name": "пресеты и слайдеры",
       "link": "/presety-i-slajdery-dlya-sims-4/",
       "parent": 0
     },
     {
-      "ID": 26,
+      "ID": 27,
       "name": "прически",
       "link": "/pricheski-dlya-sims-4/",
       "parent": 0
     },
     {
-      "ID": 27,
+      "ID": 28,
       "name": "программы",
       "link": "/programmy-dlya-sims-4/",
       "parent": 0
     },
     {
-      "ID": 28,
+      "ID": 29,
       "name": "строительство",
       "link": "/stroitelstvo-dlya-sims-4/",
       "parent": 0
     },
     {
-      "ID": 29,
+      "ID": 30,
       "name": "окна, двери и арки",
       "link": "/okna-dveri-i-arki-dlya-sims-4/",
-      "parent": 28
-    },
-    {
-      "ID": 30,
-      "name": "стены и пол",
-      "link": "/steny-i-pol-dlya-sims-4/",
-      "parent": 28
+      "parent": 29
     },
     {
       "ID": 31,
+      "name": "стены и пол",
+      "link": "/steny-i-pol-dlya-sims-4/",
+      "parent": 29
+    },
+    {
+      "ID": 32,
       "name": "увлечения и навыки",
       "link": "/uvlecheniya-i-navyki-dlya-sims-4/",
       "parent": 0
