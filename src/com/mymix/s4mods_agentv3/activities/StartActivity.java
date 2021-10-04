@@ -15,7 +15,7 @@ public class StartActivity extends Activity
 {
     private JLabel text;
     private JPanel menu;
-    private JLabel noInternet = new JLabel("No internet connection!");
+    private JLabel noInternet = new JLabel("     ");
     Component noInternetCentered = UIDecorator.getCenteredComponent(noInternet);
     private Timer inetConn = new Timer(10000, e ->
     {
@@ -63,11 +63,8 @@ public class StartActivity extends Activity
         noInternetCentered.setPreferredSize(
                 new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width, 50)
         );
-        noInternetCentered.setBackground(Color.RED);
         add(noInternetCentered, BorderLayout.NORTH);
-        noInternet.setPreferredSize(
-                new Dimension(noInternet.getPreferredSize().width, 40)
-        );
+        noInternet.setPreferredSize(new Dimension(145, 40));
     }
 
     private void addButton(String text, ActionListener click_ev)

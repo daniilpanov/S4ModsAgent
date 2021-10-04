@@ -1,7 +1,7 @@
 package com.mymix.s4mods_agentv3.controllers
 
 import java.io.IOException
-import java.net.ConnectException
+import java.net.{ConnectException, UnknownHostException}
 import java.util
 import java.util.ConcurrentModificationException
 
@@ -41,7 +41,12 @@ object ModsOnlineController
             url += "?page=" + ModsController.page.toString
 
 
-        doc = Jsoup.connect(url).get()
+        try
+            doc = Jsoup.connect(url).get()
+        catch
+        {
+            case ex: UnknownHostException => Main.internet_connection = false
+        }
     }
 
     def startBGLoading(): Unit =

@@ -68,30 +68,25 @@ object Main extends JFrame
 
     def checkInternetConnection(): Unit =
     {
-        var result = false
+        internet_connection = false
         var con: HttpURLConnection = null
         try
         {
             con = new URL(Constants.URL).openConnection.asInstanceOf[HttpURLConnection]
             con.setRequestMethod("HEAD")
-            result = con.getResponseCode == HttpURLConnection.HTTP_OK
+            internet_connection = con.getResponseCode == HttpURLConnection.HTTP_OK
         }
         catch
         {
-            case e: Exception =>
-                e.printStackTrace()
+            case _: Exception => internet_connection = false
         }
         finally
             if (con != null)
                 try
-
                     con.disconnect()
-
                 catch
                 {
-                    case e: Exception =>
-                        e.printStackTrace()
+                    case e: Exception => internet_connection = false
                 }
-        internet_connection = result
     }
 }
