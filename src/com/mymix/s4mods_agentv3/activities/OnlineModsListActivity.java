@@ -3,6 +3,7 @@ package com.mymix.s4mods_agentv3.activities;
 import com.mymix.s4mods_agentv3.Constants;
 import com.mymix.s4mods_agentv3.Images;
 import com.mymix.s4mods_agentv3.Main;
+import com.mymix.s4mods_agentv3.components.ModDescScrollPane;
 import com.mymix.s4mods_agentv3.controllers.ModsController;
 import com.mymix.s4mods_agentv3.controllers.ModsInstalledController;
 import com.mymix.s4mods_agentv3.controllers.ModsOnlineController;
@@ -13,8 +14,7 @@ import com.mymix.s4mods_agentv3.models.ModInstaller;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
@@ -440,7 +440,7 @@ public class OnlineModsListActivity extends ModsListActivity
                 top_panel = new JPanel(new BorderLayout()),
                 name_group = new JPanel(new FlowLayout()),
                 control_group = new JPanel(new FlowLayout()),
-                image_panel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 0));
+                image_panel = new JPanel(new FlowLayout());
         JLabel installed = new JLabel("(установлен)");
         JButton name = (JButton) UIDecorator.normalizeElementRepaint(
                     new JButton(mod.name()), this),
@@ -585,16 +585,14 @@ public class OnlineModsListActivity extends ModsListActivity
         desc.setEditable(false);
         desc.setText(mod.description());
         int w_max = Main.getWidth();
-        w_max -= filters_panel.getMaximumSize().width + 100;
-        w_max -= 200;
+        w_max -= filters_panel.getMaximumSize().width + 400;
         Dimension s = new Dimension(w_max, 155);
         desc.setPreferredSize(s);
-        //JScrollPane desc_container = new JScrollPane(desc);
-        //desc_container.setPreferredSize(s);
-        //desc_container.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        JScrollPane desc_container = new ModDescScrollPane(desc, mods_scroll);
+        desc_container.setPreferredSize(s);
 
-        //mod_panel.add(desc_container, c);
-        mod_panel.add(desc, c);
+        mod_panel.add(desc_container, c);
+        //mod_panel.add(desc, c);
 
         mods.add(mod_panel, conf);
 

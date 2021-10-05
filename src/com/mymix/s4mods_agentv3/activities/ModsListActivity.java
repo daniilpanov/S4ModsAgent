@@ -58,7 +58,7 @@ abstract public class ModsListActivity extends Activity
         UIDecorator.setComponentTransparent(mods_scroll);
         mods_scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         mods_scroll.setWheelScrollingEnabled(true);
-        mods_scroll.getVerticalScrollBar().setUnitIncrement(16);
+        mods_scroll.getVerticalScrollBar().setUnitIncrement(10);
         add(mods_scroll, BorderLayout.CENTER);
         Timer t = new Timer(500, e ->
         {
