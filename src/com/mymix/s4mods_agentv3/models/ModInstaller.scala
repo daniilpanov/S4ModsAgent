@@ -118,14 +118,12 @@ class ModInstaller(val installing_mod: Mod, val root_panel: JPanel) extends JPro
         val in = new BufferedInputStream(httpConnection.getInputStream)
         val out = new FileOutputStream(Constants.sims_home + "Mods\\" + fname)
 
-        println("Downloading...")
         //
         val buffer = new Array[Byte](1024)
         var count = in.read(buffer)
         //
         while (count != -1 && !on_stop)
         {
-            println(on_pause)
             if (!on_pause)
             {
                 //
@@ -179,7 +177,6 @@ class ModInstaller(val installing_mod: Mod, val root_panel: JPanel) extends JPro
     {
         stop()
         //
-        println("Downloaded Successful!")
         done = true
 
         installed.forEach(e => e.run())

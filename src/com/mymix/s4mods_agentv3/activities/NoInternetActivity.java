@@ -17,7 +17,7 @@ public class NoInternetActivity extends Activity
     }
 
     @Override
-    public void init()
+    public int init()
     {
         JLabel no_internet = new JLabel("Нет подключения к интернету!");
         no_internet.setFont(new Font("Verdana", Font.BOLD, 28));
@@ -30,6 +30,8 @@ public class NoInternetActivity extends Activity
             Main.activity(activity);
         });
         add(reload);
+
+        return 0;
     }
 
     @Override

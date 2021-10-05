@@ -13,6 +13,8 @@ import com.mymix.s4mods_agentv3.models.ModInstaller;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
@@ -55,8 +57,12 @@ public class OnlineModsListActivity extends ModsListActivity
     }
 
     @Override
-    public void init()
+    public int init()
     {
+        Main.checkInternetConnection();
+        if (!Main.internet_connection())
+            return 1;
+
         // если не выбрана категория, значит показаны все категории
         if (category_name == null)
             category_name = new JLabel("Все моды");
@@ -67,11 +73,11 @@ public class OnlineModsListActivity extends ModsListActivity
             mods.add(new JLabel("Ничего не найдено"));
         else
         {
-            loadFilters();
             loadPagination();
             list.forEach(this::addMod);
             ModsOnlineController.startBGLoading();
         }
+        loadFilters();
 
 
         // -- РАЗМЕТКА --
@@ -85,8 +91,18 @@ public class OnlineModsListActivity extends ModsListActivity
         JPanel menu = new JPanel(new FlowLayout(FlowLayout.LEFT));
         UIDecorator.setComponentTransparent(menu);
         //   * ссылки:
-        menu.add(UIDecorator.createPrettyButton("ГЛАВНАЯ", l -> Main.activity(new StartActivity())));
-        menu.add(UIDecorator.createPrettyButton("Установленные моды", l -> Main.activity(new InstalledModsListActivity())));
+        menu.add(UIDecorator.normalizeElementRepaint(
+                UIDecorator.createPrettyButton(
+                        "ГЛАВНАЯ",
+                        l -> Main.activity(new StartActivity())),
+                menu
+        ));
+        menu.add(UIDecorator.normalizeElementRepaint(
+                UIDecorator.createPrettyButton(
+                        "Установленные моды",
+                        l -> Main.activity(new InstalledModsListActivity())),
+                menu
+        ));
         // - ENDof(меню)
         top_panel.add(menu, BorderLayout.CENTER);
 
@@ -99,11 +115,25 @@ public class OnlineModsListActivity extends ModsListActivity
         JTextField search_input = new JTextField(search_str);
         search_input.setColumns(25);
         search_input.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        search_input.addKeyListener(new KeyAdapter()
+        {
+            @Override
+            public void keyPressed(KeyEvent e)
+            {
+                super.keyPressed(e);
+                if (e.getKeyCode() == 10)
+                {
+                    category_name.setText("Поиск: " + search_input.getText());
+                    Main.activity(new OnlineModsListActivity("/search?q=" + search_input.getText()));
+                }
+            }
+        });
         //   * кнопка поиска
         JButton search_go = new JButton("Поиск");
         UIDecorator.normalizeElementRepaint(search_go, this);
         search_go.addActionListener(l ->
         {
+            category_name.setText("Поиск: " + search_input.getText());
             Main.activity(new OnlineModsListActivity("/search?q=" + search_input.getText()));
         });
         search.add(search_input);
@@ -157,7 +187,6 @@ public class OnlineModsListActivity extends ModsListActivity
                     {
                         if (el.done())
                         {
-                            -- downloading_counter;
                             el.remove();
                             downloads.remove(el);
                         }
@@ -166,21 +195,45 @@ public class OnlineModsListActivity extends ModsListActivity
                 catch (ConcurrentModificationException ex)
                 {
                     // а тут уже нет. видимо, после Exception перехватывается контроль над downloads
-                    downloads.forEach(el ->
+                    /*downloads.forEach(el ->
                     {
                         if (el.done())
                         {
-                            -- downloading_counter;
                             el.remove();
                             downloads.remove(el);
                         }
-                    });
+                    });*/
                 }
             }
             // обновляем загрузочную панель
             updateDownloadingPanel();
         });
         updateDownloadingPanel();
+
+        return 0;
+    }
+
+    @Override
+    public void initError(int code)
+    {
+        super.initError(code);
+
+        Main.checkInternetConnection();
+        if (code == 1)
+        {
+            if (JOptionPane.showConfirmDialog(Main.getThis(),
+                    "<html><h2 style='color:red'>" +
+                            "ERROR: No internet connection!</h2>" +
+                            "Повторить попытку?" +
+                            "</html>",
+                    "Connection Lost",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.ERROR_MESSAGE
+                    ) == JOptionPane.YES_OPTION)
+            {
+                Main.activity(new OnlineModsListActivity());
+            }
+        }
     }
 
     @Override
@@ -215,6 +268,7 @@ public class OnlineModsListActivity extends ModsListActivity
 
     public void updateDownloadingPanel()
     {
+        //Constants.log(downloading_counter);
         no_downloading.setVisible(downloading_counter == 0);
     }
 
@@ -242,7 +296,7 @@ public class OnlineModsListActivity extends ModsListActivity
     {
         synchronized (downloads)
         {
-            --downloading_counter;
+            -- downloading_counter;
             downloads.remove(installer);
             updateDownloadingPanel();
         }
@@ -254,7 +308,7 @@ public class OnlineModsListActivity extends ModsListActivity
         if (ModsController.page() > 1)
         {
             JButton pre = new JButton("Назад");
-            UIDecorator.normalizeElementRepaint(pre, pagination);
+            UIDecorator.normalizeElementRepaint(pre, this);
             pre.addActionListener(l ->
             {
                 Main.activity(new OnlineModsListActivity(ModsController.page() - 1));
@@ -270,7 +324,7 @@ public class OnlineModsListActivity extends ModsListActivity
         {
             // отображение первой страницы
             JButton pb_first = new JButton(String.valueOf(1));
-            UIDecorator.normalizeElementRepaint(pb_first, pagination);
+            UIDecorator.normalizeElementRepaint(pb_first, this);
             pb_first.addActionListener(l ->
             {
                 Main.activity(new OnlineModsListActivity(1));
@@ -287,7 +341,7 @@ public class OnlineModsListActivity extends ModsListActivity
             for (int i = begin; i < pc; ++ i)
             {
                 JButton pb = new JButton(String.valueOf(i));
-                UIDecorator.normalizeElementRepaint(pb, pagination);
+                UIDecorator.normalizeElementRepaint(pb, this);
                 final int page = i;
                 pb.addActionListener(l ->
                 {
@@ -299,7 +353,7 @@ public class OnlineModsListActivity extends ModsListActivity
 
         // Выводим текущую страницу
         JButton pb_curr = new JButton(String.valueOf(pc));
-        UIDecorator.normalizeElementRepaint(pb_curr, pagination);
+        UIDecorator.normalizeElementRepaint(pb_curr, this);
         pb_curr.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(Color.ORANGE, 3, true),
                 BorderFactory.createEmptyBorder(10, 15, 10, 15)
@@ -316,7 +370,7 @@ public class OnlineModsListActivity extends ModsListActivity
             for (int i = pc + 1; i <= end; ++ i)
             {
                 JButton pb = new JButton(String.valueOf(i));
-                UIDecorator.normalizeElementRepaint(pb, pagination);
+                UIDecorator.normalizeElementRepaint(pb, this);
                 final int page = i;
                 pb.addActionListener(l ->
                 {
@@ -329,7 +383,7 @@ public class OnlineModsListActivity extends ModsListActivity
                 pagination.add(new JLabel("..."));
             // отображение первой страницы
             JButton pb_end = new JButton(String.valueOf(pm));
-            UIDecorator.normalizeElementRepaint(pb_end, pagination);
+            UIDecorator.normalizeElementRepaint(pb_end, this);
             pb_end.addActionListener(l ->
             {
                 Main.activity(new OnlineModsListActivity(pm));
@@ -341,7 +395,7 @@ public class OnlineModsListActivity extends ModsListActivity
         if (ModsOnlineController.pagination_current() < ModsOnlineController.pagination_max())
         {
             JButton next = new JButton("Далее");
-            UIDecorator.normalizeElementRepaint(next, pagination);
+            UIDecorator.normalizeElementRepaint(next, this);
             next.addActionListener(l ->
             {
                 Main.activity(new OnlineModsListActivity(ModsController.page() + 1));
@@ -385,14 +439,21 @@ public class OnlineModsListActivity extends ModsListActivity
         JPanel mod_panel = new JPanel(new GridBagLayout()),
                 top_panel = new JPanel(new BorderLayout()),
                 name_group = new JPanel(new FlowLayout()),
-                control_group = new JPanel(new FlowLayout());
+                control_group = new JPanel(new FlowLayout()),
+                image_panel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 0));
         JLabel installed = new JLabel("(установлен)");
-        JButton name = new JButton(mod.name()),
-                download = new JButton(),
-                remove = new JButton(),
-                on = new JButton(),
-                off = new JButton(),
-                image = new JButton();
+        JButton name = (JButton) UIDecorator.normalizeElementRepaint(
+                    new JButton(mod.name()), this),
+                download = (JButton) UIDecorator.normalizeElementRepaint(
+                        new JButton(), this),
+                remove = (JButton) UIDecorator.normalizeElementRepaint(
+                        new JButton(), this),
+                on = (JButton) UIDecorator.normalizeElementRepaint(
+                        new JButton(), this),
+                off = (JButton) UIDecorator.normalizeElementRepaint(
+                        new JButton(), this),
+                image = (JButton) UIDecorator.normalizeElementRepaint(
+                        new JButton(), this);
         JTextPane desc = new JTextPane();
 
         UIDecorator.setComponentTransparent(mod_panel);
@@ -415,7 +476,9 @@ public class OnlineModsListActivity extends ModsListActivity
         c.gridheight = 2;
         c.ipadx = 10;
         c.ipady = 5;
-        mod_panel.add(image, c);
+        image_panel.setPreferredSize(new Dimension(150, 155));
+        image_panel.add(image);
+        mod_panel.add(image_panel, c);
 
         c.gridx = GridBagConstraints.RELATIVE;
         c.gridy = 0;
@@ -542,8 +605,6 @@ public class OnlineModsListActivity extends ModsListActivity
 
 
         mods_dl.put(mod.link(), new JComponent[]{download, remove, installed, on, off});
-
-        UIDecorator.normalizeElementRepaint(image, this);
     }
 
     @Override
@@ -551,6 +612,7 @@ public class OnlineModsListActivity extends ModsListActivity
     {
         super.setInactive(contentPane);
         removeAll();
-        ModsOnlineController.stopBGLoading();
+        if (Main.current_activity().getClass() != getClass())
+            ModsOnlineController.stopBGLoading();
     }
 }

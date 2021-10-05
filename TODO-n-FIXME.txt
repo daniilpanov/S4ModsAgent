@@ -5,10 +5,10 @@ create displaying downloading progress (on OnlineModsListActivity; right toggle 
 TODO: DESIGN! -- in progress
 
 TODO: (fasttask) Checking Internet Connection -- done, but only on start.
-    Now We need to do this at other activities -- In progress
+    Now We need to do this at other activities -- In progress (paused)
 
 Slider (OnlineModsListActivity, on image clicked) -- DONE!
-TODO: InstalledModsActivity -- Beginning (paused)
+TODO: InstalledModsActivity -- In progress
 TODO: OneModActivity -- Beginning (paused)
 TODO: DownloadingActivity
 TODO: wait preview

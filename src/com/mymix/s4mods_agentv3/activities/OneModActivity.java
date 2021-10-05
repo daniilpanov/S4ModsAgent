@@ -15,9 +15,9 @@ public class OneModActivity extends Activity
     }
 
     @Override
-    public void init()
+    public int init()
     {
-
+        return 0;
     }
 
     @Override

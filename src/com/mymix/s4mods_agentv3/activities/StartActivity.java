@@ -35,7 +35,7 @@ public class StartActivity extends Activity
     });
 
     @Override
-    public void init()
+    public int init()
     {
         setLayout(new BorderLayout());
         inetConn.start();
@@ -58,13 +58,20 @@ public class StartActivity extends Activity
         addButton("Галерея", e -> Main.activity(new GalleryActivity()));
 
         add(UIDecorator.getCenteredComponent(menu), BorderLayout.CENTER);
-
         noInternet.setForeground(new Color(100, 0, 0));
         noInternetCentered.setPreferredSize(
                 new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width, 50)
         );
+
+        if (!Main.internet_connection())
+        {
+            noInternet.setText("No internet connection!");
+            noInternetCentered.setBackground(Color.RED);
+        }
         add(noInternetCentered, BorderLayout.NORTH);
         noInternet.setPreferredSize(new Dimension(145, 40));
+
+        return 0;
     }
 
     private void addButton(String text, ActionListener click_ev)

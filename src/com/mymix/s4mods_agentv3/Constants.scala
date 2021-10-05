@@ -3,6 +3,7 @@ package com.mymix.s4mods_agentv3
 import java.io.File
 
 import com.mymix.s4mods_agentv3.controllers.ModsInfoController
+import javax.swing.UIManager
 
 object Constants
 {
@@ -42,6 +43,12 @@ object Constants
             Main.error(404)
 
         sims_home += sims_dirname + "\\"
+
+
+        ///
+        UIManager.put("OptionPane.yesButtonText", "Да")
+        UIManager.put("OptionPane.noButtonText", "Нет")
+        UIManager.put("OptionPane.cancelButtonText", "Отмена")
     }
 
     def log(p: Any): Unit = println(p)

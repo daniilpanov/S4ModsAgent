@@ -62,7 +62,7 @@ object ModsInstalledController
         mod.installed = false
         ModsInfoController.getInstalledMods().forEach(e =>
         {
-            if (e == mod && e.installed)
+            if (e == mod)
             {
                 mod.installed = true
                 mod.disabled = e.disabled

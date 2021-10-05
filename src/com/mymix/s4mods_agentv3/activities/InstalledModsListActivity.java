@@ -7,6 +7,8 @@ import com.mymix.s4mods_agentv3.UIDecorator;
 import com.mymix.s4mods_agentv3.controllers.ModsController;
 import com.mymix.s4mods_agentv3.controllers.ModsInstalledController;
 import com.mymix.s4mods_agentv3.controllers.ModsOnlineController;
+import com.mymix.s4mods_agentv3.models.CategoriesCollection;
+import com.mymix.s4mods_agentv3.models.Category;
 import com.mymix.s4mods_agentv3.models.Mod;
 import com.mymix.s4mods_agentv3.models.ModInstaller;
 
@@ -19,6 +21,8 @@ import java.util.List;
 
 public class InstalledModsListActivity extends ModsListActivity
 {
+    private static JLabel category_name = null;
+
     // ID = Mod.link
     private HashMap<String, JTextPane> mods_desc = new HashMap<>();
     private HashMap<String, JComponent[]> mods_dl = new HashMap<>();
@@ -29,66 +33,76 @@ public class InstalledModsListActivity extends ModsListActivity
     private static boolean dp_visible = false;
     private static JLabel no_downloading = new JLabel("В данный момент ничего не загружается");
     private static int downloading_counter = 0;
-    private static final java.util.List<ModInstaller> downloads = new ArrayList<>();
+    private static final List<ModInstaller> downloads = new ArrayList<>();
 
 
     public InstalledModsListActivity()
     {
     }
 
-    public InstalledModsListActivity(String search)
+    public InstalledModsListActivity(int filter)
     {
 
     }
 
     @Override
-    public void init()
+    public int init()
     {
+        // если не выбрана категория, значит показаны все категории
+        if (category_name == null)
+            category_name = new JLabel("Все моды");
+
         // Загрузка компонентов
+        List<Mod> list = ModsController.getInstalledModsList();
+        if (list.isEmpty())
+            mods.add(new JLabel("<html><center>Ни один мод не установлен.<br>Пора это исправить!</center></html>"));
+        else
+        {
+            list.forEach(this::addMod);
+            ModsOnlineController.startBGLoading();
+        }
         loadFilters();
-        List<Mod> list = ModsController.getOnlineModsList();
-        list.forEach(this::addMod);
-        ModsOnlineController.startBGLoading();
 
 
         // -- РАЗМЕТКА --
         // TOP MENU
         top_menu.setLayout(new GridLayout(2, 1));
+        UIDecorator.setComponentTransparent(top_menu);
         // верхняя панель:
         JPanel top_panel = new JPanel(new BorderLayout());
+        UIDecorator.setComponentTransparent(top_panel);
         // - меню (слева)
         JPanel menu = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        UIDecorator.setComponentTransparent(menu);
         //   * ссылки:
-        menu.add(UIDecorator.createPrettyButton("ГЛАВНАЯ", l -> Main.activity(new StartActivity())));
-        menu.add(UIDecorator.createPrettyButton("Установленные моды", l -> Main.activity(new InstalledModsListActivity())));
+        menu.add(UIDecorator.normalizeElementRepaint(
+                UIDecorator.createPrettyButton(
+                        "ГЛАВНАЯ",
+                        l -> Main.activity(new StartActivity())),
+                menu
+        ));
+        menu.add(UIDecorator.normalizeElementRepaint(
+                UIDecorator.createPrettyButton(
+                        "Все моды",
+                        l -> Main.activity(new OnlineModsListActivity())),
+                menu
+        ));
         // - ENDof(меню)
         top_panel.add(menu, BorderLayout.CENTER);
-
-        // - поиск (справа)
-        JPanel search = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        //   * поле для поиска (берём значение по умолчанию из указанного в ModsController.path пути)
-        String search_str = "";
-        JTextField search_input = new JTextField(search_str);
-        search_input.setColumns(25);
-        search_input.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-        //   * кнопка поиска
-        JButton search_go = new JButton("Поиск");
-        search_go.addActionListener(l ->
-        {
-            Main.activity(new InstalledModsListActivity(search_input.getText()));
-        });
-        search.add(search_input);
-        search.add(search_go);
-        // - ENDof(поиск)
-        top_panel.add(search, BorderLayout.EAST);
 
         // ENDof(верхняя панель)
         top_menu.add(top_panel);
 
         // выбранные фильтры (панель 2-го уровня):
         JPanel filters = new JPanel(new BorderLayout());
+        UIDecorator.setComponentTransparent(filters);
+        JPanel category_name_container = new JPanel(new FlowLayout());
+        UIDecorator.setComponentTransparent(category_name_container);
+        category_name_container.add(category_name);
+        filters.add(category_name_container, BorderLayout.CENTER);
         // на эту же панель добавляем кнопку показа загрузок
         JButton downloading_toggle = new JButton("Показать загрузки");
+        UIDecorator.normalizeElementRepaint(downloading_toggle, this);
         downloading_toggle.addActionListener(l ->
         {
             dp_visible = !dp_visible;
@@ -101,11 +115,14 @@ public class InstalledModsListActivity extends ModsListActivity
 
         // DOWNLOADING PROGRESS
         downloading_progress.setLayout(new BoxLayout(downloading_progress, BoxLayout.Y_AXIS));
+        UIDecorator.setComponentTransparent(downloading_progress);
+        UIDecorator.setComponentTransparent(downloading_progress_container);
         downloading_progress.add(no_downloading);
         // Добавляем обёртку для загрузок
         downloading_progress_container.add(downloading_progress, BorderLayout.CENTER);
         // Кнопка очистки загрузок на обёртке
         JButton clear_downloads = new JButton("Очистить загрузки");
+        UIDecorator.normalizeElementRepaint(clear_downloads, this);
         downloading_progress_container.add(clear_downloads, BorderLayout.SOUTH);
         clear_downloads.addActionListener(l ->
         {
@@ -143,6 +160,8 @@ public class InstalledModsListActivity extends ModsListActivity
             updateDownloadingPanel();
         });
         updateDownloadingPanel();
+
+        return 0;
     }
 
     @Override
@@ -210,10 +229,31 @@ public class InstalledModsListActivity extends ModsListActivity
         }
     }
 
-    @Override
     protected void loadFilters()
     {
+        addFilter("Все моды", 0);
+        addFilter("Только активные",  1);
+        addFilter("Только неактивные", 2);
+    }
 
+    private void addFilter(String name, int filter)
+    {
+        JButton b = UIDecorator.createPrettyButton(name, l ->
+        {
+            category_name.setText(name);
+            Main.activity(new InstalledModsListActivity(filter));
+        });
+
+        if (category_name.getText().equals(name))
+        {
+            b.setBackground(Color.ORANGE);
+            b.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(Color.ORANGE, 3, true),
+                    BorderFactory.createEmptyBorder(10, 15, 10, 15)
+            ));
+        }
+        filters_panel.add(b);
+        UIDecorator.normalizeElementRepaint(b, this);
     }
 
     public void addMod(Mod mod)
@@ -232,10 +272,14 @@ public class InstalledModsListActivity extends ModsListActivity
                 image = new JButton();
         JTextPane desc = new JTextPane();
 
+        UIDecorator.setComponentTransparent(mod_panel);
+
         image.addActionListener(l ->
         {
+            this.repaint();
             SliderActivity slider = new SliderActivity(mod.link());
             slider.setActive(Main.getThis());
+            this.repaint();
         });
 
         GridBagConstraints c = new GridBagConstraints();
@@ -375,12 +419,15 @@ public class InstalledModsListActivity extends ModsListActivity
 
 
         mods_dl.put(mod.link(), new JComponent[]{download, remove, installed, on, off});
+
+        UIDecorator.normalizeElementRepaint(image, this);
     }
 
     @Override
     public void setInactive(Container contentPane)
     {
         super.setInactive(contentPane);
+        removeAll();
         ModsOnlineController.stopBGLoading();
     }
 }

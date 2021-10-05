@@ -5,7 +5,7 @@ import java.net.{ConnectException, UnknownHostException}
 import java.util
 import java.util.ConcurrentModificationException
 
-import com.mymix.s4mods_agentv3.activities.OnlineModsListActivity
+import com.mymix.s4mods_agentv3.activities.{InstalledModsListActivity, OnlineModsListActivity}
 import com.mymix.s4mods_agentv3.models.{CachedOnlineMods, CategoriesCollection, Category, Mod}
 import com.mymix.s4mods_agentv3.{Constants, Main}
 import org.jsoup.Jsoup
@@ -45,12 +45,13 @@ object ModsOnlineController
             doc = Jsoup.connect(url).get()
         catch
         {
-            case ex: UnknownHostException => Main.internet_connection = false
+            case _: Exception => Main.internet_connection = false
         }
     }
 
     def startBGLoading(): Unit =
     {
+        stopBGLoading()
         loading = true
 
         th_info_loading = new Thread(() =>
@@ -88,7 +89,10 @@ object ModsOnlineController
                     cached_mods.forEach(el =>
                     {
                         if (loading)
+                        {
                             Main.current_activity.asInstanceOf[OnlineModsListActivity].updateImage(el.link, el.image)
+                            Main.current_activity.repaint()
+                        }
                     })
                 }
             }
@@ -183,7 +187,7 @@ object ModsOnlineController
 
     def addOnlineModsList(mods_list: CachedOnlineMods): Unit = cached_mods.addAll(mods_list)
 
-    def updateFilters(): Unit =
+    def updateFilters(): Unit = if (Main.internet_connection)
     {
         val categories_list = doc select ".menu-block > .menu-links li"
         var links: Elements = null

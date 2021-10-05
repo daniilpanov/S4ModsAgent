@@ -12,8 +12,8 @@ abstract public class ModsListActivity extends Activity
     protected JPanel top_menu = new JPanel(new FlowLayout(FlowLayout.LEFT)),
             filters_panel = new JPanel(),
             mods = new JPanel();
-    protected JScrollPane filters_scroll = new JScrollPane(filters_panel);
-    protected JScrollPane mods_scroll = new JScrollPane(mods);
+    protected JScrollPane filters_scroll = new JScrollPane(filters_panel),
+            mods_scroll = new JScrollPane(mods);
     protected JPanel pagination = new JPanel(new FlowLayout());
     protected GridBagConstraints conf = new GridBagConstraints();
 
@@ -60,12 +60,23 @@ abstract public class ModsListActivity extends Activity
         mods_scroll.setWheelScrollingEnabled(true);
         mods_scroll.getVerticalScrollBar().setUnitIncrement(16);
         add(mods_scroll, BorderLayout.CENTER);
-        mods_scroll.getVerticalScrollBar().setValue(mods_scroll.getVerticalScrollBar().getMinimum());
+        Timer t = new Timer(500, e ->
+        {
+            mods_scroll.getVerticalScrollBar().setValue(
+                    mods_scroll.getVerticalScrollBar().getMinimum()
+            );
+
+            repaint();
+        });
+        t.setRepeats(false);
+        t.start();
         // pagination
         UIDecorator.setComponentTransparent(pagination);
         add(pagination, BorderLayout.SOUTH);
 
         contentPane.add(this);
+
+        Main.repaint();
     }
 
     abstract public void addMod(Mod mod);

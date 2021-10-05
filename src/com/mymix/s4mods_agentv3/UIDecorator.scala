@@ -124,7 +124,7 @@ object UIDecorator
         component.setBackground(transparent)
     }
 
-    def normalizeElementRepaint(component: Component, container: Container = null): Unit =
+    def normalizeElementRepaint(component: Component, container: Container = null): Component =
     {
         val c = if (null == container)
             component.getParent else container
@@ -153,5 +153,7 @@ object UIDecorator
                 c.repaint()
             }
         })
+
+        component
     }
 }

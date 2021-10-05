@@ -5,9 +5,9 @@ import java.awt.*;
 public class ThemesActivity extends Activity
 {
     @Override
-    public void init()
+    public int init()
     {
-
+        return 0;
     }
 
     @Override

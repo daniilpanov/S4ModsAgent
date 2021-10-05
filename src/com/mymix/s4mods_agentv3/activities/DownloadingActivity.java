@@ -5,9 +5,10 @@ import java.awt.*;
 public class DownloadingActivity extends Activity
 {
     @Override
-    public void init()
+    public int init()
     {
 
+        return 0;
     }
 
     @Override

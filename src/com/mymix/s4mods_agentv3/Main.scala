@@ -15,6 +15,7 @@ object Main extends JFrame
 
     def main(args: Array[String]): Unit =
     {
+        checkInternetConnection()
         ModsInfoController.init()
         Constants.init()
         ModsController.init()
@@ -34,14 +35,23 @@ object Main extends JFrame
 
     def activity(activity: Activity): Unit =
     {
-        if (current_activity != null)
-            current_activity.setInactive(getContentPane)
+        val pre_activity = current_activity
         current_activity = activity
-        activity.init()
-        activity.setBackground(new Color(0, 0, 0, 0))
-        activity.setActive(getContentPane)
-        getContentPane.validate()
-        getContentPane.repaint()
+        val ir = activity.init()
+        if (ir != 0)
+        {
+            current_activity = pre_activity
+            activity.initError(ir)
+        }
+        else
+        {
+            if (pre_activity != null)
+                pre_activity.setInactive(getContentPane)
+            activity.setBackground(new Color(0, 0, 0, 0))
+            activity.setActive(getContentPane)
+            getContentPane.validate()
+            getContentPane.repaint()
+        }
     }
 
     def install(mod: Mod, rootPanel: JPanel): ModInstaller =
@@ -86,7 +96,7 @@ object Main extends JFrame
                     con.disconnect()
                 catch
                 {
-                    case e: Exception => internet_connection = false
+                    case _: Exception => internet_connection = false
                 }
     }
 }
