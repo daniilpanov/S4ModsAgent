@@ -49,7 +49,7 @@ public class ModDescScrollPane extends JScrollPane
             {
                 super.mouseExited(e);
                 focus = false;
-                Constants.log("exited");
+                //Constants.log("exited");
             }
 
             @Override
@@ -57,7 +57,7 @@ public class ModDescScrollPane extends JScrollPane
             {
                 super.mouseEntered(e);
                 focus = false;
-                Constants.log("entered");
+                //Constants.log("entered");
                 Constants.log(focus);
             }
         });
@@ -73,7 +73,7 @@ public class ModDescScrollPane extends JScrollPane
                 {
                     ModDescScrollPane scroll = recursivelyCheckForScrollPanel(comp);
                     focus = scroll != null && scroll.getVerticalScrollBar().isVisible();
-                    Constants.log("clicked");
+                    //Constants.log("clicked");
                 }
             }
         };

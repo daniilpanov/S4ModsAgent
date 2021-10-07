@@ -10,14 +10,11 @@ import com.mymix.s4mods_agentv3.controllers.ModsOnlineController;
 import com.mymix.s4mods_agentv3.models.CategoriesCollection;
 import com.mymix.s4mods_agentv3.models.Category;
 import com.mymix.s4mods_agentv3.models.Mod;
-import com.mymix.s4mods_agentv3.models.ModInstaller;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
-import java.util.HashMap;
 import java.util.List;
 
 import com.mymix.s4mods_agentv3.UIDecorator;
@@ -26,17 +23,7 @@ public class OnlineModsListActivity extends ModsListActivity
 {
     private static JLabel category_name = null;
 
-    // ID = Mod.link
-    private HashMap<String, JTextPane> mods_desc = new HashMap<>();
-    private HashMap<String, JComponent[]> mods_dl = new HashMap<>();
-    private HashMap<String, JButton> mods_imgs = new HashMap<>();
-
-    private static JPanel downloading_progress = new JPanel();
-    private static JPanel downloading_progress_container = new JPanel(new BorderLayout());
-    private static boolean dp_visible = false;
-    private static JLabel no_downloading = new JLabel("В данный момент ничего не загружается");
-    private static int downloading_counter = 0;
-    private static final List<ModInstaller> downloads = new ArrayList<>();
+    JPanel pagination = new JPanel(new FlowLayout());
 
 
     public OnlineModsListActivity()
@@ -241,65 +228,9 @@ public class OnlineModsListActivity extends ModsListActivity
     {
         super.setActive(contentPane);
 
-        add(downloading_progress_container, BorderLayout.EAST);
-        downloading_progress_container.setVisible(dp_visible);
-    }
-
-    public void updateImage(String mod_link, String img_path)
-    {
-        if (!mods_imgs.containsKey(mod_link))
-            return;
-
-        UIDecorator.makeAdaptiveIconButton(mods_imgs.get(mod_link), img_path, 155);
-
-        mods_imgs.remove(mod_link);
-    }
-
-    public void updateDLnDesc(String mod_link, String desc, String dl)
-    {
-        if (!mods_desc.containsKey(mod_link) && !mods_dl.containsKey(mod_link))
-            return;
-
-        mods_desc.get(mod_link).setText(desc);
-
-        mods_desc.remove(mod_link);
-        mods_dl.remove(mod_link);
-    }
-
-    public void updateDownloadingPanel()
-    {
-        //Constants.log(downloading_counter);
-        no_downloading.setVisible(downloading_counter == 0);
-    }
-
-    public ModInstaller addDownloading(ModInstaller installer)
-    {
-        synchronized (downloads)
-        {
-            ++ downloading_counter;
-            downloads.add(installer);
-            updateDownloadingPanel();
-        }
-
-        return installer;
-    }
-
-    public void endDownloading(ModInstaller installer)
-    {
-        synchronized (downloads)
-        {
-
-        }
-    }
-
-    public void removeDownloading(ModInstaller installer)
-    {
-        synchronized (downloads)
-        {
-            -- downloading_counter;
-            downloads.remove(installer);
-            updateDownloadingPanel();
-        }
+        // pagination
+        UIDecorator.setComponentTransparent(pagination);
+        add(pagination, BorderLayout.SOUTH);
     }
 
     private void loadPagination()
@@ -564,7 +495,6 @@ public class OnlineModsListActivity extends ModsListActivity
         }
         else if (mod.disabled())
         {
-            Constants.log(mod);
             on.setVisible(true);
             off.setVisible(false);
         }

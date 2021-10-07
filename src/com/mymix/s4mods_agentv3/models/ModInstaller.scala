@@ -135,13 +135,18 @@ class ModInstaller(val installing_mod: Mod, val root_panel: JPanel) extends JPro
                 out.write(buffer, 0, count)
                 count = in.read(buffer)
             }
+            else
+                Thread.currentThread().join(1)
         }
         //
         in.close()
         out.close()
         //
         if (on_stop)
+        {
             Main.delete(installing_mod)
+            remove()
+        }
         else
         {
             //

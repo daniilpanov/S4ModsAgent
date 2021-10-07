@@ -7,34 +7,16 @@ import com.mymix.s4mods_agentv3.UIDecorator;
 import com.mymix.s4mods_agentv3.controllers.ModsController;
 import com.mymix.s4mods_agentv3.controllers.ModsInstalledController;
 import com.mymix.s4mods_agentv3.controllers.ModsOnlineController;
-import com.mymix.s4mods_agentv3.models.CategoriesCollection;
-import com.mymix.s4mods_agentv3.models.Category;
 import com.mymix.s4mods_agentv3.models.Mod;
-import com.mymix.s4mods_agentv3.models.ModInstaller;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
-import java.util.HashMap;
 import java.util.List;
 
 public class InstalledModsListActivity extends ModsListActivity
 {
     private static JLabel category_name = null;
-
-    // ID = Mod.link
-    private HashMap<String, JTextPane> mods_desc = new HashMap<>();
-    private HashMap<String, JComponent[]> mods_dl = new HashMap<>();
-    private HashMap<String, JButton> mods_imgs = new HashMap<>();
-
-    private static JPanel downloading_progress = new JPanel();
-    private static JPanel downloading_progress_container = new JPanel(new BorderLayout());
-    private static boolean dp_visible = false;
-    private static JLabel no_downloading = new JLabel("В данный момент ничего не загружается");
-    private static int downloading_counter = 0;
-    private static final List<ModInstaller> downloads = new ArrayList<>();
-
 
     public InstalledModsListActivity()
     {
@@ -173,62 +155,6 @@ public class InstalledModsListActivity extends ModsListActivity
         downloading_progress_container.setVisible(dp_visible);
     }
 
-    public void updateImage(String mod_link, String img_path)
-    {
-        if (!mods_imgs.containsKey(mod_link))
-            return;
-
-        UIDecorator.makeAdaptiveIconButton(mods_imgs.get(mod_link), img_path, 155);
-
-        mods_imgs.remove(mod_link);
-    }
-
-    public void updateDLnDesc(String mod_link, String desc, String dl)
-    {
-        if (!mods_desc.containsKey(mod_link) && !mods_dl.containsKey(mod_link))
-            return;
-
-        mods_desc.get(mod_link).setText(desc);
-
-        mods_desc.remove(mod_link);
-        mods_dl.remove(mod_link);
-    }
-
-    public void updateDownloadingPanel()
-    {
-        no_downloading.setVisible(downloading_counter == 0);
-    }
-
-    public ModInstaller addDownloading(ModInstaller installer)
-    {
-        synchronized (downloads)
-        {
-            ++ downloading_counter;
-            downloads.add(installer);
-            updateDownloadingPanel();
-        }
-
-        return installer;
-    }
-
-    public void endDownloading(ModInstaller installer)
-    {
-        synchronized (downloads)
-        {
-
-        }
-    }
-
-    public void removeDownloading(ModInstaller installer)
-    {
-        synchronized (downloads)
-        {
-            --downloading_counter;
-            downloads.remove(installer);
-            updateDownloadingPanel();
-        }
-    }
-
     protected void loadFilters()
     {
         addFilter("Все моды", 0);
@@ -258,14 +184,11 @@ public class InstalledModsListActivity extends ModsListActivity
 
     public void addMod(Mod mod)
     {
-        ModsInstalledController.isModInstalled(mod);
         JPanel mod_panel = new JPanel(new GridBagLayout()),
                 top_panel = new JPanel(new BorderLayout()),
                 name_group = new JPanel(new FlowLayout()),
                 control_group = new JPanel(new FlowLayout());
-        JLabel installed = new JLabel("(установлен)");
         JButton name = new JButton(mod.name()),
-                download = new JButton(),
                 remove = new JButton(),
                 on = new JButton(),
                 off = new JButton(),
@@ -301,58 +224,18 @@ public class InstalledModsListActivity extends ModsListActivity
 
         name.addActionListener(l -> Main.activity(new OneModActivity(mod)));
         name.setContentAreaFilled(false);
-        name_group.add(installed);
         name_group.add(name);
 
-        UIDecorator.makeIconButton(download, Images.bdownload(), 20, 20);
         UIDecorator.makeIconButton(remove, Images.bdel(), 20, 20);
-        download.addActionListener(l ->
-        {
-            addDownloading(Main.install(mod, downloading_progress)).installed(() ->
-            {
-                installed.setText("(установлен)");
-                remove.setVisible(true);
-                download.setVisible(false);
-
-                off.setVisible(true);
-                on.setVisible(false);
-            }).interrupted(() ->
-            {
-                installed.setText("(установлен)");
-                download.setEnabled(true);
-            });
-
-            installed.setText("(устанавливается...)");
-            installed.setVisible(true);
-            download.setEnabled(false);
-        });
         remove.addActionListener(l ->
         {
             Main.delete(mod);
-            download.setVisible(true);
-            installed.setVisible(false);
             remove.setVisible(false);
 
             on.setVisible(false);
             off.setVisible(false);
-
-            download.setEnabled(true);
         });
-        control_group.add(download);
         control_group.add(remove);
-
-        if (mod.installed() && !"".equals(mod.filename()))
-        {
-            installed.setVisible(true);
-            remove.setVisible(true);
-            download.setVisible(false);
-        }
-        else
-        {
-            download.setVisible(true);
-            installed.setVisible(false);
-            remove.setVisible(false);
-        }
 
         UIDecorator.makeIconButton(on, Images.benable(), 20, 20);
         UIDecorator.makeIconButton(off, Images.bdisable(), 20, 20);
@@ -378,7 +261,6 @@ public class InstalledModsListActivity extends ModsListActivity
         }
         else if (mod.disabled())
         {
-            Constants.log(mod);
             on.setVisible(true);
             off.setVisible(false);
         }
@@ -418,7 +300,7 @@ public class InstalledModsListActivity extends ModsListActivity
         mods_imgs.put(mod.link(), image);
 
 
-        mods_dl.put(mod.link(), new JComponent[]{download, remove, installed, on, off});
+        mods_dl.put(mod.link(), new JComponent[]{remove, on, off});
 
         UIDecorator.normalizeElementRepaint(image, this);
     }

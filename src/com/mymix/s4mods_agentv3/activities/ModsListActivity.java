@@ -3,22 +3,38 @@ package com.mymix.s4mods_agentv3.activities;
 import com.mymix.s4mods_agentv3.Main;
 import com.mymix.s4mods_agentv3.UIDecorator;
 import com.mymix.s4mods_agentv3.models.Mod;
+import com.mymix.s4mods_agentv3.models.ModInstaller;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 abstract public class ModsListActivity extends Activity
 {
-    protected JPanel top_menu = new JPanel(new FlowLayout(FlowLayout.LEFT)),
+    JPanel top_menu = new JPanel(new FlowLayout(FlowLayout.LEFT)),
             filters_panel = new JPanel(),
             mods = new JPanel();
-    protected JScrollPane filters_scroll = new JScrollPane(filters_panel),
+    JScrollPane filters_scroll = new JScrollPane(filters_panel),
             mods_scroll = new JScrollPane(mods);
-    protected JPanel pagination = new JPanel(new FlowLayout());
-    protected GridBagConstraints conf = new GridBagConstraints();
+    GridBagConstraints conf = new GridBagConstraints();
 
 
-    public ModsListActivity()
+    // ID = Mod.link
+    HashMap<String, JTextPane> mods_desc = new HashMap<>();
+    HashMap<String, JComponent[]> mods_dl = new HashMap<>();
+    HashMap<String, JButton> mods_imgs = new HashMap<>();
+
+
+    static JPanel downloading_progress = new JPanel();
+    static JPanel downloading_progress_container = new JPanel(new BorderLayout());
+    static boolean dp_visible = false;
+    static JLabel no_downloading = new JLabel("В данный момент ничего не загружается");
+    static int downloading_counter = 0;
+    static final java.util.List<ModInstaller> downloads = new ArrayList<>();
+
+
+    ModsListActivity()
     {
         super();
         filters_panel.setLayout(new BoxLayout(filters_panel, BoxLayout.Y_AXIS));
@@ -70,9 +86,9 @@ abstract public class ModsListActivity extends Activity
         });
         t.setRepeats(false);
         t.start();
-        // pagination
-        UIDecorator.setComponentTransparent(pagination);
-        add(pagination, BorderLayout.SOUTH);
+        //
+        add(downloading_progress_container, BorderLayout.EAST);
+        downloading_progress_container.setVisible(dp_visible);
 
         contentPane.add(this);
 
@@ -91,5 +107,63 @@ abstract public class ModsListActivity extends Activity
         ImageIcon bg = UIDecorator.getScaledImageIcon(bg_instance, bg_scaled_size.width, bg_scaled_size.height);
 
         g.drawImage(bg.getImage(), -1000, 0, null);
+    }
+
+
+    public void updateImage(String mod_link, String img_path)
+    {
+        if (!mods_imgs.containsKey(mod_link))
+            return;
+
+        UIDecorator.makeAdaptiveIconButton(mods_imgs.get(mod_link), img_path, 155);
+
+        mods_imgs.remove(mod_link);
+    }
+
+    public void updateDLnDesc(String mod_link, String desc, String dl)
+    {
+        if (!mods_desc.containsKey(mod_link) && !mods_dl.containsKey(mod_link))
+            return;
+
+        mods_desc.get(mod_link).setText(desc);
+
+        mods_desc.remove(mod_link);
+        mods_dl.remove(mod_link);
+    }
+
+    public void updateDownloadingPanel()
+    {
+        //Constants.log(downloading_counter);
+        no_downloading.setVisible(downloading_counter == 0);
+    }
+
+    public ModInstaller addDownloading(ModInstaller installer)
+    {
+        synchronized (downloads)
+        {
+            ++ downloading_counter;
+            downloads.add(installer);
+            updateDownloadingPanel();
+        }
+
+        return installer;
+    }
+
+    public void endDownloading(ModInstaller installer)
+    {
+        synchronized (downloads)
+        {
+
+        }
+    }
+
+    public void removeDownloading(ModInstaller installer)
+    {
+        synchronized (downloads)
+        {
+            -- downloading_counter;
+            downloads.remove(installer);
+            updateDownloadingPanel();
+        }
     }
 }

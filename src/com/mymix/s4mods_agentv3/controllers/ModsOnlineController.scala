@@ -5,7 +5,7 @@ import java.net.{ConnectException, UnknownHostException}
 import java.util
 import java.util.ConcurrentModificationException
 
-import com.mymix.s4mods_agentv3.activities.{InstalledModsListActivity, OnlineModsListActivity}
+import com.mymix.s4mods_agentv3.activities.{InstalledModsListActivity, ModsListActivity, OnlineModsListActivity}
 import com.mymix.s4mods_agentv3.models.{CachedOnlineMods, CategoriesCollection, Category, Mod}
 import com.mymix.s4mods_agentv3.{Constants, Main}
 import org.jsoup.Jsoup
@@ -90,7 +90,7 @@ object ModsOnlineController
                     {
                         if (loading)
                         {
-                            Main.current_activity.asInstanceOf[OnlineModsListActivity].updateImage(el.link, el.image)
+                            Main.current_activity.asInstanceOf[ModsListActivity].updateImage(el.link, el.image)
                             Main.current_activity.repaint()
                         }
                     })
