@@ -62,7 +62,7 @@ public class OnlineModsListActivity extends ModsListActivity
         {
             loadPagination();
             list.forEach(this::addMod);
-            ModsOnlineController.startBGLoading();
+            ModsOnlineController.startBGOnlineLoading();
         }
         loadFilters();
 
@@ -82,13 +82,13 @@ public class OnlineModsListActivity extends ModsListActivity
                 UIDecorator.createPrettyButton(
                         "ГЛАВНАЯ",
                         l -> Main.activity(new StartActivity())),
-                menu
+                this
         ));
         menu.add(UIDecorator.normalizeElementRepaint(
                 UIDecorator.createPrettyButton(
                         "Установленные моды",
                         l -> Main.activity(new InstalledModsListActivity())),
-                menu
+                this
         ));
         // - ENDof(меню)
         top_panel.add(menu, BorderLayout.CENTER);

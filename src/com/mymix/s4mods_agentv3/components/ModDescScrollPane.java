@@ -58,7 +58,7 @@ public class ModDescScrollPane extends JScrollPane
                 super.mouseEntered(e);
                 focus = false;
                 //Constants.log("entered");
-                Constants.log(focus);
+                //Constants.log(focus);
             }
         });
 

@@ -1,12 +1,12 @@
 package com.mymix.s4mods_agentv3.controllers
 
 import java.io.IOException
-import java.net.{ConnectException, UnknownHostException}
+import java.net.ConnectException
 import java.util
 import java.util.ConcurrentModificationException
 
-import com.mymix.s4mods_agentv3.activities.{InstalledModsListActivity, ModsListActivity, OnlineModsListActivity}
-import com.mymix.s4mods_agentv3.models.{CachedOnlineMods, CategoriesCollection, Category, Mod}
+import com.mymix.s4mods_agentv3.activities.ModsListActivity
+import com.mymix.s4mods_agentv3.models._
 import com.mymix.s4mods_agentv3.{Constants, Main}
 import org.jsoup.Jsoup
 import org.jsoup.nodes.{Document, Element}
@@ -49,7 +49,7 @@ object ModsOnlineController
         }
     }
 
-    def startBGLoading(): Unit =
+    def startBGLoading(mods: ModsCollection): Unit =
     {
         stopBGLoading()
         loading = true
@@ -60,13 +60,13 @@ object ModsOnlineController
             {
                 if (loading)
                 {
-                    cached_mods.forEach(el =>
+                    mods.forEach(el =>
                     {
                         if (loading)
                         {
                             var tdl: Array[String] = traceDownloadLink(el)
                             loaded_full_info.add(tdl)
-                            Main.current_activity.asInstanceOf[OnlineModsListActivity]
+                            Main.current_activity.asInstanceOf[ModsListActivity]
                                 .updateDLnDesc(el.link, tdl(1), tdl(0))
                         }
                     })
@@ -86,7 +86,7 @@ object ModsOnlineController
             {
                 if (loading)
                 {
-                    cached_mods.forEach(el =>
+                    mods.forEach(el =>
                     {
                         if (loading)
                         {
@@ -103,6 +103,16 @@ object ModsOnlineController
             }
         })
         th_image_loading.start()
+    }
+
+    def startBGInstalledLoading(): Unit =
+    {
+        startBGLoading(ModsController.getInstalledModsList())
+    }
+
+    def startBGOnlineLoading(): Unit =
+    {
+        startBGLoading(cached_mods)
     }
 
     def stopBGLoading(): Unit =

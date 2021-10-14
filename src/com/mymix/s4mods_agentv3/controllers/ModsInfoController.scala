@@ -47,7 +47,6 @@ object ModsInfoController
 
     def addInstalledModsList(new_mods: util.List[Mod]): Unit =
     {
-        println("Installed Mods Modified!")
         new_mods.forEach(mod =>
         {
             var add = true

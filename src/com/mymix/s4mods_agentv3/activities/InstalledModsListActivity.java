@@ -17,6 +17,7 @@ import java.util.List;
 public class InstalledModsListActivity extends ModsListActivity
 {
     private static JLabel category_name = null;
+    private JLabel no_mods = new JLabel("<html><center>Ни один мод не установлен.<br>Пора это исправить!</center></html>");
 
     public InstalledModsListActivity()
     {
@@ -37,11 +38,11 @@ public class InstalledModsListActivity extends ModsListActivity
         // Загрузка компонентов
         List<Mod> list = ModsController.getInstalledModsList();
         if (list.isEmpty())
-            mods.add(new JLabel("<html><center>Ни один мод не установлен.<br>Пора это исправить!</center></html>"));
+            mods.add(no_mods);
         else
         {
             list.forEach(this::addMod);
-            ModsOnlineController.startBGLoading();
+            ModsOnlineController.startBGInstalledLoading();
         }
         loadFilters();
 
@@ -61,13 +62,13 @@ public class InstalledModsListActivity extends ModsListActivity
                 UIDecorator.createPrettyButton(
                         "ГЛАВНАЯ",
                         l -> Main.activity(new StartActivity())),
-                menu
+                this
         ));
         menu.add(UIDecorator.normalizeElementRepaint(
                 UIDecorator.createPrettyButton(
                         "Все моды",
                         l -> Main.activity(new OnlineModsListActivity())),
-                menu
+                this
         ));
         // - ENDof(меню)
         top_panel.add(menu, BorderLayout.CENTER);
@@ -118,7 +119,6 @@ public class InstalledModsListActivity extends ModsListActivity
                     {
                         if (el.done())
                         {
-                            -- downloading_counter;
                             el.remove();
                             downloads.remove(el);
                         }
@@ -127,15 +127,14 @@ public class InstalledModsListActivity extends ModsListActivity
                 catch (ConcurrentModificationException ex)
                 {
                     // а тут уже нет. видимо, после Exception перехватывается контроль над downloads
-                    downloads.forEach(el ->
+                    /*downloads.forEach(el ->
                     {
                         if (el.done())
                         {
-                            -- downloading_counter;
                             el.remove();
                             downloads.remove(el);
                         }
-                    });
+                    });*/
                 }
             }
             // обновляем загрузочную панель
@@ -144,15 +143,6 @@ public class InstalledModsListActivity extends ModsListActivity
         updateDownloadingPanel();
 
         return 0;
-    }
-
-    @Override
-    public void setActive(Container contentPane)
-    {
-        super.setActive(contentPane);
-
-        add(downloading_progress_container, BorderLayout.EAST);
-        downloading_progress_container.setVisible(dp_visible);
     }
 
     protected void loadFilters()
@@ -182,12 +172,22 @@ public class InstalledModsListActivity extends ModsListActivity
         UIDecorator.normalizeElementRepaint(b, this);
     }
 
+    private void updateMods()
+    {
+        if (mods.getComponents().length == 0)
+        {
+            mods.add(no_mods);
+        }
+        repaint();
+    }
+
     public void addMod(Mod mod)
     {
         JPanel mod_panel = new JPanel(new GridBagLayout()),
                 top_panel = new JPanel(new BorderLayout()),
                 name_group = new JPanel(new FlowLayout()),
-                control_group = new JPanel(new FlowLayout());
+                control_group = new JPanel(new FlowLayout()),
+                image_panel = new JPanel(new FlowLayout());
         JButton name = new JButton(mod.name()),
                 remove = new JButton(),
                 on = new JButton(),
@@ -215,7 +215,12 @@ public class InstalledModsListActivity extends ModsListActivity
         c.gridheight = 2;
         c.ipadx = 10;
         c.ipady = 5;
-        mod_panel.add(image, c);
+        if (Main.internet_connection())
+        {
+            image_panel.setPreferredSize(new Dimension(150, 155));
+            image_panel.add(image);
+            mod_panel.add(image_panel, c);
+        }
 
         c.gridx = GridBagConstraints.RELATIVE;
         c.gridy = 0;
@@ -230,10 +235,8 @@ public class InstalledModsListActivity extends ModsListActivity
         remove.addActionListener(l ->
         {
             Main.delete(mod);
-            remove.setVisible(false);
-
-            on.setVisible(false);
-            off.setVisible(false);
+            mods.remove(mod_panel);
+            updateMods();
         });
         control_group.add(remove);
 
@@ -281,8 +284,7 @@ public class InstalledModsListActivity extends ModsListActivity
         desc.setEditable(false);
         desc.setText(mod.description());
         int w_max = Main.getWidth();
-        w_max -= filters_panel.getMaximumSize().width + 100;
-        w_max -= 200;
+        w_max -= filters_panel.getMaximumSize().width + 400;
         Dimension s = new Dimension(w_max, 155);
         desc.setPreferredSize(s);
         //JScrollPane desc_container = new JScrollPane(desc);
@@ -310,6 +312,7 @@ public class InstalledModsListActivity extends ModsListActivity
     {
         super.setInactive(contentPane);
         removeAll();
-        ModsOnlineController.stopBGLoading();
+        if (Main.current_activity().getClass() != getClass())
+            ModsOnlineController.stopBGLoading();
     }
 }
