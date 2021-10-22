@@ -15,15 +15,17 @@ object ModsInfoController
 
     def init(): Unit =
     {
+
         // Инициализируем Json-файл
-        if (!new File("res/data.json").exists())
+        if (!new File(getClass.getResource("res/data.json").toURI).exists())
         {
-            val file = new FileWriter("res/data.json", false)
+            val file = new FileWriter(new File(getClass.getResource("res/data.json").toURI), false)
             file.append("{\n  \"cached_categories\": [],\n  \"installed_mods\": []\n}")
             file.close()
         }
 
-        val stream_reader = new FileInputStream("res/data.json")
+        //val stream_reader = new FileInputStream("res/data.json")
+        val stream_reader = getClass.getResourceAsStream("res/data.json").asInstanceOf[FileInputStream]
 
         builder.setPrettyPrinting()
         gson = builder.create()
@@ -65,7 +67,8 @@ object ModsInfoController
     // Сохранение
     def saveInfoFile(): Unit =
     {
-        val writer = new FileWriter("res/data.json")
+        //val writer = new FileWriter("res/data.json")
+        val writer = new FileWriter(new File(getClass.getResource("res/data.json").toURI))
         gson.toJson(info_file_model, writer)
         writer.close()
     }

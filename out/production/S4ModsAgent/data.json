@@ -3,193 +3,193 @@
   "cached_categories": [
     {
       "ID": 1,
-      "name": "CAS Рё СЌРєСЂР°РЅ Р·Р°РіСЂСѓР·РєРё",
+      "name": "CAS и экран загрузки",
       "link": "/CAS-dlya-sims-4/",
       "parent": 0
     },
     {
       "ID": 2,
-      "name": "Р°РєСЃРµСЃСЃСѓР°СЂС‹",
+      "name": "аксессуары",
       "link": "/aksessuary-dlya-sims-4/",
       "parent": 0
     },
     {
       "ID": 3,
-      "name": "РІРЅРµС€РЅРѕСЃС‚СЊ",
+      "name": "внешность",
       "link": "/vneshnost-dlya-sims-4/",
       "parent": 0
     },
     {
       "ID": 4,
-      "name": "Р±СЂРѕРІРё Рё СЂРµСЃРЅРёС†С‹",
+      "name": "брови и ресницы",
       "link": "/brovi-i-resnitsy-dlya-sims-4/",
       "parent": 3
     },
     {
       "ID": 5,
-      "name": "РєРѕСЃРјРµС‚РёРєР°",
+      "name": "косметика",
       "link": "/kosmetika-dlya-sims-4/",
       "parent": 3
     },
     {
       "ID": 6,
-      "name": "Р»РёРЅР·С‹ Рё РіР»Р°Р·Р°",
+      "name": "линзы и глаза",
       "link": "/linzy-i-glaza-dlya-sims-4/",
       "parent": 3
     },
     {
       "ID": 7,
-      "name": "РѕСЃРѕР±РµРЅРЅРѕСЃС‚Рё РєРѕР¶Рё",
+      "name": "особенности кожи",
       "link": "/osobennosti-kozhi-dlya-sims-4/",
       "parent": 3
     },
     {
       "ID": 8,
-      "name": "СЃРєРёРЅС‚РѕРЅС‹",
+      "name": "скинтоны",
       "link": "/skintony-dlya-sims-4/",
       "parent": 3
     },
     {
       "ID": 9,
-      "name": "С‚Р°С‚СѓРёСЂРѕРІРєРё",
+      "name": "татуировки",
       "link": "/tatuirovki-dlya-sims-4/",
       "parent": 3
     },
     {
       "ID": 10,
-      "name": "СѓС€Рё Рё Р·СѓР±С‹",
+      "name": "уши и зубы",
       "link": "/ushi-i-zuby-dlya-sims-4/",
       "parent": 3
     },
     {
       "ID": 11,
-      "name": "РёРЅС‚РµСЂСЊРµСЂ",
+      "name": "интерьер",
       "link": "/interer-dlya-sims-4/",
       "parent": 0
     },
     {
       "ID": 12,
-      "name": "РґРµРєРѕСЂ",
+      "name": "декор",
       "link": "/dekor-dlya-sims-4/",
       "parent": 11
     },
     {
       "ID": 13,
-      "name": "РєРѕРјРЅР°С‚С‹",
+      "name": "комнаты",
       "link": "/komnaty-dlya-sims-4/",
       "parent": 11
     },
     {
       "ID": 14,
-      "name": "РјРµР±РµР»СЊ",
+      "name": "мебель",
       "link": "/mebel-dlya-sims-4/",
       "parent": 11
     },
     {
       "ID": 15,
-      "name": "РЅР°Р±РѕСЂС‹ РёРЅС‚РµСЂСЊРµСЂР°",
+      "name": "наборы интерьера",
       "link": "/nabory-interera-dlya-sims-4/",
       "parent": 11
     },
     {
       "ID": 16,
-      "name": "С‚РµС…РЅРёРєР°",
+      "name": "техника",
       "link": "/tekhnika-dlya-sims-4/",
       "parent": 11
     },
     {
       "ID": 17,
-      "name": "РєР°С‚Р°Р»РѕРіРё",
+      "name": "каталоги",
       "link": "/katalogi-dlya-sims-4/",
       "parent": 0
     },
     {
       "ID": 18,
-      "name": "РєРѕРјРїР»РµРєС‚С‹",
+      "name": "комплекты",
       "link": "/komplekty-dlya-sims-4/",
       "parent": 0
     },
     {
       "ID": 19,
-      "name": "РјРѕРґС‹",
+      "name": "моды",
       "link": "/mody-dlya-sims-4/",
       "parent": 0
     },
     {
       "ID": 20,
-      "name": "РЅР°Р±РѕСЂС‹",
+      "name": "наборы",
       "link": "/nabory-dlya-sims-4/",
       "parent": 0
     },
     {
       "ID": 21,
-      "name": "РѕР±СѓРІСЊ",
+      "name": "обувь",
       "link": "/obuv-dlya-sims-4/",
       "parent": 0
     },
     {
       "ID": 22,
-      "name": "РѕР±СѓСЃС‚СЂРѕР№СЃС‚РІРѕ РґРІРѕСЂР°",
+      "name": "обустройство двора",
       "link": "/obustroystvo-dvora-dlya-sims-4/",
       "parent": 0
     },
     {
       "ID": 23,
-      "name": "РѕРґРµР¶РґР°",
+      "name": "одежда",
       "link": "/odezhda-dlya-sims-4/",
       "parent": 0
     },
     {
       "ID": 24,
-      "name": "РїРёС‚РѕРјС†С‹ Рё Р¶РёРІРѕС‚РЅС‹Рµ",
+      "name": "питомцы и животные",
       "link": "/pitomtsy-i-zhivotnye-dlya-sims-4/",
       "parent": 0
     },
     {
       "ID": 25,
-      "name": "РїРѕР·С‹",
+      "name": "позы",
       "link": "/pozy-dlya-sims-4/",
       "parent": 0
     },
     {
       "ID": 26,
-      "name": "РїСЂРµСЃРµС‚С‹ Рё СЃР»Р°Р№РґРµСЂС‹",
+      "name": "пресеты и слайдеры",
       "link": "/presety-i-slajdery-dlya-sims-4/",
       "parent": 0
     },
     {
       "ID": 27,
-      "name": "РїСЂРёС‡РµСЃРєРё",
+      "name": "прически",
       "link": "/pricheski-dlya-sims-4/",
       "parent": 0
     },
     {
       "ID": 28,
-      "name": "РїСЂРѕРіСЂР°РјРјС‹",
+      "name": "программы",
       "link": "/programmy-dlya-sims-4/",
       "parent": 0
     },
     {
       "ID": 29,
-      "name": "СЃС‚СЂРѕРёС‚РµР»СЊСЃС‚РІРѕ",
+      "name": "строительство",
       "link": "/stroitelstvo-dlya-sims-4/",
       "parent": 0
     },
     {
       "ID": 30,
-      "name": "РѕРєРЅР°, РґРІРµСЂРё Рё Р°СЂРєРё",
+      "name": "окна, двери и арки",
       "link": "/okna-dveri-i-arki-dlya-sims-4/",
       "parent": 29
     },
     {
       "ID": 31,
-      "name": "СЃС‚РµРЅС‹ Рё РїРѕР»",
+      "name": "стены и пол",
       "link": "/steny-i-pol-dlya-sims-4/",
       "parent": 29
     },
     {
       "ID": 32,
-      "name": "СѓРІР»РµС‡РµРЅРёСЏ Рё РЅР°РІС‹РєРё",
+      "name": "увлечения и навыки",
       "link": "/uvlecheniya-i-navyki-dlya-sims-4/",
       "parent": 0
     }
