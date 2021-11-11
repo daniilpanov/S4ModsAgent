@@ -1,11 +1,12 @@
 package com.mymix.s4mods_agentv3.controllers
 
-import java.io.{File, FileInputStream, FileWriter, InputStreamReader}
+import java.io._
 import java.util
 
 import com.google.gson.stream.JsonReader
 import com.google.gson.{Gson, GsonBuilder}
 import com.mymix.s4mods_agentv3.models._
+
 
 object ModsInfoController
 {
@@ -15,17 +16,19 @@ object ModsInfoController
 
     def init(): Unit =
     {
-
-        // Инициализируем Json-файл
-        if (!new File(getClass.getResource("res/data.json").toURI).exists())
+        var stream_reader: InputStream = null
+        try
         {
-            val file = new FileWriter(new File(getClass.getResource("res/data.json").toURI), false)
-            file.append("{\n  \"cached_categories\": [],\n  \"installed_mods\": []\n}")
-            file.close()
+            stream_reader = getClass.getResourceAsStream("/res/data.json")
         }
-
-        //val stream_reader = new FileInputStream("res/data.json")
-        val stream_reader = getClass.getResourceAsStream("res/data.json").asInstanceOf[FileInputStream]
+        catch
+        {
+            case ex: NullPointerException =>
+                val file = new FileWriter(new File(getClass.getResource("/res/data.json").getFile), false)
+                file.append("{\n  \"cached_categories\": [],\n  \"installed_mods\": []\n}")
+                file.close()
+                stream_reader = getClass.getResourceAsStream("/res/data.json")
+        }
 
         builder.setPrettyPrinting()
         gson = builder.create()
@@ -68,7 +71,8 @@ object ModsInfoController
     def saveInfoFile(): Unit =
     {
         //val writer = new FileWriter("res/data.json")
-        val writer = new FileWriter(new File(getClass.getResource("res/data.json").toURI))
+        getClass.getResourceAsStream("/res/data.json")
+        val writer = new FileWriter(new File(getClass.getResource("/res/data.json").toURI))
         gson.toJson(info_file_model, writer)
         writer.close()
     }

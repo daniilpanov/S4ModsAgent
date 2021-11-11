@@ -21,8 +21,7 @@ object Images
 
     def loadImageFromRes(img_path: String): ImageIcon =
     {
-        println(img_path)
-        new ImageIcon(getClass.getResource("res/icons/" + img_path))
+        new ImageIcon(getClass.getResource("/res/icons/" + img_path))
     }
     def loadBtnIcon(icon_name: String): ImageIcon = loadImageFromRes("btn-" + icon_name + ".png")
     def loadDisabledBtnIcon(icon_name: String): ImageIcon = loadBtnIcon(icon_name + "-disabled")
