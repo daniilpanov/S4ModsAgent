@@ -7,6 +7,7 @@ class Mod(var name: String, var description: String, var link: String)
     var filename: String = ""
     var installed: Boolean = false
     var disabled: Boolean = true
+    var multiple: Boolean = false
 
     def this(name: String, description: String, link: String, image: String)
     {

@@ -194,16 +194,5 @@
       "parent": 0
     }
   ],
-  "installed_mods": [
-    {
-      "name": "Женская прическа \"NEGIN HAIRSTYLE\"",
-      "description": "Уложенные на один бок объемные волнистые локоны в 63 цветовых решениях. Прическа частично работает с головными уборами. \n\nДоступно для женщин. \n\nПроверено на лицензионной версии игры: 1.80.69.1030",
-      "link": "/pricheski-dlya-sims-4/8200-ZHenskaya-pricheska-NEGIN-HAIRSTYLE-dlya-Sims-4/",
-      "image": "https://sims4pack.ru/materials/img/20211007145037865.jpg",
-      "download_link": "/go/8200",
-      "filename": "sims4pack_8200-ZHenskaya-pricheska-NEGIN-HAIRSTYLE.package",
-      "installed": true,
-      "disabled": false
-    }
-  ]
+  "installed_mods": []
 }

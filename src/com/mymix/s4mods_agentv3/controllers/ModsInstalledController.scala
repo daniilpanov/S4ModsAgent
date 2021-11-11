@@ -67,6 +67,7 @@ object ModsInstalledController
                 mod.installed = true
                 mod.disabled = e.disabled
                 mod.filename = e.filename
+                mod.multiple = e.multiple
             }
         })
 
@@ -78,7 +79,7 @@ object ModsInstalledController
         var mod: Mod = null
         ModsInfoController.getInstalledMods().forEach(e =>
         {
-            if (e.filename == fname)
+            if (e.filename.indexOf(fname) != -1)
                 mod = e
         })
 
@@ -87,17 +88,35 @@ object ModsInstalledController
 
     def deleteMod(mod: Mod): Unit =
     {
-        var f = new File(Constants.sims_home + "Mods\\" + mod.filename)
-        if (!f.exists())
-            f = new File(Constants.sims_home + "ModsDisabled\\" + mod.filename)
-        f.delete()
+        println(mod.filename)
+        println(mod.multiple)
+        if (mod.multiple)
+        {
+            val files = mod.filename.split('|')
+            for (file <- files)
+            {
+                var f = new File(Constants.sims_home + "Mods\\" + file)
+                if (!f.exists())
+                    f = new File(Constants.sims_home + "ModsDisabled\\" + file)
+                f.delete()
+            }
+        }
+        else
+        {
+            var f = new File(Constants.sims_home + "Mods\\" + mod.filename)
+            if (!f.exists())
+                f = new File(Constants.sims_home + "ModsDisabled\\" + mod.filename)
+            f.delete()
+        }
+
         ModsInfoController.getInstalledMods().remove(mod)
         ModsInfoController.saveInfoFile()
     }
 
     def switchDisable(mod: Mod): Unit =
     {
-        var a = new Array[String](2)
+        val a = new Array[String](2)
+
         if (mod.disabled)
         {
             a(0) = "ModsDisabled"
@@ -110,9 +129,22 @@ object ModsInstalledController
         }
         val fromTo = a
 
-        val from = Constants.sims_home + fromTo(0) + "\\" + mod.filename
-        val to = Constants.sims_home + fromTo(1) + "\\" + mod.filename
-        Files.move(Paths.get(from), Paths.get(to))
+        if (mod.multiple)
+        {
+            val files = mod.filename.split('|')
+            for (file <- files)
+            {
+                val from = Constants.sims_home + fromTo(0) + "\\" + file
+                val to = Constants.sims_home + fromTo(1) + "\\" + file
+                Files.move(Paths.get(from), Paths.get(to))
+            }
+        }
+        else
+        {
+            val from = Constants.sims_home + fromTo(0) + "\\" + mod.filename
+            val to = Constants.sims_home + fromTo(1) + "\\" + mod.filename
+            Files.move(Paths.get(from), Paths.get(to))
+        }
 
         mod.disabled = !mod.disabled
     }

@@ -31,6 +31,7 @@ object ModsInfoController
             new JsonReader(new InputStreamReader(stream_reader)),
             classOf[ModsInfoFile]
         )
+        info_file_model.installed_mods.forEach(e => println(e.multiple))
     }
 
     def getEaHome(): String = info_file_model.ea_home

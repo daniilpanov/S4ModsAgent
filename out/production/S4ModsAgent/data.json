@@ -196,14 +196,15 @@
   ],
   "installed_mods": [
     {
-      "name": "Женская прическа \"NEGIN HAIRSTYLE\"",
-      "description": "Уложенные на один бок объемные волнистые локоны в 63 цветовых решениях. Прическа частично работает с головными уборами. \n\nДоступно для женщин. \n\nПроверено на лицензионной версии игры: 1.80.69.1030",
-      "link": "/pricheski-dlya-sims-4/8200-ZHenskaya-pricheska-NEGIN-HAIRSTYLE-dlya-Sims-4/",
-      "image": "https://sims4pack.ru/materials/img/20211007145037865.jpg",
-      "download_link": "/go/8200",
-      "filename": "sims4pack_8200-ZHenskaya-pricheska-NEGIN-HAIRSTYLE.package",
+      "name": "Новогодние гирлянды \"first garland and second garland\"",
+      "description": "2 праздничные новогодние гирлянды в 5 и 10 цветовых образцах. Для перемещения и нужного расположения используйте коды: bb.moveobjects и цифры 9 и 0. Расположение допов → раздел \"Настенные украшения\". \n\nПроверено на лицензионной версии игры: 1.81.72.1030",
+      "link": "/dekor-dlya-sims-4/8320-Novogodnie-girlyandy-first-garland-and-second-garland-dlya-Sims-4/",
+      "image": "https://sims4pack.ru/materials/img/20211111125720504.jpg",
+      "download_link": "/go/8320",
+      "filename": "stefizzi_advent03-18_second_garland.package|stefizzi_advent03-18_first_garland.package",
       "installed": true,
-      "disabled": false
+      "disabled": false,
+      "multiple": true
     }
   ]
 }

@@ -8,18 +8,13 @@
   <component name="ChangeListManager">
     <list default="true" id="bbeef045-c90f-4a3c-bafd-bcebca855ea8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODO2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TODO2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/S4ModsAgent/com/mymix/s4mods_agentv3/activities/InstalledModsListActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S4ModsAgent/com/mymix/s4mods_agentv3/activities/InstalledModsListActivity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/S4ModsAgent/com/mymix/s4mods_agentv3/activities/OnlineModsListActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S4ModsAgent/com/mymix/s4mods_agentv3/activities/OnlineModsListActivity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/S4ModsAgent/com/mymix/s4mods_agentv3/controllers/ModsInfoController$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S4ModsAgent/com/mymix/s4mods_agentv3/controllers/ModsInfoController$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/S4ModsAgent/com/mymix/s4mods_agentv3/controllers/ModsOnlineController$.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S4ModsAgent/com/mymix/s4mods_agentv3/controllers/ModsOnlineController$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/S4ModsAgent/com/mymix/s4mods_agentv3/controllers/ModsOnlineController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/S4ModsAgent/com/mymix/s4mods_agentv3/controllers/ModsOnlineController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TODO-n-FIXME.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TODO-n-FIXME.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/S4ModsAgent/com/mymix/s4mods_agentv3/models/ModInstaller.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/res/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/activities/InstalledModsListActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/activities/InstalledModsListActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/activities/OnlineModsListActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/activities/OnlineModsListActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/components/ModDescScrollPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/components/ModDescScrollPane.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsInfoController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsInfoController.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsOnlineController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsOnlineController.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsInstalledController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsInstalledController.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/Mod.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/Mod.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/ModInstaller.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/ModInstaller.scala" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,37 +29,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/activities/InstalledModsListActivity.java">
+        <entry file="file://$PROJECT_DIR$/res/data.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2822">
-              <caret line="178" column="30" selection-start-line="178" selection-start-column="30" selection-end-line="178" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="264">
+              <caret line="206" column="22" lean-forward="true" selection-start-line="206" selection-start-column="22" selection-end-line="206" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/activities/OnlineModsListActivity.java">
+        <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/Mod.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6919">
-              <caret line="427" column="68" selection-start-line="427" selection-start-column="68" selection-end-line="427" selection-end-column="68" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state>
+              <caret column="39" lean-forward="true" selection-start-column="39" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsOnlineController.scala">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsInstalledController.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="35" column="31" lean-forward="true" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
-              <folding>
-                <element signature="e#46#72#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="170">
+              <caret line="26" column="40" lean-forward="true" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -72,8 +58,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/ModInstaller.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
-              <caret line="73" column="29" selection-start-line="73" selection-start-column="29" selection-end-line="73" selection-end-column="29" />
+            <state relative-caret-position="-55">
+              <caret line="128" column="13" lean-forward="true" selection-start-line="128" selection-start-column="13" selection-end-line="128" selection-end-column="13" />
+              <folding>
+                <element signature="e#41#112#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsInfoController.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="33" column="70" selection-start-line="33" selection-start-column="70" selection-end-line="33" selection-end-column="70" />
+              <folding>
+                <element signature="e#46#115#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -90,10 +91,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CacheSw</find>
-      <find>mods_updated</find>
-      <find>delete</find>
-      <find>?</find>
       <find>add</find>
       <find>setIn</find>
       <find>stop</find>
@@ -120,6 +117,10 @@
       <find>очис</find>
       <find>print</find>
       <find>log</find>
+      <find>setTe</find>
+      <find>installing_mod.name</find>
+      <find>filename</find>
+      <find>disable</find>
     </findStrings>
     <replaceStrings>
       <replace>mods_updaed</replace>
@@ -144,7 +145,6 @@
         <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/CategoriesCollection.scala" />
         <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/ModsInfoFile.scala" />
         <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsController.scala" />
-        <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/Mod.scala" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/tests/Downloading.scala" />
         <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/DownloadingManager.scala" />
@@ -159,8 +159,6 @@
         <option value="$PROJECT_DIR$/DESIGN.txt" />
         <option value="$PROJECT_DIR$/TASK-IN-PROGRESS.txt" />
         <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/UIDecorator.scala" />
-        <option value="$PROJECT_DIR$/res/data.json" />
-        <option value="$PROJECT_DIR$/TODO-n-FIXME.txt" />
         <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/activities/Activity.java" />
         <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/activities/DownloadingActivity.java" />
         <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/activities/GalleryActivity.java" />
@@ -174,16 +172,19 @@
         <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/Main.scala" />
         <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/activities/StartActivity.java" />
         <option value="$PROJECT_DIR$/test.cs" />
-        <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsInstalledController.scala" />
         <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/components/ModScrollBar.java" />
         <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/activities/ModsListActivity.java" />
-        <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/ModInstaller.scala" />
         <option value="$PROJECT_DIR$/TODO2.txt" />
-        <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsInfoController.scala" />
         <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/components/ModDescScrollPane.java" />
         <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/activities/OnlineModsListActivity.java" />
         <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsOnlineController.scala" />
         <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/activities/InstalledModsListActivity.java" />
+        <option value="$PROJECT_DIR$/TODO-n-FIXME.txt" />
+        <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/Mod.scala" />
+        <option value="$PROJECT_DIR$/res/data.json" />
+        <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/ModInstaller.scala" />
+        <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsInstalledController.scala" />
+        <option value="$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsInfoController.scala" />
       </list>
     </option>
   </component>
@@ -199,7 +200,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -210,18 +210,7 @@
             <path>
               <item name="S4ModsAgent" type="b2602c69:ProjectViewProjectNode" />
               <item name="S4ModsAgent" type="462c0819:PsiDirectoryNode" />
-              <item name="app-models.png" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="S4ModsAgent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="S4ModsAgent" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="S4ModsAgent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="S4ModsAgent" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="icons" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="S4ModsAgent" type="b2602c69:ProjectViewProjectNode" />
@@ -246,13 +235,6 @@
               <item name="S4ModsAgent" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="s4mods_agentv3" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="S4ModsAgent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="S4ModsAgent" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="s4mods_agentv3" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -262,35 +244,11 @@
               <item name="s4mods_agentv3" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="S4ModsAgent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="S4ModsAgent" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="S4ModsAgent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="S4ModsAgent" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="S4ModsAgent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-            <path>
-              <item name="S4ModsAgent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="S4ModsAgent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="scala-sdk-2.13.0 (2)" type="70bed36:NamedLibraryElementNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -436,7 +394,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" sideWeight="0.500664" side_tool="true" weight="0.31017193" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.499336" visible="true" weight="0.27387387" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.499336" visible="true" weight="0.2981982" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.3236715" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50143266" side_tool="true" weight="0.32802126" />
@@ -444,7 +402,7 @@
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32934928" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32802126" />
-      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49856734" weight="0.35694444" />
+      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.49856734" visible="true" weight="0.35694444" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.3984064" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -503,78 +461,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/awt/Graphics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="820" column="16" selection-start-line="820" selection-start-column="16" selection-end-line="820" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/RoundedCornerBorder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="24" column="9" lean-forward="true" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/awt/Font.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2217">
-          <caret line="566" column="11" selection-start-line="566" selection-start-column="11" selection-end-line="566" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://G:/Program Files/Java/jdk1.8.0_291/src.zip!/java/awt/Image.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/awt/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="1819" column="16" lean-forward="true" selection-start-line="1819" selection-start-column="16" selection-end-line="1819" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/DynamicalBGForJSP.java" />
-    <entry file="jar://$PROJECT_DIR$/lib/jsoup-1.14.2.jar!/org/jsoup/Connection.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="83" column="13" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/jsoup-1.14.2.jar!/org/jsoup/helper/HttpConnection.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="339" column="23" selection-start-line="339" selection-start-column="23" selection-end-line="339" selection-end-column="23" />
-          <folding>
-            <element signature="e#3009#3010#0" expanded="true" />
-            <element signature="e#3064#3065#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/jsoup-1.14.2.jar!/org/jsoup/helper/Validate.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="15" column="74" lean-forward="true" selection-start-line="15" selection-start-column="74" selection-end-line="15" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/awt/Color.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="119" column="62" selection-start-line="119" selection-start-column="62" selection-end-line="119" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DESIGN.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="67" selection-start-line="5" selection-start-column="67" selection-end-line="5" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/javax/swing/Timer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="145">
@@ -595,13 +481,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/res/maxresdefault_live.jpg">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TODO-n-FIXME.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="42" lean-forward="true" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
-        </state>
-      </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/awt/FlowLayout.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -731,13 +610,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="94" column="38" lean-forward="true" selection-start-line="94" selection-start-column="38" selection-end-line="94" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/test.cs" />
     <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/Constants.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -747,17 +620,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/Mod.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="29" lean-forward="true" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/lang/Class.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="153" column="18" selection-start-line="153" selection-start-column="18" selection-end-line="153" selection-end-column="18" />
+        <state relative-caret-position="197">
+          <caret line="2215" column="53" selection-start-line="2215" selection-start-column="53" selection-end-line="2215" selection-end-column="53" />
         </state>
       </provider>
     </entry>
@@ -765,23 +631,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/Main.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
-          <folding>
-            <element signature="e#34#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsInstalledController.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-21">
-          <caret line="59" column="8" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -795,31 +644,10 @@
     <entry file="file://$PROJECT_DIR$/res/grand-theft-auto-v-internet-zakat-panorama-oboi-4320x960_157.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/TODO2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/data.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="187" column="18" lean-forward="true" selection-start-line="187" selection-start-column="18" selection-end-line="187" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/DownloadingManager.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="10" column="63" selection-start-line="10" selection-start-column="63" selection-end-line="10" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsInfoController.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="55" column="14" lean-forward="true" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -830,13 +658,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/InstalledMods.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -885,29 +706,183 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/Images.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TODO2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/zip/ZipInputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="44" column="6" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/javax/swing/JDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="231" column="11" selection-start-line="231" selection-start-column="11" selection-end-line="231" selection-end-column="11" />
+          <folding>
+            <element signature="e#8334#8335#0" expanded="true" />
+            <element signature="e#8375#8376#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/javax/swing/BoxLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="178" column="11" selection-start-line="178" selection-start-column="11" selection-end-line="178" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/zip/ZipEntry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8593">
+          <caret line="40" column="6" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/javax/swing/AbstractButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="2165" column="19" selection-start-line="2165" selection-start-column="19" selection-end-line="2165" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/javax/swing/JToggleButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="175" column="10" lean-forward="true" selection-start-line="175" selection-start-column="10" selection-end-line="175" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/javax/swing/JCheckBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="173" column="11" lean-forward="true" selection-start-line="173" selection-start-column="11" selection-end-line="173" selection-end-column="11" />
+          <folding>
+            <element signature="e#4128#4129#0" expanded="true" />
+            <element signature="e#4170#4171#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="378" column="13" selection-start-line="378" selection-start-column="13" selection-end-line="378" selection-end-column="13" />
+          <folding>
+            <element signature="e#13713#13714#0" expanded="true" />
+            <element signature="e#13768#13769#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TODO-n-FIXME.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="34" lean-forward="true" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/activities/OnlineModsListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6919">
-          <caret line="427" column="68" selection-start-line="427" selection-start-column="68" selection-end-line="427" selection-end-column="68" />
+        <state relative-caret-position="132">
+          <caret line="447" column="21" lean-forward="true" selection-start-line="447" selection-start-column="21" selection-end-line="447" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/ModInstaller.scala">
+    <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/Main.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="73" column="29" selection-start-line="73" selection-start-column="29" selection-end-line="73" selection-end-column="29" />
+        <state relative-caret-position="180">
+          <caret line="66" column="40" selection-start-line="66" selection-start-column="40" selection-end-line="66" selection-end-column="40" />
+          <folding>
+            <element signature="e#34#51#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsOnlineController.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
+        <state relative-caret-position="-2158">
           <caret line="35" column="31" lean-forward="true" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
           <folding>
             <element signature="e#46#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/data.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="206" column="22" lean-forward="true" selection-start-line="206" selection-start-column="22" selection-end-line="206" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/ModInstaller.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-55">
+          <caret line="128" column="13" lean-forward="true" selection-start-line="128" selection-start-column="13" selection-end-line="128" selection-end-column="13" />
+          <folding>
+            <element signature="e#41#112#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/ModsInfoFile.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="48" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/InstalledMods.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/ModsCollection.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="55" lean-forward="true" selection-start-line="4" selection-start-column="55" selection-end-line="4" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsInstalledController.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="26" column="40" lean-forward="true" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/models/Mod.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="39" lean-forward="true" selection-start-column="39" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/mymix/s4mods_agentv3/controllers/ModsInfoController.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="33" column="70" selection-start-line="33" selection-start-column="70" selection-end-line="33" selection-end-column="70" />
+          <folding>
+            <element signature="e#46#115#0" expanded="true" />
           </folding>
         </state>
       </provider>

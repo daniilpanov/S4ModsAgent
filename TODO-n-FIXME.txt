@@ -3,6 +3,8 @@ async loading of images, descriptions and download links -- DONE!
 create displaying downloading progress (on OnlineModsListActivity; right toggle panel) -- DONE!
 
 TODO: DESIGN! -- in progress
+    (!!!) Make margin for left and right borders of program and make background of mods-list
+    and categories non-transparent
 
 TODO: (fasttask) Checking Internet Connection -- done, but only on start.
     Now We need to do this at other activities -- In progress (paused)
