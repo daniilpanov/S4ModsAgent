@@ -88,7 +88,7 @@ object ModsOnlineController
                 {
                     mods.forEach(el =>
                     {
-                        if (loading)
+                        if (loading && el.image != "")
                         {
                             Main.current_activity.asInstanceOf[ModsListActivity].updateImage(el.link, el.image)
                             Main.current_activity.repaint()

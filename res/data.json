@@ -194,5 +194,50 @@
       "parent": 0
     }
   ],
-  "installed_mods": []
+  "installed_mods": [
+    {
+      "name": "Arckange_BetterLadders.package",
+      "description": "Unknown",
+      "link": "",
+      "image": "",
+      "download_link": "",
+      "filename": "Arckange_BetterLadders.package",
+      "installed": true,
+      "disabled": true,
+      "multiple": false
+    },
+    {
+      "name": "S4MP_logs",
+      "description": "Unknown",
+      "link": "",
+      "image": "",
+      "download_link": "",
+      "filename": "S4MP_logs",
+      "installed": true,
+      "disabled": true,
+      "multiple": false
+    },
+    {
+      "name": "S4MP_release.ts4script",
+      "description": "Unknown",
+      "link": "",
+      "image": "",
+      "download_link": "",
+      "filename": "S4MP_release.ts4script",
+      "installed": true,
+      "disabled": true,
+      "multiple": false
+    },
+    {
+      "name": "ts4multiplayer-alpha2",
+      "description": "Unknown",
+      "link": "",
+      "image": "",
+      "download_link": "",
+      "filename": "ts4multiplayer-alpha2",
+      "installed": true,
+      "disabled": true,
+      "multiple": false
+    }
+  ]
 }

@@ -200,8 +200,11 @@ public class InstalledModsListActivity extends ModsListActivity
         image.addActionListener(l ->
         {
             this.repaint();
-            SliderActivity slider = new SliderActivity(mod.link());
-            slider.setActive(Main.getThis());
+            if (null != mod.link() && !mod.link().equals(""))
+            {
+                SliderActivity slider = new SliderActivity(mod.link());
+                slider.setActive(Main.getThis());
+            }
             this.repaint();
         });
 
