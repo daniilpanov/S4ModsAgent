@@ -38,7 +38,6 @@ abstract public class ModsListActivity extends Activity
     {
         super();
         filters_panel.setLayout(new BoxLayout(filters_panel, BoxLayout.Y_AXIS));
-        UIDecorator.setComponentTransparent(filters_panel);
         filters_scroll.getVerticalScrollBar().addAdjustmentListener(e -> this.repaint());
 
         mods.setLayout(new GridBagLayout());
@@ -64,14 +63,10 @@ abstract public class ModsListActivity extends Activity
         add(top_menu, BorderLayout.NORTH);
         // filters
         filters_panel.setMaximumSize(new Dimension(300, 2000));
-        UIDecorator.setComponentTransparent(filters_panel);
-        UIDecorator.setComponentTransparent(filters_scroll);
         filters_scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         filters_scroll.getVerticalScrollBar().setUnitIncrement(16);
         add(filters_scroll, BorderLayout.WEST);
         // mods
-        UIDecorator.setComponentTransparent(mods);
-        UIDecorator.setComponentTransparent(mods_scroll);
         mods_scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         mods_scroll.setWheelScrollingEnabled(true);
         mods_scroll.getVerticalScrollBar().setUnitIncrement(10);
@@ -96,18 +91,6 @@ abstract public class ModsListActivity extends Activity
     }
 
     abstract public void addMod(Mod mod);
-
-    @Override
-    protected void paintComponent(Graphics g)
-    {
-        super.paintComponent(g);
-        ImageIcon bg_instance = new ImageIcon(
-                "res/grand-theft-auto-v-internet-zakat-panorama-oboi-4320x960_157.jpg");
-        Dimension bg_scaled_size = UIDecorator.getAdaptiveScale(bg_instance, Main.getHeight(), true);
-        ImageIcon bg = UIDecorator.getScaledImageIcon(bg_instance, bg_scaled_size.width, bg_scaled_size.height);
-
-        g.drawImage(bg.getImage(), -1000, 0, null);
-    }
 
 
     public void updateImage(String mod_link, String img_path)

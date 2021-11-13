@@ -1,9 +1,7 @@
 package com.mymix.s4mods_agentv3.activities;
 
-import com.mymix.s4mods_agentv3.Constants;
 import com.mymix.s4mods_agentv3.Images;
 import com.mymix.s4mods_agentv3.Main;
-import com.mymix.s4mods_agentv3.components.ModDescScrollPane;
 import com.mymix.s4mods_agentv3.controllers.ModsController;
 import com.mymix.s4mods_agentv3.controllers.ModsInstalledController;
 import com.mymix.s4mods_agentv3.controllers.ModsOnlineController;
@@ -153,8 +151,6 @@ public class OnlineModsListActivity extends ModsListActivity
 
         // DOWNLOADING PROGRESS
         downloading_progress.setLayout(new BoxLayout(downloading_progress, BoxLayout.Y_AXIS));
-        UIDecorator.setComponentTransparent(downloading_progress);
-        UIDecorator.setComponentTransparent(downloading_progress_container);
         downloading_progress.add(no_downloading);
         // Добавляем обёртку для загрузок
         downloading_progress_container.add(downloading_progress, BorderLayout.CENTER);
@@ -518,11 +514,8 @@ public class OnlineModsListActivity extends ModsListActivity
         w_max -= filters_panel.getMaximumSize().width + 400;
         Dimension s = new Dimension(w_max, 155);
         desc.setPreferredSize(s);
-        JScrollPane desc_container = new ModDescScrollPane(desc, mods_scroll);
-        desc_container.setPreferredSize(s);
 
-        mod_panel.add(desc_container, c);
-        //mod_panel.add(desc, c);
+        mod_panel.add(desc, c);
 
         mods.add(mod_panel, conf);
 

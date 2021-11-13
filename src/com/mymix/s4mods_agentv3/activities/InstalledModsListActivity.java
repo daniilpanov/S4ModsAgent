@@ -98,8 +98,6 @@ public class InstalledModsListActivity extends ModsListActivity
 
         // DOWNLOADING PROGRESS
         downloading_progress.setLayout(new BoxLayout(downloading_progress, BoxLayout.Y_AXIS));
-        UIDecorator.setComponentTransparent(downloading_progress);
-        UIDecorator.setComponentTransparent(downloading_progress_container);
         downloading_progress.add(no_downloading);
         // Добавляем обёртку для загрузок
         downloading_progress_container.add(downloading_progress, BorderLayout.CENTER);

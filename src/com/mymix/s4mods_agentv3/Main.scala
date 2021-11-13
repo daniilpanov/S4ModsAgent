@@ -6,7 +6,7 @@ import java.net.{HttpURLConnection, URL}
 import com.mymix.s4mods_agentv3.activities.{Activity, OnlineModsListActivity, StartActivity}
 import com.mymix.s4mods_agentv3.controllers._
 import com.mymix.s4mods_agentv3.models.{Mod, ModInstaller}
-import javax.swing.{JFrame, JPanel, WindowConstants}
+import javax.swing.{ImageIcon, JFrame, JPanel, WindowConstants}
 
 object Main extends JFrame
 {
@@ -26,7 +26,19 @@ object Main extends JFrame
         setSize(1000, 700)
         setMinimumSize(new Dimension(800, 600))
         UIDecorator.setCenteredWindow(this)
-        setLayout(new GridLayout(1, 1))
+        setContentPane(new JPanel(new GridLayout(1, 1))
+        {
+            override protected def paintComponent(g: Graphics): Unit =
+            {
+                super.paintComponent(g)
+                val bg_instance = new ImageIcon(
+                    "res/grand-theft-auto-v-internet-zakat-panorama-oboi-4320x960_157.jpg")
+                val bg_scaled_size = UIDecorator.getAdaptiveScale(bg_instance, Main.getHeight, true)
+                val bg = UIDecorator
+                    .getScaledImageIcon(bg_instance, bg_scaled_size.width, bg_scaled_size.height)
+                g.drawImage(bg.getImage, -1000, 0, null)
+            }
+        })
 
         activity(new StartActivity)
 

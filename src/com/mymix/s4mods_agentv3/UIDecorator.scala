@@ -29,7 +29,6 @@ object UIDecorator
     {
         try
         {
-            println(path)
             val url = new URL(path)
             val img = new ImageIcon(url)
             val size = getAdaptiveScale(img, max_size, by_height = true)
