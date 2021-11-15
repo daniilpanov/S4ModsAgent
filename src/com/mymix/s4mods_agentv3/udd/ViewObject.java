@@ -21,24 +21,51 @@ public class ViewObject <T extends Component>
         return (T) base_comp;
     }
 
-    public void getClass(String classname)
+    public List<aClass> getClasses()
     {
+        return classes;
+    }
 
+    public aClass getClass(String classname)
+    {
+        aClass res = null;
+
+        for (aClass cl : classes)
+        {
+            if (classname.equals(cl.getName()))
+                res = cl;
+        }
+
+        return res;
     }
 
     public void addClass(String classname)
     {
+        aClass cl = UDD.getClass(classname);
 
+        if (cl != null)
+            classes.add(cl);
+
+        update();
     }
 
     public void addClass(aClass new_class)
     {
+        if (UDD.addClass(new_class))
+            classes.add(new_class);
 
+        update();
     }
 
     public void deleteClass(String classname)
     {
-
+        for (int i = 0; i < classes.size(); ++i)
+        {
+            if (classname.equals(classes.get(i).getName()))
+                classes.remove(i);
+        }
+        // TODO: in method 'update' the deleted properties must also delete
+        update();
     }
 
 
@@ -55,6 +82,21 @@ public class ViewObject <T extends Component>
     /// MAIN PART
     public void update()
     {
+        Properties props;
+        String val;
 
+        for (aClass cl : classes)
+        {
+            props = cl.getProps();
+
+            if ((val = props.get("background")) != null)
+            {
+                base_comp.setBackground(new Color(Integer.parseInt(val)));
+            }
+            if ((val = props.get("color")) != null)
+            {
+                base_comp.setForeground(new Color(Integer.parseInt(val)));
+            }
+        }
     }
 }

@@ -5,12 +5,12 @@ public class aClass
     String name;
     Properties props;
 
-    aClass(String name)
+    public aClass(String name)
     {
         this.name = name;
     }
 
-    aClass(String name, Properties props)
+    public aClass(String name, Properties props)
     {
         this(name);
         this.props = props;
@@ -25,6 +25,4 @@ public class aClass
     {
         return props;
     }
-
-
 }

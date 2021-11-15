@@ -2,7 +2,7 @@ package com.mymix.s4mods_agentv3.udd
 
 import java.util
 
-class Properties (var `type`: String, var name: String)
+class Properties
 {
     private val props = new util.HashMap[String, String]()
 
