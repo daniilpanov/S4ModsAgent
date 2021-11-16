@@ -1,6 +1,5 @@
 package com.mymix.s4mods_agentv3.activities;
 
-import com.mymix.s4mods_agentv3.Constants;
 import com.mymix.s4mods_agentv3.Images;
 import com.mymix.s4mods_agentv3.Main;
 import com.mymix.s4mods_agentv3.UIDecorator;
@@ -31,6 +30,8 @@ public class InstalledModsListActivity extends ModsListActivity
     @Override
     public int init()
     {
+        super.init();
+
         // если не выбрана категория, значит показаны все категории
         if (category_name == null)
             category_name = new JLabel("Все моды");
@@ -95,50 +96,6 @@ public class InstalledModsListActivity extends ModsListActivity
         filters.add(downloading_toggle, BorderLayout.EAST);
         top_menu.add(filters);
         // ENDof(TOP MENU)
-
-        // DOWNLOADING PROGRESS
-        downloading_progress.setLayout(new BoxLayout(downloading_progress, BoxLayout.Y_AXIS));
-        downloading_progress.add(no_downloading);
-        // Добавляем обёртку для загрузок
-        downloading_progress_container.add(downloading_progress, BorderLayout.CENTER);
-        // Кнопка очистки загрузок на обёртке
-        JButton clear_downloads = new JButton("Очистить загрузки");
-        UIDecorator.normalizeElementRepaint(clear_downloads, this);
-        downloading_progress_container.add(clear_downloads, BorderLayout.SOUTH);
-        clear_downloads.addActionListener(l ->
-        {
-            // хз почему, но работает только так
-            synchronized (downloads)
-            {
-                try
-                {
-                    // тут возникает Exception
-                    downloads.forEach(el ->
-                    {
-                        if (el.done())
-                        {
-                            el.remove();
-                            downloads.remove(el);
-                        }
-                    });
-                }
-                catch (ConcurrentModificationException ex)
-                {
-                    // а тут уже нет. видимо, после Exception перехватывается контроль над downloads
-                    /*downloads.forEach(el ->
-                    {
-                        if (el.done())
-                        {
-                            el.remove();
-                            downloads.remove(el);
-                        }
-                    });*/
-                }
-            }
-            // обновляем загрузочную панель
-            updateDownloadingPanel();
-        });
-        updateDownloadingPanel();
 
         return 0;
     }

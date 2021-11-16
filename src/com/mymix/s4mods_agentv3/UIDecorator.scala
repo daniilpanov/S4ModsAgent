@@ -121,12 +121,12 @@ object UIDecorator
 
     def setComponentTransparent(component: Component): Unit =
     {
-        component.setBackground(transparent)
+        /*component.setBackground(transparent)*/
     }
 
     def normalizeElementRepaint(component: Component, container: Container = null): Component =
     {
-        val c = if (null == container)
+        /*val c = if (null == container)
             component.getParent else container
 
         component.addMouseListener(new MouseAdapter()
@@ -152,7 +152,7 @@ object UIDecorator
                 super.mouseExited(e)
                 c.repaint()
             }
-        })
+        })*/
 
         component
     }

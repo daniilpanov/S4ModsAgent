@@ -1,6 +1,5 @@
 package com.mymix.s4mods_agentv3.activities;
 
-import com.mymix.s4mods_agentv3.Constants;
 import com.mymix.s4mods_agentv3.Main;
 import com.mymix.s4mods_agentv3.RoundedCornerBorder;
 import com.mymix.s4mods_agentv3.UIDecorator;
@@ -160,7 +159,9 @@ public class StartActivity extends Activity
         Dimension bg_scaled_size = UIDecorator.getAdaptiveScale(bg_instance, Main.getHeight(), true);
         ImageIcon bg = UIDecorator.getScaledImageIcon(bg_instance, bg_scaled_size.width, bg_scaled_size.height);
 
-        g.drawImage(bg.getImage(), -1000, 0, null);
+        g.drawImage(bg.getImage(),
+                Main.getWidth() < 3320 ? -1000 : 0,
+                0, null);
     }
 
     @Override

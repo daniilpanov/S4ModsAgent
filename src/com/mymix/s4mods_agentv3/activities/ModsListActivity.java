@@ -1,13 +1,16 @@
 package com.mymix.s4mods_agentv3.activities;
 
+import com.mymix.s4mods_agentv3.Images;
 import com.mymix.s4mods_agentv3.Main;
 import com.mymix.s4mods_agentv3.UIDecorator;
 import com.mymix.s4mods_agentv3.models.Mod;
 import com.mymix.s4mods_agentv3.models.ModInstaller;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 
 abstract public class ModsListActivity extends Activity
@@ -53,6 +56,56 @@ abstract public class ModsListActivity extends Activity
         conf.ipady = 25;
     }
 
+    @Override
+    public int init()
+    {
+        // DOWNLOADING PROGRESS
+        downloading_progress.setLayout(new BoxLayout(downloading_progress, BoxLayout.Y_AXIS));
+        downloading_progress.add(no_downloading);
+        // Добавляем обёртку для загрузок
+        downloading_progress_container.add(downloading_progress, BorderLayout.CENTER);
+        // Кнопка очистки загрузок на обёртке
+        JButton clear_downloads = new JButton("Очистить загрузки");
+        UIDecorator.normalizeElementRepaint(clear_downloads, this);
+        downloading_progress_container.add(clear_downloads, BorderLayout.SOUTH);
+        clear_downloads.addActionListener(l ->
+        {
+            // хз почему, но работает только так
+            synchronized (downloads)
+            {
+                try
+                {
+                    // тут возникает Exception
+                    downloads.forEach(el ->
+                    {
+                        if (el.done())
+                        {
+                            el.remove();
+                            downloads.remove(el);
+                        }
+                    });
+                }
+                catch (ConcurrentModificationException ex)
+                {
+                    // а тут уже нет. видимо, после Exception перехватывается контроль над downloads
+                    /*downloads.forEach(el ->
+                    {
+                        if (el.done())
+                        {
+                            el.remove();
+                            downloads.remove(el);
+                        }
+                    });*/
+                }
+            }
+            // обновляем загрузочную панель
+            updateDownloadingPanel();
+        });
+        updateDownloadingPanel();
+
+        return 0;
+    }
+
     abstract protected void loadFilters();
 
     @Override
@@ -85,9 +138,41 @@ abstract public class ModsListActivity extends Activity
         add(downloading_progress_container, BorderLayout.EAST);
         downloading_progress_container.setVisible(dp_visible);
 
+        JPanel p = new JPanel(new FlowLayout());
+        Border b = new ImagedBorder();
+        this.setBorder(b);
+
+        p.add(this);
+        //contentPane.add(p);
         contentPane.add(this);
 
         Main.repaint();
+    }
+
+    class ImagedBorder implements Border
+    {
+        private Insets ins = new Insets(0, 100, 0, 100);
+
+        @Override
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height)
+        {
+            g.clearRect(0, 0, 100, Main.getHeight());
+            g.drawImage(Images.lbg().getImage(), 0, 0, null);
+            g.clearRect(Main.getWidth() - 100, 0, Main.getWidth(), Main.getHeight());
+            g.drawImage(Images.rbg().getImage(), 0, 0, null);
+        }
+
+        @Override
+        public Insets getBorderInsets(Component c)
+        {
+            return ins;
+        }
+
+        @Override
+        public boolean isBorderOpaque()
+        {
+            return false;
+        }
     }
 
     abstract public void addMod(Mod mod);

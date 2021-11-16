@@ -44,6 +44,8 @@ public class OnlineModsListActivity extends ModsListActivity
     @Override
     public int init()
     {
+        super.init();
+
         Main.checkInternetConnection();
         if (!Main.internet_connection())
             return 1;
@@ -80,13 +82,13 @@ public class OnlineModsListActivity extends ModsListActivity
                 UIDecorator.createPrettyButton(
                         "ГЛАВНАЯ",
                         l -> Main.activity(new StartActivity())),
-                this
+                Main.getThis().getContentPane()
         ));
         menu.add(UIDecorator.normalizeElementRepaint(
                 UIDecorator.createPrettyButton(
                         "Установленные моды",
                         l -> Main.activity(new InstalledModsListActivity())),
-                this
+                Main.getThis().getContentPane()
         ));
         // - ENDof(меню)
         top_panel.add(menu, BorderLayout.CENTER);
@@ -115,7 +117,7 @@ public class OnlineModsListActivity extends ModsListActivity
         });
         //   * кнопка поиска
         JButton search_go = new JButton("Поиск");
-        UIDecorator.normalizeElementRepaint(search_go, this);
+        UIDecorator.normalizeElementRepaint(search_go, Main.getThis().getContentPane());
         search_go.addActionListener(l ->
         {
             category_name.setText("Поиск: " + search_input.getText());
@@ -138,7 +140,7 @@ public class OnlineModsListActivity extends ModsListActivity
         filters.add(category_name_container, BorderLayout.CENTER);
         // на эту же панель добавляем кнопку показа загрузок
         JButton downloading_toggle = new JButton("Показать загрузки");
-        UIDecorator.normalizeElementRepaint(downloading_toggle, this);
+        UIDecorator.normalizeElementRepaint(downloading_toggle, Main.getThis().getContentPane());
         downloading_toggle.addActionListener(l ->
         {
             dp_visible = !dp_visible;
@@ -148,50 +150,6 @@ public class OnlineModsListActivity extends ModsListActivity
         filters.add(downloading_toggle, BorderLayout.EAST);
         top_menu.add(filters);
         // ENDof(TOP MENU)
-
-        // DOWNLOADING PROGRESS
-        downloading_progress.setLayout(new BoxLayout(downloading_progress, BoxLayout.Y_AXIS));
-        downloading_progress.add(no_downloading);
-        // Добавляем обёртку для загрузок
-        downloading_progress_container.add(downloading_progress, BorderLayout.CENTER);
-        // Кнопка очистки загрузок на обёртке
-        JButton clear_downloads = new JButton("Очистить загрузки");
-        UIDecorator.normalizeElementRepaint(clear_downloads, this);
-        downloading_progress_container.add(clear_downloads, BorderLayout.SOUTH);
-        clear_downloads.addActionListener(l ->
-        {
-            // хз почему, но работает только так
-            synchronized (downloads)
-            {
-                try
-                {
-                    // тут возникает Exception
-                    downloads.forEach(el ->
-                    {
-                        if (el.done())
-                        {
-                            el.remove();
-                            downloads.remove(el);
-                        }
-                    });
-                }
-                catch (ConcurrentModificationException ex)
-                {
-                    // а тут уже нет. видимо, после Exception перехватывается контроль над downloads
-                    /*downloads.forEach(el ->
-                    {
-                        if (el.done())
-                        {
-                            el.remove();
-                            downloads.remove(el);
-                        }
-                    });*/
-                }
-            }
-            // обновляем загрузочную панель
-            updateDownloadingPanel();
-        });
-        updateDownloadingPanel();
 
         return 0;
     }

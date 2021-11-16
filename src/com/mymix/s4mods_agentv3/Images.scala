@@ -17,6 +17,9 @@ object Images
     val bdpause: ImageIcon= loadDisabledBtnIcon("pause")
     val bdresume: ImageIcon = loadDisabledBtnIcon("resume")
 
+    val lbg: ImageIcon = loadImageFromRes("left-bg")
+    val rbg: ImageIcon = loadImageFromRes("right-bg")
+
 
 
     def loadImageFromRes(img_path: String): ImageIcon = new ImageIcon("res/icons/" + img_path)
