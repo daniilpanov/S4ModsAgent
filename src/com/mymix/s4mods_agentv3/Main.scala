@@ -6,12 +6,13 @@ import java.net.{HttpURLConnection, URL}
 import com.mymix.s4mods_agentv3.activities.{Activity, OnlineModsListActivity, StartActivity}
 import com.mymix.s4mods_agentv3.controllers._
 import com.mymix.s4mods_agentv3.models.{Mod, ModInstaller}
-import javax.swing.{JFrame, JPanel, WindowConstants}
+import javax.swing.{JFrame, JLabel, JPanel, WindowConstants}
 
 object Main extends JFrame
 {
     var current_activity: Activity = null
     var internet_connection: Boolean = false
+    val main_panel = new JPanel(new GridLayout(1, 1))
 
     def main(args: Array[String]): Unit =
     {
@@ -26,7 +27,11 @@ object Main extends JFrame
         setSize(1000, 700)
         setMinimumSize(new Dimension(800, 600))
         UIDecorator.setCenteredWindow(this)
-        setLayout(new GridLayout(1, 1))
+        setLayout(null)
+        add(main_panel)
+        //main_panel.add(new JLabel("OK!"))
+        main_panel.setLocation(1, 1)
+        main_panel.setSize(getSize)
 
         activity(new StartActivity)
 
@@ -46,9 +51,9 @@ object Main extends JFrame
         else
         {
             if (pre_activity != null)
-                pre_activity.setInactive(getContentPane)
+                pre_activity.setInactive(main_panel)
             activity.setBackground(new Color(0, 0, 0, 0))
-            activity.setActive(getContentPane)
+            activity.setActive(main_panel)
             getContentPane.validate()
             getContentPane.repaint()
         }
